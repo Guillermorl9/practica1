@@ -1,12 +1,48 @@
-<div id="container">
-  <strong>{{ name }}</strong>
-  <p>
-    Explore
-    <a
-      target="_blank"
-      rel="noopener noreferrer"
-      href="https://ionicframework.com/docs/components"
-      >UI Components</a
-    >
-  </p>
-</div>
+<ion-content>
+  <form [formGroup]="formulario" (ngSubmit)="enviar()">
+    <ion-list>
+      <ion-item>
+        <ion-input formControlName="nombre" label="Nombre" placeholder="Nombre"></ion-input>
+        <ion-text class="text-danger" *ngIf="hasErrors('nombre', 'required')">
+          Nombre es requerido
+        </ion-text>
+      </ion-item>
+      <ion-item>
+        <ion-input formControlName="apellidos" label="Apellidos" placeholder="Apellidos"></ion-input>
+        <ion-text class="text-danger" *ngIf="hasErrors('apellidos', 'required')">
+          Apellidos son requerido</ion-text>
+      </ion-item>
+      <ion-item>
+        <ion-input formControlName="telefono" label="Teléfono" placeholder="Teléfono"></ion-input>
+        <ion-text class="text-danger" *ngIf="hasErrors('telefono', 'required')">
+          Telefono requerido
+        </ion-text>
+        <ion-text class="text-danger" *ngIf="hasErrors('telefono', 'pattern')">
+          Formato de teléfono no válido. 9 dígitos
+        </ion-text>
+      </ion-item>
+      <ion-item>
+        <ion-input formControlName="email" label="Email" placeholder="Email"></ion-input>
+        <ion-text class="text-danger" *ngIf="hasErrors('email', 'required')">
+          Email requerido
+        </ion-text>
+        <ion-text class="text-danger" *ngIf="hasErrors('email', 'email')">
+          Formato de email no válido
+        </ion-text>
+      </ion-item>
+    </ion-list>
+    <div class="button-container">
+      <ion-button id="button-submit" type="submit">
+        Enviar
+      </ion-button>
+    </div>
+  </form>
+    <ion-alert
+      [isOpen]="showAlert"
+      header="¡Enviado!"
+      subHeader="Formulario de contacto enviado"
+      message="Proximamente nos pondremos en contacto con usted por correo electrónico"
+      [buttons]="['Aceptar']"
+      (didDismiss)="showAlert = false">
+    </ion-alert>
+</ion-content>

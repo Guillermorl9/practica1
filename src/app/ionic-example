@@ -1,0 +1,37 @@
+/**
+ * Ionic Tag                HTML Tag
+ *
+ * <ion-header>             <header>
+ * <ion-toolbar>            <div> (con estilos personalizados)
+ * <ion-title>              <h1> a <h6> (dependiendo del nivel del encabezado)
+ * <ion-content>            <main> o <div> (dependiendo del contexto)
+ * <ion-button>             <button>
+ * <ion-input>              <input>
+ * <ion-item>               <div> (con estilos personalizados)
+ * <ion-list>               <ul> o <div> (dependiendo del contexto)
+ * <ion-label>              <label>
+ * <ion-card>               <div> (con estilos personalizados o <article>)
+ * <ion-card-header>        <header>
+ * <ion-card-title>         <h1> a <h6> (dependiendo del nivel del encabezado)
+ * <ion-card-content>       <p> o <div> (dependiendo del contexto)
+ * <ion-icon>               <i> o <img> (dependiendo de cómo se implemente el ícono)
+ * <ion-footer>             <footer>
+ * <ion-grid>               <div> (con estilos de cuadrícula personalizados)
+ * <ion-row>                <div> (con estilos de cuadrícula personalizados)
+ * <ion-col>                <div> (con estilos de cuadrícula personalizados)
+ * <ion-nav>                <nav>
+ * <ion-tab-bar>            <nav> o <div> (dependiendo del contexto)
+ * <ion-tab-button>         <button> o <a> (dependiendo del contexto)
+ * <ion-select>             <select>
+ * <ion-select-option>      <option>
+ * <ion-textarea>           <textarea>
+ * <ion-toggle>             <input type="checkbox">
+ * <ion-checkbox>           <input type="checkbox">
+ * <ion-radio>              <input type="radio">
+ * <ion-avatar>             <img> (usualmente con estilos redondeados)
+ * <ion-chip>               <span> o <div> (con estilos personalizados)
+ * <ion-segment>            <div> (con estilos personalizados)
+ * <ion-segment-button>     <button> o <a> (dependiendo del contexto)
+ * <ion-slide>              <div> (dentro de un componente de presentación)
+ * <ion-slides>             <div> (contenedor de múltiples componentes de presentación)
+ */
