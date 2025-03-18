@@ -1,0 +1,28 @@
+$size-stars-icons: 28px;
+
+.fixed-size-img {
+  width: 200px;
+  height: 200px;
+  object-fit: contain;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+ion-card.ion-justify-content-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.ion-icon-star {
+  font-size: $size-stars-icons;
+  color: #ffcc00;
+}
+
+.ion-icons-div{
+  margin-left: 15px;
+  margin-bottom: 15px;
+  align-self: flex-start;
+}

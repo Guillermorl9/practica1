@@ -1,0 +1,31 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button text="Atrás" icon="caret-back"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      Detalles
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <ion-card class="ion-justify-content-center">
+    <img src="{{producto?.imagen}}" class="fixed-size-img" />
+    <ion-card-header>
+      <ion-card-title>{{producto?.nombre}}</ion-card-title>
+      <ion-card-subtitle>{{producto?.precio | currency: "EUR"}}</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      {{producto?.descripcion}}
+    </ion-card-content>
+    <div class="ion-icons-div" >
+      <ion-icon *ngFor="let iconName of iconos" name="{{iconName}}" class="ion-icon-star"/>
+      <ion-text>
+        ({{producto?.numVotos}})
+      </ion-text>
+    </div>
+  </ion-card>
+
+</ion-content>
