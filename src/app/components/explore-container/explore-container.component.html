@@ -2,18 +2,21 @@
   <form [formGroup]="formulario" (ngSubmit)="enviar()">
     <ion-list>
       <ion-item>
-        <ion-input formControlName="nombre" label="Nombre" placeholder="Nombre"></ion-input>
+        <ion-input formControlName="nombre" label-placement="stacked" label="Nombre" placeholder="Nombre"></ion-input>
+        <ion-icon slot="start" name="person" aria-hidden="true"></ion-icon>
         <ion-text class="text-danger" *ngIf="hasErrors('nombre', 'required')">
           Nombre es requerido
         </ion-text>
       </ion-item>
       <ion-item>
-        <ion-input formControlName="apellidos" label="Apellidos" placeholder="Apellidos"></ion-input>
+        <ion-input formControlName="apellidos" label-placement="stacked" label="Apellidos" placeholder="Apellidos"></ion-input>
+        <ion-icon slot="start" name="people" aria-hidden="true"></ion-icon>
         <ion-text class="text-danger" *ngIf="hasErrors('apellidos', 'required')">
           Apellidos son requerido</ion-text>
       </ion-item>
       <ion-item>
-        <ion-input formControlName="telefono" label="Teléfono" placeholder="Teléfono"></ion-input>
+        <ion-input formControlName="telefono" label-placement="stacked" label="Teléfono" placeholder="Ej: 636123123"></ion-input>
+        <ion-icon slot="start" name="call" aria-hidden="true"></ion-icon>
         <ion-text class="text-danger" *ngIf="hasErrors('telefono', 'required')">
           Telefono requerido
         </ion-text>
@@ -22,7 +25,8 @@
         </ion-text>
       </ion-item>
       <ion-item>
-        <ion-input formControlName="email" label="Email" placeholder="Email"></ion-input>
+        <ion-input formControlName="email" label-placement="stacked" label="Email" placeholder="email@domain.com"></ion-input>
+        <ion-icon slot="start" name="mail" aria-hidden="true"></ion-icon>
         <ion-text class="text-danger" *ngIf="hasErrors('email', 'required')">
           Email requerido
         </ion-text>

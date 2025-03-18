@@ -1,0 +1,21 @@
+
+$width-avatar-image: 70px;
+$height-avatar-image: 70px;
+
+ion-img{
+  width: $width-avatar-image;
+  height: $height-avatar-image;
+  object-fit: contain;
+  justify-content: center;
+}
+ion-card-title{
+  font-size: 17px;
+  margin-bottom: 15px;
+}
+ion-avatar{
+  width: $width-avatar-image;
+  height: $height-avatar-image;
+  object-fit: contain;
+  justify-content: center;
+  --border-radius: 0px;
+}

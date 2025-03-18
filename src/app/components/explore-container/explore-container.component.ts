@@ -2,6 +2,8 @@ import { Component, Input } from '@angular/core';
 import {ReactiveFormsModule, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {IonicModule} from "@ionic/angular";
 import {NgIf} from "@angular/common";
+import {mail, call, person, people} from 'ionicons/icons';
+import {addIcons} from "ionicons";
 
 
 @Component({
@@ -22,6 +24,7 @@ export class ExploreContainerComponent {
       telefono: ['', [Validators.required, Validators.pattern(this.phonePattern)]],
       email: ['', [Validators.required, Validators.email]],
     })
+    addIcons({mail, call, person, people})
   }
 
   hasErrors(controlName: string, errorName: string): boolean | undefined {
