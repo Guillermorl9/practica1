@@ -1,18 +1,25 @@
-import { Component, EnvironmentInjector, inject } from '@angular/core';
-import { IonTabs, IonTabBar, IonTabButton, IonIcon, IonLabel } from '@ionic/angular/standalone';
+import {Component, EnvironmentInjector, inject, OnInit} from '@angular/core';
+import {IonTabs, IonTabBar, IonTabButton, IonIcon, IonLabel, IonBadge} from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
-import { personAdd, cartSharp, bagHandle} from 'ionicons/icons';
+import { personAdd, cartSharp, bagHandle, cog} from 'ionicons/icons';
+import {SharpService} from "../services/sharp/sharp.service";
+import {CommonModule} from "@angular/common";
 
 @Component({
   selector: 'app-tabs',
   templateUrl: 'tabs.page.html',
   styleUrls: ['tabs.page.scss'],
-  imports: [IonTabs, IonTabBar, IonTabButton, IonIcon, IonLabel],
+  imports: [IonTabs, IonBadge, IonTabBar, IonTabButton, IonIcon, IonLabel, CommonModule],
 })
-export class TabsPage {
-  public environmentInjector = inject(EnvironmentInjector);
+export class TabsPage implements OnInit {
+  sharpListSize: number = 0;
+  constructor(private sharpService: SharpService) {
+    addIcons({ personAdd, cartSharp, bagHandle, cog });
+  }
 
-  constructor() {
-    addIcons({ personAdd, cartSharp, bagHandle });
+  ngOnInit() {
+    this.sharpService.currentSharp.subscribe((data) => {
+      this.sharpListSize = data.length;
+    })
   }
 }
