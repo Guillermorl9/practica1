@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 1
+      Cart
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,8 +9,21 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
+      <ion-title size="large">Your cart</ion-title>
     </ion-toolbar>
   </ion-header>
 
+  <ion-card *ngIf="sharpList.length < 1">
+    <ion-card-header>
+      <ion-card-title>Your cart is currently empty</ion-card-title>
+      <ion-card-subtitle>Empty cart</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-card-subtitle>Go to products and add some products to your cart</ion-card-subtitle>
+      <ion-button expand="block" [routerLink]="['/tabs/tab2']">Go to products</ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <app-product-card *ngIf="sharpList.length > 0" [products]="sharpList" [isCart]="true"> </app-product-card>
 </ion-content>

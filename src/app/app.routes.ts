@@ -8,7 +8,7 @@ export const routes: Routes = [
     loadChildren: () => import('./tabs/tabs.routes').then((m) => m.routes),
   },
   {
-    path: 'tab2/:productoId',
+    path: 'tabs/tab2/:productoId',
     component: ProductDetailsComponent,
   }
 ];

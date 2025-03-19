@@ -26,12 +26,13 @@ import {Product} from "../models/Product";
 import {ApiService} from "../services/api/api.service";
 import {addIcons} from "ionicons";
 import {cartSharp} from "ionicons/icons";
+import {ProductCardComponent} from "../components/product-card/product-card.component";
 
 @Component({
   selector: 'app-tab2',
   templateUrl: 'tab2.page.html',
   styleUrls: ['tab2.page.scss'],
-  imports: [IonHeader, IonToolbar, IonSearchbar, IonTitle, IonAvatar, IonImg, IonLabel, IonIcon, IonItem, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonContent, ExploreContainerComponent, IonGrid, IonCol, IonRow, IonButton, IonNav, IonNavLink, ProductDetailsComponent, CommonModule, RouterLink, CurrencyPipe]
+  imports: [IonHeader, ProductCardComponent, IonToolbar, IonSearchbar, IonTitle, IonAvatar, IonImg, IonLabel, IonIcon, IonItem, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonContent, ExploreContainerComponent, IonGrid, IonCol, IonRow, IonButton, IonNav, IonNavLink, ProductDetailsComponent, CommonModule, RouterLink, CurrencyPipe]
 })
 export class Tab2Page implements OnInit{
   component = ProductDetailsComponent;

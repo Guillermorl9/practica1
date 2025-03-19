@@ -1,4 +1,5 @@
 $size-stars-icons: 28px;
+$quantity-font-size: 25px;
 
 .fixed-size-img {
   width: 200px;
@@ -25,4 +26,24 @@ ion-card.ion-justify-content-center {
   margin-left: 15px;
   margin-bottom: 15px;
   align-self: flex-start;
+}
+
+ion-button {
+  padding: 8px;
+  margin: 8px;
+}
+
+.ion-icons-quantity {
+  font-size: $quantity-font-size;
+}
+
+.ion-text-quantity{
+  font-size: $quantity-font-size;
+}
+
+ion-input {
+  margin: 8px;
+  background-color: red;
+  width: 50px;
+
 }

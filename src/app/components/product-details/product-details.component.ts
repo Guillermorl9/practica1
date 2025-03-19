@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {
+  IonAlert,
   IonBackButton,
   IonButton,
   IonButtons, IonCol,
   IonContent,
-  IonHeader, IonIcon, IonItem, IonRow, IonText,
+  IonHeader, IonIcon, IonInput, IonItem, IonRow, IonText,
   IonTitle,
   IonToolbar,
 } from "@ionic/angular/standalone";
@@ -13,22 +14,27 @@ import {Product} from "../../models/Product";
 import {ApiService} from "../../services/api/api.service";
 import {CurrencyPipe} from "@angular/common";
 import {IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle} from "@ionic/angular/standalone";
-import {starOutline, starHalf, star} from 'ionicons/icons';
+import {starOutline, starHalf, star, add, remove} from 'ionicons/icons';
 import {addIcons} from "ionicons";
 import {CommonModule} from "@angular/common";
+import {SharpService} from "../../services/sharp/sharp.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.component.html',
   styleUrls: ['./product-details.component.scss'],
-  imports: [IonHeader, CommonModule, IonToolbar, IonButtons, IonItem, IonIcon, IonBackButton, IonTitle, IonContent, IonButton, IonText, CurrencyPipe, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle]
+  imports: [IonHeader, IonAlert, CommonModule, IonToolbar, IonInput, IonButtons, IonItem, IonIcon, IonBackButton, IonTitle, IonContent, IonButton, IonText, CurrencyPipe, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle]
 })
 export class ProductDetailsComponent implements OnInit{
   productoId?: string | null;
   producto?: Product;
   iconos: Array<String> = [];
-  constructor(private route: ActivatedRoute, private apiService: ApiService) {
-    addIcons({ starOutline, starHalf, star});
+  cantidad: number = 1;
+  buttonAddDisabled: boolean = this.cantidad == 10;
+  buttonRemoveDisabled: boolean = this.cantidad == 1;
+  constructor(private route: ActivatedRoute, private apiService: ApiService, private sharpService: SharpService, private router: Router) {
+    addIcons({ starOutline, starHalf, star, add, remove});
   }
 
   ngOnInit() {
@@ -40,6 +46,29 @@ export class ProductDetailsComponent implements OnInit{
         this.iconos =  this.calcularIcono();
       })
     });
+  }
+  public incrementarCantidad(){
+    if(this.cantidad < 10){
+      this.cantidad++;
+      this.buttonAddDisabled = this.cantidad == 10;
+      this.buttonRemoveDisabled = this.cantidad == 1;
+    }
+  }
+
+  public addProductToCart(){
+    if(this.producto) {
+      this.sharpService.añadirProducto(this.producto, this.cantidad);
+      this.cantidad = 1;
+      this.router.navigate(['/tabs/tab1/']);
+    }
+  }
+
+  public decrementarCantidad(){
+    if(this.cantidad > 1){
+      this.cantidad--;
+      this.buttonAddDisabled = this.cantidad == 10;
+      this.buttonRemoveDisabled = this.cantidad == 1;
+    }
   }
 
   private calcularIcono(): Array<String>{

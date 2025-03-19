@@ -28,4 +28,20 @@
     </div>
   </ion-card>
 
+  <ion-card class="ion-justify-content-center">
+    <ion-item>
+      <ion-button [disabled]="buttonRemoveDisabled" (click)="decrementarCantidad()">
+        <ion-icon name="remove" class="ion-icons-quantity"></ion-icon>
+      </ion-button>
+      <ion-text class="ion-text-quantity"> {{cantidad}} </ion-text>
+      <ion-button [disabled]="buttonAddDisabled" (click)="incrementarCantidad()">
+        <ion-icon name="add" class="ion-icons-quantity"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-card>
+
+  <ion-button (click)="addProductToCart()">
+    Añadir al carrito
+  </ion-button>
+
 </ion-content>
