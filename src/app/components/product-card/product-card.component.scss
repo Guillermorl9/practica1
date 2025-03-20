@@ -1,0 +1,37 @@
+$width-avatar-image: 70px;
+$height-avatar-image: 70px;
+
+ion-img{
+  width: $width-avatar-image;
+  height: $height-avatar-image;
+  object-fit: contain;
+  justify-content: center;
+}
+ion-card-title{
+  font-size: 17px;
+  margin-bottom: 15px;
+}
+
+ion-card{
+  min-height: 150px;
+}
+
+ion-avatar{
+  width: $width-avatar-image;
+  height: $height-avatar-image;
+  object-fit: contain;
+  justify-content: center;
+  --border-radius: 0px;
+}
+
+ion-item-option{
+  width: 25%;
+}
+
+ion-card-title {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
