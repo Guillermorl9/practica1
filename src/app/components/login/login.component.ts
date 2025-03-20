@@ -3,7 +3,8 @@ import {IonButton, IonContent, IonIcon, IonInput, IonItem, IonList, IonText} fro
 import {ReactiveFormsModule, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {CommonModule} from "@angular/common";
 import {Router} from "@angular/router";
-
+import {FirebaseService} from "../../services/firebase-service/firebase.service";
+import {User} from "../../models/User";
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -12,7 +13,7 @@ import {Router} from "@angular/router";
 })
 export class LoginComponent{
   formulario: FormGroup;
-  constructor(private form: FormBuilder, private router: Router) {
+  constructor(private form: FormBuilder, private router: Router, private firebaseService: FirebaseService) {
     this.formulario = this.form.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],
@@ -28,6 +29,12 @@ export class LoginComponent{
       this.formulario.markAllAsTouched();
       return;
     }
+    const {email, password} = this.formulario.value;
+    const user: User = {
+      email: email,
+      password: password
+    }
+    this.firebaseService.addUser(user)
     this.router.navigate(['/tabs/tab1']);
   }
 
