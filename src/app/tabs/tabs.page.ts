@@ -4,12 +4,13 @@ import { addIcons } from 'ionicons';
 import { personAdd, cartSharp, bagHandle, cog} from 'ionicons/icons';
 import {SharpService} from "../services/sharp/sharp.service";
 import {CommonModule} from "@angular/common";
+import {ConfigComponent} from "../components/config/config.component";
 
 @Component({
   selector: 'app-tabs',
   templateUrl: 'tabs.page.html',
   styleUrls: ['tabs.page.scss'],
-  imports: [IonTabs, IonBadge, IonTabBar, IonTabButton, IonIcon, IonLabel, CommonModule],
+  imports: [IonTabs, IonBadge, IonTabBar, IonTabButton, IonIcon, IonLabel, CommonModule, ConfigComponent],
 })
 export class TabsPage implements OnInit {
   sharpListSize: number = 0;

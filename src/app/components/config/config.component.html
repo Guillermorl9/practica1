@@ -1,0 +1,45 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Config
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Configuration</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-card>
+    <ion-avatar>
+      <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+    </ion-avatar>
+    <ion-card-header>
+      <ion-card-title>user.name</ion-card-title>
+      <ion-card-subtitle>user&#64;domain.com</ion-card-subtitle>
+    </ion-card-header>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-content>
+      <ion-card-header>
+        <ion-card-title>Settings</ion-card-title>
+      </ion-card-header>
+      <ion-list>
+        <ion-item>
+          <ion-icon name="moon"></ion-icon>
+          <ion-label>Dark Mode</ion-label>
+          <ion-toggle slot="end" (ionChange)="toggleChange()"></ion-toggle>
+        </ion-item>
+        <ion-item>
+          <ion-icon name="notifications"></ion-icon>
+          <ion-label>Notifications</ion-label>
+          <ion-toggle slot="end"></ion-toggle>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
