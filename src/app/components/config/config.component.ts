@@ -11,8 +11,7 @@ import {
   IonToolbar
 } from "@ionic/angular/standalone";
 import {addIcons} from "ionicons";
-import {notifications, moon} from "ionicons/icons";
-
+import {personOutline} from "ionicons/icons";
 @Component({
   selector: 'app-config',
   templateUrl: './config.component.html',
@@ -22,7 +21,7 @@ import {notifications, moon} from "ionicons/icons";
 export class ConfigComponent  implements OnInit {
   focus: boolean = false;
   constructor() {
-    addIcons({notifications, moon});
+    addIcons({personOutline});
   }
 
   ngOnInit() {}
