@@ -2,19 +2,31 @@ import { Component } from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {FirebaseService} from "../../services/firebase-service/firebase.service";
-import {IonButton, IonContent, IonIcon, IonInput, IonItem, IonList, IonText, IonTitle} from "@ionic/angular/standalone";
+import {
+  IonAlert,
+  IonButton,
+  IonContent,
+  IonIcon,
+  IonInput,
+  IonItem,
+  IonList,
+  IonText,
+  IonTitle
+} from "@ionic/angular/standalone";
 import {CommonModule} from "@angular/common";
 import {AuthService} from "../../services/auth/auth.service";
+import {operatingError} from "../../services/auth/authErrors";
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
-  imports: [IonContent, IonText, IonList, IonItem, IonInput, IonButton, CommonModule, ReactiveFormsModule, IonTitle],
+  imports: [IonContent, IonAlert, IonText, IonList, IonItem, IonInput, IonButton, CommonModule, ReactiveFormsModule, IonTitle],
   standalone: true,
 })
 export class RegisterComponent{
-
+  showAlert:boolean = false;
+  errorMessage: string = '';
   formulario: FormGroup;
   constructor(
     private form: FormBuilder,
@@ -54,6 +66,8 @@ export class RegisterComponent{
       }
     } catch (error) {
       console.error("Error en registro:", error);
+      this.errorMessage = operatingError(error);
+      this.showAlert = true;
     }
   }
 

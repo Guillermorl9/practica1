@@ -38,6 +38,15 @@
       <ion-button id="button-submit" type="submit">
         Register
       </ion-button>
+      <ion-alert
+        [isOpen]="showAlert"
+        header="Error"
+        subHeader="An error occurred in the user registration attempt."
+        message="{{errorMessage}}"
+        [buttons]="['Close']"
+        (didDismiss)="showAlert = false">
+      </ion-alert>
     </form>
   </div>
 </ion-content>
+
