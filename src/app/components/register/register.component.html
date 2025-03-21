@@ -1,11 +1,23 @@
 <ion-content scroll-y="false" class="background-image">
   <div class="center-div">
-    <form [formGroup]="formulario" (ngSubmit)="enviar()">
+    <form [formGroup]="formulario" (ngSubmit)="registerUser()">
       <ion-list>
         <ion-item>
           <ion-title>
-            Login
+            Register
           </ion-title>
+        </ion-item>
+        <ion-item>
+          <ion-input formControlName="firstName" label-placement="stacked" label="First name" placeholder="Enter your first name"></ion-input>
+          <ion-text class="text-danger" *ngIf="hasErrors('firstName', 'required')">
+            First name required
+          </ion-text>
+        </ion-item>
+        <ion-item>
+          <ion-input formControlName="lastName" label-placement="stacked" label="Last name" placeholder="Enter your last name"></ion-input>
+          <ion-text class="text-danger" *ngIf="hasErrors('lastName', 'required')">
+            Last name required
+          </ion-text>
         </ion-item>
         <ion-item>
           <ion-input formControlName="email" label-placement="stacked" label="Email" placeholder="Enter your email"></ion-input>
@@ -24,18 +36,8 @@
         </ion-item>
       </ion-list>
       <ion-button id="button-submit" type="submit">
-        Login
+        Register
       </ion-button>
-      <ion-item lines="none">
-        <ion-text>
-          I do not have an account. <a href="register">Register</a>
-        </ion-text>
-      </ion-item>
-      <ion-item lines="none">
-        <ion-text>
-          I can't remember my password. <a href="">Recover password</a>
-        </ion-text>
-      </ion-item>
     </form>
   </div>
 </ion-content>

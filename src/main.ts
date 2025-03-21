@@ -8,6 +8,7 @@ import {IonicRouteStrategy} from "@ionic/angular";
 import {provideIonicAngular} from "@ionic/angular/standalone";
 import {provideHttpClient} from "@angular/common/http";
 import {routes} from "./app/app.routes";
+import { provideAuth, getAuth } from '@angular/fire/auth';
 
 bootstrapApplication(AppComponent, {
   providers: [
@@ -17,5 +18,6 @@ bootstrapApplication(AppComponent, {
     provideHttpClient(),
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
+    provideAuth(() => getAuth()),
   ],
 })

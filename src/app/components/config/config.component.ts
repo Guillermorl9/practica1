@@ -12,6 +12,9 @@ import {
 } from "@ionic/angular/standalone";
 import {addIcons} from "ionicons";
 import {personOutline} from "ionicons/icons";
+import {UserService} from "../../services/user/user.service";
+import firebase from "firebase/compat";
+import {User} from "../../models/User";
 @Component({
   selector: 'app-config',
   templateUrl: './config.component.html',
@@ -20,11 +23,14 @@ import {personOutline} from "ionicons/icons";
 })
 export class ConfigComponent  implements OnInit {
   focus: boolean = false;
-  constructor() {
+  user?: User;
+  constructor(   private userService: UserService) {
     addIcons({personOutline});
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.user = this.userService.getUser();
+  }
 
   toggleChange(): void{
     !this.focus ? this.focus = true : this.focus = false;
