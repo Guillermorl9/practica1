@@ -1,10 +1,11 @@
 import { Routes } from '@angular/router';
 import { TabsPage } from './tabs.page';
-import {ConfigComponent} from "../components/config/config.component";
+import { ConfigComponent } from "../components/config/config.component";
+import {ProductDetailsComponent} from "../components/product-details/product-details.component";
 
 export const routes: Routes = [
   {
-    path: 'tabs',
+    path: '',
     component: TabsPage,
     children: [
       {
@@ -16,6 +17,10 @@ export const routes: Routes = [
         path: 'tab2',
         loadComponent: () =>
           import('../tab2/tab2.page').then((m) => m.Tab2Page),
+      },
+      {
+        path: 'tab2/:productoId',
+        component: ProductDetailsComponent
       },
       {
         path: 'tab3',
@@ -31,11 +36,6 @@ export const routes: Routes = [
         redirectTo: '/tabs/tab1',
         pathMatch: 'full',
       },
-    ],
-  },
-  {
-    path: '',
-    redirectTo: '/tabs/tab1',
-    pathMatch: 'full',
-  },
+    ]
+  }
 ];

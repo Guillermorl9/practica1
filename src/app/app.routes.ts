@@ -6,11 +6,11 @@ import {LoginComponent} from "./components/login/login.component";
 export const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import('./tabs/tabs.routes').then((m) => m.routes),
+    component: LoginComponent,
   },
   {
-    path: 'tabs/tab2/:productoId',
-    component: ProductDetailsComponent,
+    path: 'tabs',
+    loadChildren: () => import('./tabs/tabs.routes').then((m) => m.routes),
   },
   {
     path: 'login',
