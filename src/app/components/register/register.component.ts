@@ -25,8 +25,9 @@ import {operatingError} from "../../services/auth/authErrors";
   standalone: true,
 })
 export class RegisterComponent{
-  showAlert:boolean = false;
-  errorMessage: string = '';
+  showSuccessAlert:boolean = false;
+  showErrorAlert:boolean = false;
+  alertMessage: string = '';
   formulario: FormGroup;
   constructor(
     private form: FormBuilder,
@@ -63,12 +64,17 @@ export class RegisterComponent{
       if (uid) {
         await this.firebaseService.saveUserData(uid, { firstName, lastName, email });
         console.log("Usuario registrado con éxito");
+        this.alertMessage = 'Return to the login screen to log in with the new account.';
+        this.showSuccessAlert = true;
       }
     } catch (error) {
-      console.error("Error en registro:", error);
-      this.errorMessage = operatingError(error);
-      this.showAlert = true;
+      this.alertMessage = operatingError(error);
+      this.showErrorAlert = true;
     }
   }
+
+  navigateToLogin = () => {
+    this.router.navigate(['/login']);
+  };
 
 }

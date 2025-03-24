@@ -39,12 +39,21 @@
         Register
       </ion-button>
       <ion-alert
-        [isOpen]="showAlert"
+        [isOpen]="showSuccessAlert"
+        header="Success"
+        subHeader="User registration successful."
+        message="{{alertMessage}}"
+        [buttons]="[{ text: 'Accept', handler: navigateToLogin }]"
+        (didDismiss)="showSuccessAlert = false"
+        backdrop-dismiss="false">
+      </ion-alert>
+      <ion-alert
+        [isOpen]="showErrorAlert"
         header="Error"
         subHeader="An error occurred in the user registration attempt."
-        message="{{errorMessage}}"
+        message="{{alertMessage}}"
         [buttons]="['Close']"
-        (didDismiss)="showAlert = false">
+        (didDismiss)="showErrorAlert = false">
       </ion-alert>
     </form>
   </div>
