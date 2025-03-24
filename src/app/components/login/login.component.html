@@ -1,6 +1,6 @@
 <ion-content scroll-y="false" class="background-image">
   <div class="center-div">
-    <form [formGroup]="formulario" (ngSubmit)="enviar()">
+    <form [formGroup]="formulario" (ngSubmit)="loginUser()">
       <ion-list>
         <ion-item>
           <ion-title>
@@ -36,6 +36,23 @@
           I can't remember my password. <a href="">Recover password</a>
         </ion-text>
       </ion-item>
+      <ion-alert
+        [isOpen]="showSuccessAlert"
+        header="Success"
+        subHeader="Successful user login."
+        message="{{alertMessage}}"
+        [buttons]="[{ text: 'Accept', handler: navigateToHome }]"
+        (didDismiss)="showSuccessAlert = false"
+        backdrop-dismiss="false">
+      </ion-alert>
+      <ion-alert
+        [isOpen]="showErrorAlert"
+        header="Error"
+        subHeader="An error occurred in the user login attempt."
+        message="{{alertMessage}}"
+        [buttons]="['Close']"
+        (didDismiss)="showErrorAlert = false">
+      </ion-alert>
     </form>
   </div>
 </ion-content>

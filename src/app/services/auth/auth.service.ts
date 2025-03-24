@@ -1,6 +1,8 @@
 import { Injectable, inject } from '@angular/core';
 import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, authState } from '@angular/fire/auth';
 import { BehaviorSubject, Observable } from 'rxjs';
+import firebase from "firebase/compat";
+import UserCredential = firebase.auth.UserCredential;
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +15,7 @@ export class AuthService {
     authState(this.auth).subscribe(user => this.authState.next(user));
   }
 
-  signup(email: string, password: string) {
+  signup(email: string, password: string){
       return createUserWithEmailAndPassword(this.auth, email, password);
   }
 
