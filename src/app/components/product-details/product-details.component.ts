@@ -19,6 +19,7 @@ import {addIcons} from "ionicons";
 import {CommonModule} from "@angular/common";
 import {SharpService} from "../../services/sharp/sharp.service";
 import {Router} from "@angular/router";
+import {IonLoading, LoadingController} from "@ionic/angular/standalone";
 
 @Component({
   selector: 'app-product-details',
@@ -33,17 +34,19 @@ export class ProductDetailsComponent implements OnInit{
   cantidad: number = 1;
   buttonAddDisabled: boolean = this.cantidad == 10;
   buttonRemoveDisabled: boolean = this.cantidad == 1;
-  constructor(private route: ActivatedRoute, private apiService: ApiService, private sharpService: SharpService, private router: Router) {
+  constructor(private route: ActivatedRoute, private apiService: ApiService, private sharpService: SharpService, private router: Router, private loadingController: LoadingController) {
     addIcons({ starOutline, starHalf, star, add, remove});
   }
 
-  ngOnInit() {
+  async ngOnInit() {
+    const loading = await this.presentLoading();
     this.route.paramMap.subscribe(params => {
       this.productoId = params.get('productoId');
       // @ts-ignore
       this.apiService.getProduct(this.productoId).subscribe((data: Product) => {
         this.producto = data;
         this.iconos =  this.calcularIcono();
+        loading.dismiss();
       })
     });
   }
@@ -53,6 +56,17 @@ export class ProductDetailsComponent implements OnInit{
       this.buttonAddDisabled = this.cantidad == 10;
       this.buttonRemoveDisabled = this.cantidad == 1;
     }
+  }
+
+  async presentLoading(){
+    const loading = await this.loadingController.create({
+      message: "Loading...",
+      spinner: 'crescent',
+      translucent: true,
+      backdropDismiss: false,
+    })
+    await loading.present();
+    return loading;
   }
 
   public addProductToCart(){
