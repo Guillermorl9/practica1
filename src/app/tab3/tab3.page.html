@@ -1,17 +1,7 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Formulario de contacto
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-custom-header [translucent]="true" [title]="'Contact'"></app-custom-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Contacto</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <app-custom-header [size]="'large'" [title]="'Contact form'" [collapse]="'condense'"></app-custom-header>
 
   <app-explore-container name="Tab 3 page"></app-explore-container>
 </ion-content>

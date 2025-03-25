@@ -1,17 +1,6 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Cart
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
+<app-custom-header [translucent]="true" [title]="'Cart'"></app-custom-header>
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Your cart</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <app-custom-header [size]="'large'" [title]="'Your cart'" [collapse]="'condense'"></app-custom-header>
 
   <ion-card *ngIf="sharpList.length > 0">
     <ion-card-header>

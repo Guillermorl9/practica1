@@ -15,11 +15,12 @@ import {Product} from "../models/Product";
 import {CommonModule, CurrencyPipe} from "@angular/common";
 import {ProductCardComponent} from "../components/product-card/product-card.component";
 import {RouterLink} from "@angular/router";
+import {CustomHeaderComponent} from "../components/custom-header/custom-header/custom-header.component";
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
   styleUrls: ['tab1.page.scss'],
-  imports: [IonHeader, CurrencyPipe, IonItemSliding, RouterLink, IonButton, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonToolbar, IonTitle, IonContent, ExploreContainerComponent, IonText, CommonModule, ProductCardComponent],
+  imports: [IonHeader, CustomHeaderComponent, CurrencyPipe, IonItemSliding, RouterLink, IonButton, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonToolbar, IonTitle, IonContent, ExploreContainerComponent, IonText, CommonModule, ProductCardComponent],
 })
 export class Tab1Page implements OnInit{
   sharpList: Array<Product> = [];
