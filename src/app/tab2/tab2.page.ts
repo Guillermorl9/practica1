@@ -50,9 +50,10 @@ export class Tab2Page implements OnInit{
       this.results = [...data];
     })
   }
-
- handleInput(event: Event) {
-
- }
+  handleInput(event: Event) {
+    const target = event.target as HTMLIonSearchbarElement;
+    const query = target.value?.toLocaleLowerCase() || '';
+    this.results = this.productList.filter((d) => d.nombre.toLocaleLowerCase().includes(query));
+  }
 
 }

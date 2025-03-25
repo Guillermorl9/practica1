@@ -4,6 +4,6 @@
   <ion-toolbar>
     <ion-searchbar [debounce]="1000" (ionInput)="handleInput($event)"></ion-searchbar>
   </ion-toolbar>
-  <app-product-card [products]="productList"> </app-product-card>
-
+  <app-product-card *ngIf="results.length < 1" [products]="productList"> </app-product-card>
+  <app-product-card *ngIf="results.length > 0" [products]="results"> </app-product-card>
 </ion-content>
