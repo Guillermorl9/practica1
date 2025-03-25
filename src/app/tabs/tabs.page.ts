@@ -5,7 +5,7 @@ import { personAdd, cartSharp, bagHandle, cog} from 'ionicons/icons';
 import {SharpService} from "../services/sharp/sharp.service";
 import {CommonModule} from "@angular/common";
 import {ConfigComponent} from "../components/config/config.component";
-
+import {User} from "../models/User";
 @Component({
   selector: 'app-tabs',
   templateUrl: 'tabs.page.html',
@@ -14,6 +14,7 @@ import {ConfigComponent} from "../components/config/config.component";
 })
 export class TabsPage implements OnInit {
   sharpListSize: number = 0;
+  user: User | null = null;
   constructor(private sharpService: SharpService) {
     addIcons({ personAdd, cartSharp, bagHandle, cog });
   }

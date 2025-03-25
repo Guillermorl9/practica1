@@ -18,7 +18,7 @@
       <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
     </ion-avatar>
     <ion-card-header>
-      <ion-card-title>user.name</ion-card-title>
+      <ion-card-title>{{user?.firstName}} {{user?.lastName}}</ion-card-title>
       <ion-card-subtitle>{{ user?.email }}</ion-card-subtitle>
     </ion-card-header>
   </ion-card>
@@ -29,7 +29,7 @@
         <ion-card-title>Settings</ion-card-title>
       </ion-card-header>
       <ion-list>
-        <ion-item>
+        <ion-item (click)="logOut()">
           <ion-icon name="person-outline"></ion-icon>
           <ion-label>Log out</ion-label>
         </ion-item>
