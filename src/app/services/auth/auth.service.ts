@@ -38,6 +38,27 @@ export class AuthService {
     });
   }
 
+  getFirstName(): string{
+    if(!this.appUser.value?.firstName){
+      return '';
+    }
+    return this.appUser.value?.firstName;
+  }
+
+  getLastName(): string{
+    if(!this.appUser.value?.lastName){
+      return '';
+    }
+    return this.appUser.value?.lastName;
+  }
+
+  getUid(): string {
+    if(!this.authState.value?.uid){
+      return '';
+    }
+    return this.authState.value?.uid;
+  }
+
   signup(email: string, password: string) {
     return createUserWithEmailAndPassword(this.auth, email, password);
   }

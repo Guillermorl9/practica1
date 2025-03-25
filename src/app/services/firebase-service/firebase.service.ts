@@ -37,4 +37,14 @@ export class FirebaseService {
     }
   }
 
+  async updateUserName(uid: string, nuevoNombre: string): Promise<void> {
+    try {
+      const userRef = doc(this.firestore, `${this.USERS_COLLECTION}/${uid}`);
+      await setDoc(userRef, { firstName: nuevoNombre }, { merge: true });
+    } catch (error) {
+      console.error('Error updating user name:', error);
+      throw error;
+    }
+  }
+
 }
