@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, inject, Input} from '@angular/core';
 import {Product} from "../../models/Product";
 import {
   IonAvatar,
@@ -25,7 +25,8 @@ import {SharpService} from "../../services/sharp/sharp.service";
 export class ProductCardComponent{
    @Input() products: Array<Product> = [];
    @Input() isCart: boolean = false;
-  constructor(private sharpService: SharpService) {
+   private sharpService: SharpService = inject(SharpService);
+  constructor() {
     addIcons({trash})
   }
 

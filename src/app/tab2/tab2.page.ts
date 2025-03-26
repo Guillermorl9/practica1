@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {
   IonHeader,
   IonToolbar,
@@ -36,11 +36,12 @@ import {CustomHeaderComponent} from "../components/custom-header/custom-header/c
   imports: [IonHeader, CustomHeaderComponent, ProductCardComponent, IonToolbar, IonSearchbar, IonTitle, IonAvatar, IonImg, IonLabel, IonIcon, IonItem, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonContent, ExploreContainerComponent, IonGrid, IonCol, IonRow, IonButton, IonNav, IonNavLink, ProductDetailsComponent, CommonModule, RouterLink, CurrencyPipe]
 })
 export class Tab2Page implements OnInit{
+  private apiService: ApiService = inject(ApiService);
   component = ProductDetailsComponent;
   productList: Array<Product> = [];
   results: Array<Product> = [];
 
-  constructor(private apiService: ApiService, private loadingController: LoadingController) {
+  constructor(private loadingController: LoadingController) {
     addIcons({cartSharp});
   }
 

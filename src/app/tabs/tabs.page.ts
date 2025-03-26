@@ -13,9 +13,10 @@ import {User} from "../models/User";
   imports: [IonTabs, IonBadge, IonTabBar, IonTabButton, IonIcon, IonLabel, CommonModule, ConfigComponent],
 })
 export class TabsPage implements OnInit {
+  private sharpService: SharpService = inject(SharpService);
   sharpListSize: number = 0;
   user: User | null = null;
-  constructor(private sharpService: SharpService) {
+  constructor() {
     addIcons({ personAdd, cartSharp, bagHandle, cog });
   }
 

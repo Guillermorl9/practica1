@@ -32,8 +32,9 @@ export class Tab1Page implements OnInit{
   showOrderAlert: boolean = false;
   private authService: AuthService = inject(AuthService);
   private firestoreService: FirebaseService = inject(FirebaseService);
+  private sharpService: SharpService = inject(SharpService);
   private user: User | null = null;
-  constructor(private sharpService: SharpService) {}
+  constructor() {}
   ngOnInit() {
     this.sharpService.currentSharp.subscribe((data) => {
       this.sharpList = data;

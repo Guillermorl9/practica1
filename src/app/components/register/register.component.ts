@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {FirebaseService} from "../../services/firebase-service/firebase.service";
@@ -31,11 +31,12 @@ export class RegisterComponent{
   showErrorAlert:boolean = false;
   alertMessage: string = '';
   formulario: FormGroup;
+  private firebaseService: FirebaseService = inject(FirebaseService);
+  private authService: AuthService = inject(AuthService);
   constructor(
     private form: FormBuilder,
     private router: Router,
-    private firebaseService: FirebaseService,
-    private authService: AuthService,)
+  )
   {
     this.formulario = this.form.group({
       firstName: ['', Validators.required],

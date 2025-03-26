@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {
   IonAlert,
   IonBackButton,
@@ -34,7 +34,9 @@ export class ProductDetailsComponent implements OnInit{
   cantidad: number = 1;
   buttonAddDisabled: boolean = this.cantidad == 10;
   buttonRemoveDisabled: boolean = this.cantidad == 1;
-  constructor(private route: ActivatedRoute, private apiService: ApiService, private sharpService: SharpService, private router: Router, private loadingController: LoadingController) {
+  private apiService: ApiService = inject(ApiService);
+  private sharpService: SharpService = inject(SharpService);
+  constructor(private route: ActivatedRoute, private router: Router, private loadingController: LoadingController) {
     addIcons({ starOutline, starHalf, star, add, remove});
   }
 
