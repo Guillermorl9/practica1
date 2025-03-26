@@ -16,6 +16,8 @@ import {
 import {CommonModule} from "@angular/common";
 import {AuthService} from "../../services/auth/auth.service";
 import {operatingError} from "../../services/auth/authErrors";
+import {Product} from "../../models/Product";
+import {Order} from "../../models/Order";
 
 @Component({
   selector: 'app-register',
@@ -57,12 +59,13 @@ export class RegisterComponent{
       const lastName: string = this.formulario.get('lastName')?.value;
       const email: string = this.formulario.get('email')?.value;
       const password: string = this.formulario.get('password')?.value;
+      const orderList: Array<Order> = [];
 
       const userCredential = await this.authService.signup(email, password);
       const uid = userCredential.user?.uid;
 
       if (uid) {
-        await this.firebaseService.saveUserData(uid, { firstName, lastName, email });
+        await this.firebaseService.saveUserData(uid, { firstName, lastName, email, orderList });
         console.log("Usuario registrado con éxito");
         this.alertMessage = 'Return to the login screen to log in with the new account.';
         this.showSuccessAlert = true;

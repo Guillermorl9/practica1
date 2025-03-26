@@ -15,9 +15,6 @@ import {CommonModule} from "@angular/common";
 import {Router} from "@angular/router";
 import {AuthService} from "../../services/auth/auth.service";
 import {operatingError} from "../../services/auth/authErrors";
-import {UserService} from "../../services/user/user.service";
-import {User} from "../../models/User";
-import {FirebaseService} from "../../services/firebase-service/firebase.service";
 import {Auth, getAuth, onAuthStateChanged} from "@angular/fire/auth";
 @Component({
   selector: 'app-login',
@@ -31,7 +28,7 @@ export class LoginComponent implements OnInit {
   showSuccessAlert: boolean = false;
   alertMessage: string = '';
 
-  constructor(private form: FormBuilder, private authService: AuthService, private router: Router, private userService: UserService, private firebaseService: FirebaseService) {
+  constructor(private form: FormBuilder, private authService: AuthService, private router: Router) {
     this.formulario = this.form.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],

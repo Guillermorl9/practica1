@@ -12,7 +12,6 @@ import {
 } from "@ionic/angular/standalone";
 import {addIcons} from "ionicons";
 import {personOutline, trendingUpOutline, logOutOutline} from "ionicons/icons";
-import {UserService} from "../../services/user/user.service";
 import {User} from "../../models/User";
 import {Router, RouterLink} from "@angular/router";
 import {AuthService} from "../../services/auth/auth.service";
@@ -31,7 +30,7 @@ export class ConfigComponent  implements OnInit {
   @ViewChild(IonModal) modal!: IonModal;
   user: User | null = null;
   firstName: string = this.authService.getFirstName();
-  constructor(private userService: UserService, private authService: AuthService, private router: Router, private firestoreService: FirebaseService) {
+  constructor(private authService: AuthService, private router: Router, private firestoreService: FirebaseService) {
     addIcons({personOutline, trendingUpOutline, logOutOutline});
   }
 
@@ -66,6 +65,10 @@ export class ConfigComponent  implements OnInit {
 
   logOut(): void{
     this.authService.logout().then((): void => {this.router.navigate(['/login'])});
+  }
+
+  navigateToOrders(): void {
+
   }
 
   changeName(): void{

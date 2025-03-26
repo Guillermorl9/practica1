@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { TabsPage } from './tabs.page';
 import { ConfigComponent } from "../components/config/config.component";
 import {ProductDetailsComponent} from "../components/product-details/product-details.component";
+import {MyOrdersComponent} from "../components/my-orders/my-orders.component";
 
 export const routes: Routes = [
   {
@@ -29,7 +30,11 @@ export const routes: Routes = [
       },
       {
         path: 'tab4',
-        component: ConfigComponent
+        component: ConfigComponent,
+      },
+      {
+        path: 'tab4/my-orders',
+        component: MyOrdersComponent
       },
       {
         path: '',

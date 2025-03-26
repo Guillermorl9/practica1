@@ -1,0 +1,25 @@
+<app-custom-header [translucent]="true" [title]="'My orders'"></app-custom-header>
+<ion-content [fullscreen]="true">
+  <app-custom-header [size]="'large'" [title]="'My orders'" [collapse]="'condense'"></app-custom-header>
+  <ion-card *ngFor="let order of ordersList">
+    <ion-card-header>
+      <ion-card-title>{{ order.fecha}}</ion-card-title>
+      <ion-card-subtitle>{{order.precio | currency: 'EUR'}}</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      Amount of products: {{order.products.length}}
+    </ion-card-content>
+  </ion-card>
+  <ion-card *ngIf="ordersList.length < 1">
+    <ion-card-header>
+      <ion-card-title>You have not placed an order yet</ion-card-title>
+      <ion-card-subtitle>No order</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-card-subtitle>Go to products and place an order</ion-card-subtitle>
+      <ion-button expand="block" [routerLink]="['/tabs/tab2']">Go to products</ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

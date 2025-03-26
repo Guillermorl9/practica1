@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Firestore, doc, setDoc, getDoc,} from '@angular/fire/firestore';
 import { User } from "../../models/User";
+import {Order} from "../../models/Order";
 
 @Injectable({
   providedIn: 'root'
@@ -42,6 +43,16 @@ export class FirebaseService {
       const userRef = doc(this.firestore, `${this.USERS_COLLECTION}/${uid}`);
       await setDoc(userRef, { firstName: nuevoNombre }, { merge: true });
     } catch (error) {
+      console.error('Error updating user name:', error);
+      throw error;
+    }
+  }
+
+  async updateOrdersList(uid: string, orderList: Array<Order>){
+    try{
+      const userRef = doc(this.firestore, `${this.USERS_COLLECTION}/${uid}`);
+      setDoc(userRef, {orderList: orderList}, {merge: true});
+    }catch (error) {
       console.error('Error updating user name:', error);
       throw error;
     }
