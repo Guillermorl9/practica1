@@ -58,7 +58,7 @@ export class ProductDetailsComponent implements OnInit{
     }
   }
 
-  async presentLoading(){
+  private async presentLoading(){
     const loading = await this.loadingController.create({
       message: "Loading...",
       spinner: 'crescent',

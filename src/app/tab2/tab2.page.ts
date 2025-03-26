@@ -16,7 +16,7 @@ import {
   IonCardSubtitle,
   IonCardContent,
   IonItem,
-  IonAvatar, IonImg, IonLabel, IonIcon, IonSearchbar,
+  IonAvatar, IonImg, IonLabel, IonIcon, IonSearchbar, LoadingController,
 } from '@ionic/angular/standalone';
 import { ExploreContainerComponent } from '../components/explore-container/explore-container.component';
 import {ProductDetailsComponent} from "../components/product-details/product-details.component";
@@ -40,20 +40,33 @@ export class Tab2Page implements OnInit{
   productList: Array<Product> = [];
   results: Array<Product> = [];
 
-  constructor(private apiService: ApiService) {
+  constructor(private apiService: ApiService, private loadingController: LoadingController) {
     addIcons({cartSharp});
   }
 
-  ngOnInit() {
+  async ngOnInit() {
+    const loading = await this.presentLoading();
     this.apiService.getAllProducts().subscribe((data: Array<Product>) => {
       this.productList = data;
       this.results = [...data];
+      loading.dismiss();
     })
   }
   handleInput(event: Event) {
     const target = event.target as HTMLIonSearchbarElement;
     const query = target.value?.toLocaleLowerCase() || '';
     this.results = this.productList.filter((d) => d.nombre.toLocaleLowerCase().includes(query));
+  }
+
+  private async presentLoading(){
+    const loading = await this.loadingController.create({
+      message: "Loading...",
+      spinner: 'crescent',
+      translucent: true,
+      backdropDismiss: false,
+    })
+    await loading.present();
+    return loading;
   }
 
 }

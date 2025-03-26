@@ -9,7 +9,7 @@ import {
   IonCardHeader,
   IonCardSubtitle,
   IonCardTitle,
-  IonContent, IonHeader, IonItem, IonList, IonTitle, IonToolbar
+  IonContent, IonHeader, IonItem, IonList, IonTitle, IonToolbar, LoadingController
 } from "@ionic/angular/standalone";
 import {Order} from "../../models/Order";
 import {CommonModule, CurrencyPipe, DatePipe} from "@angular/common";
@@ -24,12 +24,26 @@ import {RouterLink} from "@angular/router";
 export class MyOrdersComponent  implements OnInit {
   ordersList: Array<Order>= [];
   private authService: AuthService = inject(AuthService);
+  private loadingController: LoadingController = inject(LoadingController);
   constructor() { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    const loading = await this.presentLoading();
     this.authService.userData.subscribe(userData => {
       this.ordersList = userData?.orderList || [];
+      loading.dismiss();
     });
+  }
+
+  private async presentLoading(){
+    const loading = await this.loadingController.create({
+      message: "Loading...",
+      spinner: 'crescent',
+      translucent: true,
+      backdropDismiss: false,
+    })
+    await loading.present();
+    return loading;
   }
 
 }

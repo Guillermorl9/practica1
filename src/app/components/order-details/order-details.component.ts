@@ -6,7 +6,7 @@ import {
   IonHeader, IonItem, IonLabel, IonList,
   IonText, IonThumbnail,
   IonTitle,
-  IonToolbar
+  IonToolbar, LoadingController
 } from "@ionic/angular/standalone";
 import {ActivatedRoute} from "@angular/router";
 import {AuthService} from "../../services/auth/auth.service";
@@ -23,9 +23,10 @@ export class OrderDetailsComponent  implements OnInit {
   private authService: AuthService = inject(AuthService);
   index: number = 0;
   order?: Order;
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private loadingController: LoadingController) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    const loading = await this.presentLoading();
     this.route.paramMap.subscribe(params => {
       const indexParam = params.get('index');
       if(indexParam) {
@@ -34,7 +35,19 @@ export class OrderDetailsComponent  implements OnInit {
       this.authService.userData.subscribe((userData) => {
           this.order = userData?.orderList[this.index];
       })
+      loading.dismiss();
     });
+  }
+
+  private async presentLoading(){
+    const loading = await this.loadingController.create({
+      message: "Loading...",
+      spinner: 'crescent',
+      translucent: true,
+      backdropDismiss: false,
+    })
+    await loading.present();
+    return loading;
   }
 
 }
