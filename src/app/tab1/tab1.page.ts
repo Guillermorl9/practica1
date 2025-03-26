@@ -7,7 +7,7 @@ import {
   IonText,
   IonCard,
   IonCardHeader,
-  IonCardTitle, IonCardSubtitle, IonCardContent, IonButton, IonItemSliding
+  IonCardTitle, IonCardSubtitle, IonCardContent, IonButton, IonItemSliding, IonAlert
 } from '@ionic/angular/standalone';
 import { ExploreContainerComponent } from '../components/explore-container/explore-container.component';
 import {SharpService} from "../services/sharp/sharp.service";
@@ -24,11 +24,12 @@ import {User} from "../models/User";
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
   styleUrls: ['tab1.page.scss'],
-  imports: [IonHeader, CustomHeaderComponent, CurrencyPipe, IonItemSliding, RouterLink, IonButton, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonToolbar, IonTitle, IonContent, ExploreContainerComponent, IonText, CommonModule, ProductCardComponent],
+  imports: [IonHeader, IonAlert, CustomHeaderComponent, CurrencyPipe, IonItemSliding, RouterLink, IonButton, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonToolbar, IonTitle, IonContent, ExploreContainerComponent, IonText, CommonModule, ProductCardComponent],
 })
 export class Tab1Page implements OnInit{
   sharpList: Array<Product> = [];
   precioTotal: number = 0;
+  showOrderAlert: boolean = false;
   private authService: AuthService = inject(AuthService);
   private firestoreService: FirebaseService = inject(FirebaseService);
   private user: User | null = null;
@@ -61,5 +62,6 @@ export class Tab1Page implements OnInit{
         this.sharpService.emptyCart();
         this.precioTotal = 0;
       });
+      this.showOrderAlert = true;
   }
 }
