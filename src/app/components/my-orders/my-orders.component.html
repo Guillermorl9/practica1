@@ -1,6 +1,14 @@
-<app-custom-header [translucent]="true" [title]="'My orders'"></app-custom-header>
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button text="Back" icon="caret-back"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      Orders
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
 <ion-content [fullscreen]="true">
-  <app-custom-header [size]="'large'" [title]="'My orders'" [collapse]="'condense'"></app-custom-header>
   <ion-card *ngFor="let order of ordersList">
     <ion-card-header>
       <ion-card-title>{{ order.fecha}}</ion-card-title>

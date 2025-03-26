@@ -34,4 +34,8 @@ export class SharpService {
     });
     return precioTotal;
   }
+
+  emptyCart(){
+    this.sharpList.next([]);
+  }
 }
