@@ -9,16 +9,20 @@
   </ion-toolbar>
 </ion-header>
 <ion-content [fullscreen]="true">
-  <ion-card *ngFor="let order of ordersList">
-    <ion-card-header>
-      <ion-card-title>{{ order.fecha}}</ion-card-title>
-      <ion-card-subtitle>{{order.precio | currency: 'EUR'}}</ion-card-subtitle>
-    </ion-card-header>
+  <ion-list>
+    <ion-item *ngFor="let order of ordersList; let i = index" lines="none" [routerLink]="['/tabs/tab4/my-orders', i]">
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>{{ order.fecha}}</ion-card-title>
+          <ion-card-subtitle>{{order.precio | currency: 'EUR'}}</ion-card-subtitle>
+        </ion-card-header>
 
-    <ion-card-content>
-      Amount of products: {{order.products.length}}
-    </ion-card-content>
-  </ion-card>
+        <ion-card-content>
+          Amount of products: {{order.products.length}}
+        </ion-card-content>
+      </ion-card>
+    </ion-item>
+  </ion-list>
   <ion-card *ngIf="ordersList.length < 1">
     <ion-card-header>
       <ion-card-title>You have not placed an order yet</ion-card-title>

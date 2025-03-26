@@ -1,0 +1,39 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button text="Back" icon="caret-back"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      Order details
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>{{order?.precio | currency: 'EUR'}}</ion-card-title>
+      <ion-card-subtitle>Total</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      {{order?.fecha}}
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Products</ion-card-title>
+      <ion-card-subtitle>Order products</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item *ngFor="let product of order?.products">
+          <ion-thumbnail slot="start">
+            <img alt="Silhouette of mountains" src="{{product.imagen}}" />
+          </ion-thumbnail>
+          <ion-label>{{product.nombre}}</ion-label>
+          <ion-text>{{product.precio | currency: 'EUR'}}</ion-text>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

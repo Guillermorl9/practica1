@@ -3,6 +3,7 @@ import { TabsPage } from './tabs.page';
 import { ConfigComponent } from "../components/config/config.component";
 import {ProductDetailsComponent} from "../components/product-details/product-details.component";
 import {MyOrdersComponent} from "../components/my-orders/my-orders.component";
+import {OrderDetailsComponent} from "../components/order-details/order-details.component";
 
 export const routes: Routes = [
   {
@@ -35,6 +36,10 @@ export const routes: Routes = [
       {
         path: 'tab4/my-orders',
         component: MyOrdersComponent
+      },
+      {
+        path: 'tab4/my-orders/:index',
+        component: OrderDetailsComponent
       },
       {
         path: '',
