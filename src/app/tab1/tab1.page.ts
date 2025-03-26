@@ -7,7 +7,7 @@ import {
   IonText,
   IonCard,
   IonCardHeader,
-  IonCardTitle, IonCardSubtitle, IonCardContent, IonButton, IonItemSliding, IonAlert
+  IonCardTitle, IonCardSubtitle, IonCardContent, IonButton, IonItemSliding, IonAlert, LoadingController
 } from '@ionic/angular/standalone';
 import { ExploreContainerComponent } from '../components/explore-container/explore-container.component';
 import {SharpService} from "../services/sharp/sharp.service";
@@ -34,15 +34,17 @@ export class Tab1Page implements OnInit{
   private firestoreService: FirebaseService = inject(FirebaseService);
   private sharpService: SharpService = inject(SharpService);
   private user: User | null = null;
-  constructor() {}
-  ngOnInit() {
+  constructor(private loadingController: LoadingController) {}
+  async ngOnInit() {
+    const loading = await this.presentLoading();
     this.sharpService.currentSharp.subscribe((data) => {
       this.sharpList = data;
       this.precioTotal = this.sharpService.getPrecioTotal();
+      loading.dismiss();
     })
-
     this.authService.userData.subscribe((userData) => {
       this.user = userData;
+      loading.dismiss();
     })
   }
 
@@ -64,5 +66,16 @@ export class Tab1Page implements OnInit{
         this.precioTotal = 0;
       });
       this.showOrderAlert = true;
+  }
+
+  private async presentLoading(){
+    const loading = await this.loadingController.create({
+      message: "Loading...",
+      spinner: 'crescent',
+      translucent: true,
+      backdropDismiss: false,
+    })
+    await loading.present();
+    return loading;
   }
 }

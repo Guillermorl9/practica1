@@ -10,7 +10,7 @@ export class SharpService {
   public currentSharp = this.sharpList.asObservable();
   constructor() { }
 
-  añadirProducto(product: Product, cantidad: number): void{
+  addProduct(product: Product, cantidad: number): void{
     for(let i= 1; i < cantidad; i++){
       this.sharpList.value.push(product);
     }

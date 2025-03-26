@@ -73,7 +73,7 @@ export class ProductDetailsComponent implements OnInit{
 
   public addProductToCart(){
     if(this.producto) {
-      this.sharpService.añadirProducto(this.producto, this.cantidad);
+      this.sharpService.addProduct(this.producto, this.cantidad);
       this.cantidad = 1;
       this.router.navigate(['/tabs/tab1/']);
     }

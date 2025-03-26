@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {
   IonAlert,
   IonButton,
@@ -23,12 +23,13 @@ import {Auth, getAuth, onAuthStateChanged} from "@angular/fire/auth";
   imports: [IonContent, IonAlert, IonText, IonList, IonItem, IonInput, IonIcon, IonButton, CommonModule, ReactiveFormsModule, IonTitle]
 })
 export class LoginComponent implements OnInit {
+  private authService: AuthService = inject(AuthService);
   formulario: FormGroup;
   showErrorAlert: boolean = false;
   showSuccessAlert: boolean = false;
   alertMessage: string = '';
 
-  constructor(private form: FormBuilder, private authService: AuthService, private router: Router) {
+  constructor(private form: FormBuilder, private router: Router) {
     this.formulario = this.form.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],
