@@ -5,7 +5,7 @@ import {
   IonButton,
   IonButtons, IonCol,
   IonContent,
-  IonHeader, IonIcon, IonInput, IonItem, IonRow, IonText,
+  IonHeader, IonIcon, IonInput, IonItem, IonRow, IonSkeletonText, IonText,
   IonTitle,
   IonToolbar,
 } from "@ionic/angular/standalone";
@@ -25,9 +25,10 @@ import {IonLoading, LoadingController} from "@ionic/angular/standalone";
   selector: 'app-product-details',
   templateUrl: './product-details.component.html',
   styleUrls: ['./product-details.component.scss'],
-  imports: [IonHeader, IonAlert, CommonModule, IonToolbar, IonInput, IonButtons, IonItem, IonIcon, IonBackButton, IonTitle, IonContent, IonButton, IonText, CurrencyPipe, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle]
+  imports: [IonHeader, IonSkeletonText, IonAlert, CommonModule, IonToolbar, IonInput, IonButtons, IonItem, IonIcon, IonBackButton, IonTitle, IonContent, IonButton, IonText, CurrencyPipe, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle]
 })
 export class ProductDetailsComponent implements OnInit{
+  loaded: boolean = false;
   productoId?: string | null;
   producto?: Product;
   iconos: Array<String> = [];
@@ -41,14 +42,15 @@ export class ProductDetailsComponent implements OnInit{
   }
 
   async ngOnInit() {
-    const loading = await this.presentLoading();
+    //const loading = await this.presentLoading();
     this.route.paramMap.subscribe(params => {
       this.productoId = params.get('productoId');
       // @ts-ignore
       this.apiService.getProduct(this.productoId).subscribe((data: Product) => {
         this.producto = data;
         this.iconos =  this.calcularIcono();
-        loading.dismiss();
+        this.loaded = true;
+        //loading.dismiss();
       })
     });
   }

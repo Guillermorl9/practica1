@@ -10,37 +10,62 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-card class="ion-justify-content-center">
-    <img src="{{producto?.imagen}}" class="fixed-size-img" />
-    <ion-card-header>
-      <ion-card-title>{{producto?.nombre}}</ion-card-title>
-      <ion-card-subtitle>{{producto?.precio | currency: "EUR"}}</ion-card-subtitle>
-    </ion-card-header>
-    <ion-card-content>
-      {{producto?.descripcion}}
-    </ion-card-content>
-    <div class="ion-icons-div" >
-      <ion-icon *ngFor="let iconName of iconos" name="{{iconName}}" class="ion-icon-star"/>
-      <ion-text>
-        ({{producto?.numVotos}})
-      </ion-text>
-    </div>
-  </ion-card>
 
-  <ion-card class="ion-justify-content-center">
-    <ion-item>
-      <ion-button [disabled]="buttonRemoveDisabled" (click)="decrementarCantidad()">
-        <ion-icon name="remove" class="ion-icons-quantity"></ion-icon>
-      </ion-button>
-      <ion-text class="ion-text-quantity"> {{cantidad}} </ion-text>
-      <ion-button [disabled]="buttonAddDisabled" (click)="incrementarCantidad()">
-        <ion-icon name="add" class="ion-icons-quantity"></ion-icon>
-      </ion-button>
-    </ion-item>
-  </ion-card>
+  <ng-container *ngIf="!loaded">
+    <ion-card>
+      <ion-skeleton-text [animated]="true"></ion-skeleton-text>
+      <ion-card-header>
+        <ion-card-title>
+          <ion-skeleton-text></ion-skeleton-text>
+        </ion-card-title>
+        <ion-card-subtitle>
+          <ion-skeleton-text></ion-skeleton-text>
+        </ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-skeleton-text></ion-skeleton-text>
+      </ion-card-content>
+    </ion-card>
 
-  <ion-button (click)="addProductToCart()">
-    Añadir al carrito
-  </ion-button>
+    <ion-card>
+        <ion-skeleton-text></ion-skeleton-text>
+    </ion-card>
 
+    <ion-skeleton-text></ion-skeleton-text>
+  </ng-container>
+
+  <ng-container *ngIf="loaded">
+    <ion-card class="ion-justify-content-center">
+      <img src="{{producto?.imagen}}" class="fixed-size-img" />
+      <ion-card-header>
+        <ion-card-title>{{producto?.nombre}}</ion-card-title>
+        <ion-card-subtitle>{{producto?.precio | currency: "EUR"}}</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        {{producto?.descripcion}}
+      </ion-card-content>
+      <div class="ion-icons-div" >
+        <ion-icon *ngFor="let iconName of iconos" name="{{iconName}}" class="ion-icon-star"/>
+        <ion-text>
+          ({{producto?.numVotos}})
+        </ion-text>
+      </div>
+    </ion-card>
+
+    <ion-card class="ion-justify-content-center">
+      <ion-item>
+        <ion-button [disabled]="buttonRemoveDisabled" (click)="decrementarCantidad()">
+          <ion-icon name="remove" class="ion-icons-quantity"></ion-icon>
+        </ion-button>
+        <ion-text class="ion-text-quantity"> {{cantidad}} </ion-text>
+        <ion-button [disabled]="buttonAddDisabled" (click)="incrementarCantidad()">
+          <ion-icon name="add" class="ion-icons-quantity"></ion-icon>
+        </ion-button>
+      </ion-item>
+    </ion-card>
+
+    <ion-button (click)="addProductToCart()">
+      Añadir al carrito
+    </ion-button>
+  </ng-container>
 </ion-content>
