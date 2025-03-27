@@ -63,6 +63,7 @@ export class Tab1Page implements OnInit{
       await this.firestoreService.updateOrdersList(uid, userOrdersList).then(() => {
         this.user!.orderList = userOrdersList;
         this.sharpService.emptyCart();
+        this.firestoreService.emptyCartList(uid);
         this.precioTotal = 0;
       });
       this.showOrderAlert = true;

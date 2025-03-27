@@ -68,4 +68,13 @@ export class FirebaseService {
     }
   }
 
+  async emptyCartList(uid: string){
+    try{
+      const userRef = doc(this.firestore, `${this.USERS_COLLECTION}/${uid}`);
+      await setDoc(userRef, {cartList: []}, {merge: true});
+    }catch (error) {
+      console.error('Error emptying cart list', error)
+    }
+  }
+
 }
