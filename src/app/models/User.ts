@@ -8,4 +8,5 @@ export interface User {
   email: string;
   password?: string;
   orderList: Array<Order>;
+  cartList: Array<Product>;
 }

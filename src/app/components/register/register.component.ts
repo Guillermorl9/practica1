@@ -61,12 +61,13 @@ export class RegisterComponent{
       const email: string = this.formulario.get('email')?.value;
       const password: string = this.formulario.get('password')?.value;
       const orderList: Array<Order> = [];
+      const cartList: Array<Product> = [];
 
       const userCredential = await this.authService.signup(email, password);
       const uid = userCredential.user?.uid;
 
       if (uid) {
-        await this.firebaseService.saveUserData(uid, { firstName, lastName, email, orderList });
+        await this.firebaseService.saveUserData(uid, { firstName, lastName, email, orderList, cartList });
         console.log("Usuario registrado con éxito");
         this.alertMessage = 'Return to the login screen to log in with the new account.';
         this.showSuccessAlert = true;
