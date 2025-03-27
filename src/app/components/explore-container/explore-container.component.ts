@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import {ReactiveFormsModule, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {IonicModule} from "@ionic/angular";
 import {NgIf} from "@angular/common";

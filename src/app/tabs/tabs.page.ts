@@ -1,4 +1,4 @@
-import {Component, EnvironmentInjector, inject, OnInit} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {IonTabs, IonTabBar, IonTabButton, IonIcon, IonLabel, IonBadge} from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { personAdd, cartSharp, bagHandle, cog} from 'ionicons/icons';

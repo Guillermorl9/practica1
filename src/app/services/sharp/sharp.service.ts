@@ -1,4 +1,4 @@
-import {inject, Injectable, OnInit} from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {Product} from "../../models/Product";
 import {BehaviorSubject} from "rxjs";
 import {AuthService} from "../auth/auth.service";

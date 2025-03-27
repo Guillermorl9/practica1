@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {Firestore, doc, setDoc, getDoc,} from '@angular/fire/firestore';
 import { User } from "../../models/User";
 import {Order} from "../../models/Order";
@@ -8,9 +8,10 @@ import {Product} from "../../models/Product";
   providedIn: 'root'
 })
 export class FirebaseService {
+  private firestore: Firestore = inject(Firestore)
   private readonly USERS_COLLECTION: string = "usuarios";
 
-  constructor(private firestore: Firestore) { }
+  constructor() { }
 
   async saveUserData(uid: string, userData: Partial<User>): Promise<void> {
     try {

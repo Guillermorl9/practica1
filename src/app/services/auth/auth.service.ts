@@ -7,7 +7,7 @@ import {
   User,
   onAuthStateChanged
 } from '@angular/fire/auth';
-import {BehaviorSubject, map, Observable} from 'rxjs';
+import {BehaviorSubject} from 'rxjs';
 import { FirebaseService } from '../firebase-service/firebase.service';
 import { User as AppUser } from '../../models/User';
 
@@ -15,12 +15,12 @@ import { User as AppUser } from '../../models/User';
   providedIn: 'root'
 })
 export class AuthService {
-  private authState = new BehaviorSubject<User | null>(null);
-  private appUser = new BehaviorSubject<AppUser | null>(null);
-  userData = this.appUser.asObservable();
 
   private auth: Auth = inject(Auth);
   private firebaseService = inject(FirebaseService);
+  private authState = new BehaviorSubject<User | null>(null);
+  private appUser = new BehaviorSubject<AppUser | null>(null);
+  userData = this.appUser.asObservable();
 
   constructor() {
     this.initAuthListener();

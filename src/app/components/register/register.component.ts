@@ -6,7 +6,6 @@ import {
   IonAlert,
   IonButton,
   IonContent,
-  IonIcon,
   IonInput,
   IonItem,
   IonList,

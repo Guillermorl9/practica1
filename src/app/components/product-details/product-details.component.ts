@@ -3,9 +3,9 @@ import {
   IonAlert,
   IonBackButton,
   IonButton,
-  IonButtons, IonCol,
+  IonButtons,
   IonContent,
-  IonHeader, IonIcon, IonInput, IonItem, IonRow, IonSkeletonText, IonText,
+  IonHeader, IonIcon, IonInput, IonItem, IonSkeletonText, IonText,
   IonTitle,
   IonToolbar,
 } from "@ionic/angular/standalone";
@@ -19,7 +19,7 @@ import {addIcons} from "ionicons";
 import {CommonModule} from "@angular/common";
 import {SharpService} from "../../services/sharp/sharp.service";
 import {Router} from "@angular/router";
-import {IonLoading, LoadingController} from "@ionic/angular/standalone";
+import {LoadingController} from "@ionic/angular/standalone";
 
 @Component({
   selector: 'app-product-details',

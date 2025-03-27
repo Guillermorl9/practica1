@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {map, Observable} from "rxjs";
 import {ProductResponse} from "../../models/ProductResponse";
@@ -10,7 +10,8 @@ import {productMapper} from "../../models/productMapper/ProductMapper";
 })
 export class ApiService {
   private baseURL = 'https://fakestoreapi.com/products';
-  constructor(private httpClient: HttpClient) { }
+  private httpClient: HttpClient = inject(HttpClient);
+  constructor() { }
 
   public getAllProducts(): Observable<Array<Product>> {
     return this.httpClient.get<Array<ProductResponse>>(`${this.baseURL}`).pipe(
