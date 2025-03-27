@@ -11,7 +11,7 @@ import {
   IonToolbar
 } from "@ionic/angular/standalone";
 import {addIcons} from "ionicons";
-import {personOutline, trendingUpOutline, logOutOutline} from "ionicons/icons";
+import {personOutline, trendingUpOutline, logOutOutline, moonOutline} from "ionicons/icons";
 import {User} from "../../models/User";
 import {Router, RouterLink} from "@angular/router";
 import {AuthService} from "../../services/auth/auth.service";
@@ -24,17 +24,21 @@ import {FirebaseService} from "../../services/firebase-service/firebase.service"
   selector: 'app-config',
   templateUrl: './config.component.html',
   styleUrls: ['./config.component.scss'],
-  imports: [IonHeader, FormsModule, IonButtons, IonModal, IonInput, CustomHeaderComponent, IonIcon, RouterLink, IonList, IonItem, IonLabel, IonToggle, IonToolbar, IonTitle, IonContent, IonCard, IonAvatar, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardTitle, IonCardContent, IonButton],
+  imports: [IonHeader, IonToggle, FormsModule, IonButtons, IonModal, IonInput, CustomHeaderComponent, IonIcon, RouterLink, IonList, IonItem, IonLabel, IonToggle, IonToolbar, IonTitle, IonContent, IonCard, IonAvatar, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardTitle, IonCardContent, IonButton],
 })
 export class ConfigComponent  implements OnInit {
   @ViewChild(IonModal) modal!: IonModal;
   user: User | null = null;
   firstName: string = this.authService.getFirstName();
+  paletteToggle: boolean = false;
   constructor(private authService: AuthService, private router: Router, private firestoreService: FirebaseService) {
-    addIcons({personOutline, trendingUpOutline, logOutOutline});
+    addIcons({personOutline, trendingUpOutline, logOutOutline, moonOutline});
   }
 
   ngOnInit() {
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+    this.initiDarkPalette(prefersDark.matches);
+    prefersDark.addEventListener('change', (mediaQuery) => this.initiDarkPalette(mediaQuery.matches));
     this.authService.userData.subscribe(userData => {
       this.user = userData;
       console.log('Datos del usuario en Config:', this.user);
@@ -53,6 +57,19 @@ export class ConfigComponent  implements OnInit {
     }else{
       this.modal.dismiss('confirm');
     }
+  }
+
+  initiDarkPalette(isDark: boolean): void{
+    this.paletteToggle = isDark;
+    this.toogleDarkPalette(isDark);
+  }
+
+  toogleDarkPalette(shouldAdd: boolean): void{
+    document.documentElement.classList.toggle('ion-palette-dark', shouldAdd);
+  }
+
+  toggleChange(event: CustomEvent){
+    this.toogleDarkPalette((event.detail.checked));
   }
 
   cancel(): void {
