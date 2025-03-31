@@ -16,8 +16,6 @@ export class SharpService{
     this.authService.userData.subscribe((userData) => {
       if(userData?.cartList){
         this.sharpList.next(userData.cartList);
-        console.log("UserData: " + userData.cartList.length);
-        console.log("SharpList: " + this.sharpList.value.length);
       }
     })
   }

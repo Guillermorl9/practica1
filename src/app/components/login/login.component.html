@@ -37,15 +37,6 @@
         </ion-text>
       </ion-item>
       <ion-alert
-        [isOpen]="showSuccessAlert"
-        [header]="t('Success')"
-        [subHeader]="t('Successful user login.')"
-        message="{{alertMessage}}"
-        [buttons]="[{ text: t('Accept'), handler: navigateToHome }]"
-        (didDismiss)="showSuccessAlert = false"
-        backdrop-dismiss="false">
-      </ion-alert>
-      <ion-alert
         [isOpen]="showErrorAlert"
         header="Error"
         [subHeader]="t('An error occurred in the user login attempt.')"

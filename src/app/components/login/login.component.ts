@@ -27,7 +27,6 @@ export class LoginComponent implements OnInit {
   private authService: AuthService = inject(AuthService);
   formulario: FormGroup;
   showErrorAlert: boolean = false;
-  showSuccessAlert: boolean = false;
   alertMessage: string = '';
 
   constructor(private form: FormBuilder, private router: Router) {
@@ -41,10 +40,7 @@ export class LoginComponent implements OnInit {
     const auth: Auth = getAuth();
     onAuthStateChanged(auth, async (user) => {
       if (user) {
-        console.log(`Usuario logeado: ${user.email}`);
         await this.router.navigate(['/tabs/tab1']);
-      } else {
-        console.log('Usuario no logeado');
       }
     });
   }
@@ -65,7 +61,6 @@ export class LoginComponent implements OnInit {
       const uid: string = userCredential.user?.uid;
       if (uid) {
         this.alertMessage = 'Welcome!';
-        this.showSuccessAlert = true;
         this.formulario.get('email')?.setValue('');
         this.formulario.get('password')?.setValue('');
       }

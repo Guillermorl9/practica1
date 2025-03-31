@@ -26,10 +26,10 @@ bootstrapApplication(AppComponent, {
       mode: 'ios',
     })), provideHttpClient(), provideTransloco({
         config: {
-          availableLangs: ['es'],
+          availableLangs: ['es', 'fr', 'en', 'pt', 'it', 'el'],
           defaultLang: 'es',
           // Remove this option if your application doesn't support changing language in runtime.
-          reRenderOnLangChange: false,
+          reRenderOnLangChange: true,
           prodMode: !isDevMode(),
         },
         loader: TranslocoHttpLoader

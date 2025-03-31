@@ -4,13 +4,14 @@ import {IonicModule} from "@ionic/angular";
 import {NgIf} from "@angular/common";
 import {mail, call, person, people} from 'ionicons/icons';
 import {addIcons} from "ionicons";
+import {TranslocoModule} from "@ngneat/transloco";
 
 
 @Component({
   selector: 'app-explore-container',
   templateUrl: './explore-container.component.html',
   styleUrls: ['./explore-container.component.scss'],
-  imports: [ReactiveFormsModule, IonicModule, NgIf]
+  imports: [ReactiveFormsModule, TranslocoModule, IonicModule, NgIf]
 })
 export class ExploreContainerComponent {
   formulario: FormGroup;
@@ -34,13 +35,8 @@ export class ExploreContainerComponent {
   enviar(): void {
     if (this.formulario.invalid) {
       this.formulario.markAllAsTouched();
-      console.log("El formulario contiene errores. Corrige los campos para continuar.");
       return;
     }
-    console.log(`Nombre: ${this.formulario.value['nombre']}`);
-    console.log(`Apellidos: ${this.formulario.value['apellidos']}`);
-    console.log(`Teléfono: ${this.formulario.value['telefono']}`);
-    console.log(`Email: ${this.formulario.value['email']}`);
     this.showAlert = true;
   }
 }

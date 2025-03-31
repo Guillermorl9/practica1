@@ -28,6 +28,13 @@
             {{t('Dark theme')}}
           </ion-toggle>
         </ion-item>
+        <ion-item>
+          <ion-icon name="language-outline"></ion-icon>
+          <ion-select label="{{t('Language')}}" placeholder="{{t('Language')}}"
+                      (ionChange)="changeLanguage($event)" [value]="currentLanguage">
+            <ion-select-option *ngFor="let lang of languages">{{lang}}</ion-select-option>
+          </ion-select>
+        </ion-item>
         <ion-item [routerLink]="['/tabs/tab4/my-orders']">
           <ion-icon name="trending-up-outline"></ion-icon>
           <ion-label>{{t('My orders')}}</ion-label>
