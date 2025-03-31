@@ -20,11 +20,12 @@ import {IonModal} from "@ionic/angular/standalone";
 import { OverlayEventDetail } from '@ionic/core/components';
 import {FormsModule} from "@angular/forms";
 import {FirebaseService} from "../../services/firebase-service/firebase.service";
+import {TranslocoModule} from "@ngneat/transloco";
 @Component({
   selector: 'app-config',
   templateUrl: './config.component.html',
   styleUrls: ['./config.component.scss'],
-  imports: [IonHeader, IonToggle, FormsModule, IonButtons, IonModal, IonInput, CustomHeaderComponent, IonIcon, RouterLink, IonList, IonItem, IonLabel, IonToggle, IonToolbar, IonTitle, IonContent, IonCard, IonAvatar, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardTitle, IonCardContent, IonButton],
+  imports: [IonHeader, TranslocoModule, IonToggle, FormsModule, IonButtons, IonModal, IonInput, CustomHeaderComponent, IonIcon, RouterLink, IonList, IonItem, IonLabel, IonToggle, IonToolbar, IonTitle, IonContent, IonCard, IonAvatar, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardTitle, IonCardContent, IonButton],
 })
 export class ConfigComponent  implements OnInit {
   @ViewChild(IonModal) modal!: IonModal;

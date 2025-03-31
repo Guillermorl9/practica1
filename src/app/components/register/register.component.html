@@ -1,58 +1,61 @@
-<ion-content scroll-y="false" class="background-image">
+<ion-content scroll-y="false" class="background-image" *transloco="let t">
   <div class="center-div">
     <form [formGroup]="formulario" (ngSubmit)="registerUser()">
       <ion-list>
         <ion-item>
+          <ion-text>
+            <a href="login">{{t('Back')}}</a>
+          </ion-text>
           <ion-title>
-            Register
+            {{t('Register')}}
           </ion-title>
         </ion-item>
         <ion-item>
-          <ion-input formControlName="firstName" label-placement="stacked" label="First name" placeholder="Enter your first name"></ion-input>
+          <ion-input formControlName="firstName" label-placement="stacked" [label]="t('First name')" [placeholder]="t('Enter your first name')"></ion-input>
           <ion-text class="text-danger" *ngIf="hasErrors('firstName', 'required')">
-            First name required
+            {{t('First name required')}}
           </ion-text>
         </ion-item>
         <ion-item>
-          <ion-input formControlName="lastName" label-placement="stacked" label="Last name" placeholder="Enter your last name"></ion-input>
+          <ion-input formControlName="lastName" label-placement="stacked" [label]="t('Last name')" [placeholder]="t('Enter your last name')"></ion-input>
           <ion-text class="text-danger" *ngIf="hasErrors('lastName', 'required')">
-            Last name required
+            {{t('Last name required')}}
           </ion-text>
         </ion-item>
         <ion-item>
-          <ion-input formControlName="email" label-placement="stacked" label="Email" placeholder="Enter your email"></ion-input>
+          <ion-input formControlName="email" label-placement="stacked" [label]="t('Email')" [placeholder]="t('Enter your email')"></ion-input>
           <ion-text class="text-danger" *ngIf="hasErrors('email', 'required')">
-            Email address required
+            {{t('Email address required')}}
           </ion-text>
           <ion-text class="text-danger" *ngIf="hasErrors('email', 'email')">
-            Invalid email format
+            {{t('Invalid email format')}}
           </ion-text>
         </ion-item>
         <ion-item>
-          <ion-input type="password" formControlName="password" label-placement="stacked" label="Password" placeholder="Enter your password"></ion-input>
+          <ion-input type="password" formControlName="password" label-placement="stacked" [label]="t('Password')" [placeholder]="t('Enter your password')"></ion-input>
           <ion-text class="text-danger" *ngIf="hasErrors('password', 'required')">
-            Password required
+            {{t('Password required')}}
           </ion-text>
         </ion-item>
       </ion-list>
       <ion-button id="button-submit" type="submit">
-        Register
+        {{t('Register')}}
       </ion-button>
       <ion-alert
         [isOpen]="showSuccessAlert"
-        header="Success"
-        subHeader="User registration successful."
+        [header]="t('Success')"
+        [subHeader]="t('User registration successful.')"
         message="{{alertMessage}}"
-        [buttons]="[{ text: 'Accept', handler: navigateToLogin }]"
+        [buttons]="[{ text: t('Accept'), handler: navigateToLogin }]"
         (didDismiss)="showSuccessAlert = false"
         backdrop-dismiss="false">
       </ion-alert>
       <ion-alert
         [isOpen]="showErrorAlert"
         header="Error"
-        subHeader="An error occurred in the user registration attempt."
+        [subHeader]="t('An error occurred in the user registration attempt.')"
         message="{{alertMessage}}"
-        [buttons]="['Close']"
+        [buttons]="[t('Close')]"
         (didDismiss)="showErrorAlert = false">
       </ion-alert>
     </form>

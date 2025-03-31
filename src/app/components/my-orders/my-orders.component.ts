@@ -14,12 +14,13 @@ import {
 import {Order} from "../../models/Order";
 import {CommonModule, CurrencyPipe, DatePipe} from "@angular/common";
 import {RouterLink} from "@angular/router";
+import {TranslocoModule} from "@ngneat/transloco";
 
 @Component({
   selector: 'app-my-orders',
   templateUrl: './my-orders.component.html',
   styleUrls: ['./my-orders.component.scss'],
-  imports: [CustomHeaderComponent, RouterLink, IonList, IonItem, IonHeader, IonToolbar, IonButtons, IonBackButton, IonTitle, IonButton, RouterLink, CurrencyPipe, DatePipe, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonContent, CommonModule]
+  imports: [CustomHeaderComponent, TranslocoModule, RouterLink, IonList, IonItem, IonHeader, IonToolbar, IonButtons, IonBackButton, IonTitle, IonButton, RouterLink, CurrencyPipe, DatePipe, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonContent, CommonModule]
 })
 export class MyOrdersComponent  implements OnInit {
   ordersList: Array<Order>= [];

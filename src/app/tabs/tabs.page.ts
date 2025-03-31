@@ -6,11 +6,12 @@ import {SharpService} from "../services/sharp/sharp.service";
 import {CommonModule} from "@angular/common";
 import {ConfigComponent} from "../components/config/config.component";
 import {User} from "../models/User";
+import {TranslocoModule} from "@ngneat/transloco";
 @Component({
   selector: 'app-tabs',
   templateUrl: 'tabs.page.html',
   styleUrls: ['tabs.page.scss'],
-  imports: [IonTabs, IonBadge, IonTabBar, IonTabButton, IonIcon, IonLabel, CommonModule, ConfigComponent],
+  imports: [IonTabs, TranslocoModule, IonBadge, IonTabBar, IonTabButton, IonIcon, IonLabel, CommonModule, ConfigComponent],
 })
 export class TabsPage implements OnInit {
   private sharpService: SharpService = inject(SharpService);

@@ -4,7 +4,7 @@ import {Router} from "@angular/router";
 import {FirebaseService} from "../../services/firebase-service/firebase.service";
 import {
   IonAlert,
-  IonButton,
+  IonButton, IonCardSubtitle,
   IonContent,
   IonInput,
   IonItem,
@@ -17,12 +17,13 @@ import {AuthService} from "../../services/auth/auth.service";
 import {operatingError} from "../../services/auth/authErrors";
 import {Product} from "../../models/Product";
 import {Order} from "../../models/Order";
+import {TranslocoModule} from "@ngneat/transloco";
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
-  imports: [IonContent, IonAlert, IonText, IonList, IonItem, IonInput, IonButton, CommonModule, ReactiveFormsModule, IonTitle],
+  imports: [IonContent, TranslocoModule, IonAlert, IonText, IonList, IonItem, IonInput, IonButton, CommonModule, ReactiveFormsModule, IonTitle, IonCardSubtitle],
   standalone: true,
 })
 export class RegisterComponent{

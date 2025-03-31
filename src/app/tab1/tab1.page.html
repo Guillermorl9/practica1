@@ -1,6 +1,6 @@
-<app-custom-header [translucent]="true" [title]="'Cart'"></app-custom-header>
-<ion-content [fullscreen]="true">
-  <app-custom-header [size]="'large'" [title]="'Your cart'" [collapse]="'condense'"></app-custom-header>
+<app-custom-header [translucent]="true" *transloco="let t" [title]="t('Cart')"></app-custom-header>
+<ion-content [fullscreen]="true" *transloco="let t">
+  <app-custom-header [size]="'large'" [title]="t('Your cart')" [collapse]="'condense'"></app-custom-header>
 
   <ion-card *ngIf="sharpList.length > 0">
     <ion-card-header>
@@ -8,27 +8,27 @@
       <ion-card-subtitle>Total</ion-card-subtitle>
     </ion-card-header>
     <ion-card-content>
-      <ion-button expand="block" (click)="placeOrder()">Place order</ion-button>
+      <ion-button expand="block" (click)="placeOrder()">{{t('Place order')}}</ion-button>
     </ion-card-content>
   </ion-card>
 
   <ion-card *ngIf="sharpList.length < 1">
     <ion-card-header>
-      <ion-card-title>Your cart is currently empty</ion-card-title>
-      <ion-card-subtitle>Empty cart</ion-card-subtitle>
+      <ion-card-title>{{t('Your cart is currently empty')}}</ion-card-title>
+      <ion-card-subtitle>{{t('Empty cart')}}</ion-card-subtitle>
     </ion-card-header>
 
     <ion-card-content>
-      <ion-card-subtitle>Go to products and add some products to your cart</ion-card-subtitle>
-      <ion-button expand="block" [routerLink]="['/tabs/tab2']">Go to products</ion-button>
+      <ion-card-subtitle>{{t('Go to products and add some products to your cart')}}</ion-card-subtitle>
+      <ion-button expand="block" [routerLink]="['/tabs/tab2']">{{t('Go to products')}}</ion-button>
     </ion-card-content>
   </ion-card>
   <ion-alert
     [isOpen]="showOrderAlert"
-    header="Success"
-    subHeader="Order successfully registered"
-    message="You can view the order information in “Configuration/My orders”."
-    [buttons]="[{ text: 'Accept'}]"
+    [header]="t('Success')"
+    [subHeader]="t('Order successfully registered')"
+    [message]="t('You can view the order information in -Configuration/My orders-.')"
+    [buttons]="[{ text: t('Accept')}]"
     (didDismiss)="showOrderAlert = false"
     backdrop-dismiss="false">
   </ion-alert>

@@ -1,14 +1,14 @@
-<ion-header [translucent]="true">
+<ion-header [translucent]="true" *transloco="let t">
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-back-button text="Back" icon="caret-back"></ion-back-button>
     </ion-buttons>
     <ion-title>
-      Orders
+      {{t('Orders')}}
     </ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" *transloco="let t">
   <ion-list>
     <ion-item *ngFor="let order of ordersList; let i = index" lines="none" [routerLink]="['/tabs/tab4/my-orders', i]">
       <ion-card>
@@ -18,20 +18,20 @@
         </ion-card-header>
 
         <ion-card-content>
-          Amount of products: {{order.products.length}}
+          {{t('Amount of products')}}: {{order.products.length}}
         </ion-card-content>
       </ion-card>
     </ion-item>
   </ion-list>
   <ion-card *ngIf="ordersList.length < 1">
     <ion-card-header>
-      <ion-card-title>You have not placed an order yet</ion-card-title>
-      <ion-card-subtitle>No order</ion-card-subtitle>
+      <ion-card-title>{{t('You have not placed an order yet')}}</ion-card-title>
+      <ion-card-subtitle>{{t('No order')}}</ion-card-subtitle>
     </ion-card-header>
 
     <ion-card-content>
-      <ion-card-subtitle>Go to products and place an order</ion-card-subtitle>
-      <ion-button expand="block" [routerLink]="['/tabs/tab2']">Go to products</ion-button>
+      <ion-card-subtitle>{{t('Go to products and place an order')}}</ion-card-subtitle>
+      <ion-button expand="block" [routerLink]="['/tabs/tab2']">{{t('Go to products')}}</ion-button>
     </ion-card-content>
   </ion-card>
 </ion-content>

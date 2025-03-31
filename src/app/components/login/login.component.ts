@@ -16,11 +16,12 @@ import {Router} from "@angular/router";
 import {AuthService} from "../../services/auth/auth.service";
 import {operatingError} from "../../services/auth/authErrors";
 import {Auth, getAuth, onAuthStateChanged} from "@angular/fire/auth";
+import {TranslocoModule} from "@ngneat/transloco";
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
-  imports: [IonContent, IonAlert, IonText, IonList, IonItem, IonInput, IonIcon, IonButton, CommonModule, ReactiveFormsModule, IonTitle]
+  imports: [IonContent, TranslocoModule, IonAlert, IonText, IonList, IonItem, IonInput, IonIcon, IonButton, CommonModule, ReactiveFormsModule, IonTitle]
 })
 export class LoginComponent implements OnInit {
   private authService: AuthService = inject(AuthService);

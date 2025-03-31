@@ -9,7 +9,9 @@ import {provideIonicAngular} from "@ionic/angular/standalone";
 import {provideHttpClient} from "@angular/common/http";
 import {routes} from "./app/app.routes";
 import { provideAuth, getAuth } from '@angular/fire/auth';
-import {importProvidersFrom} from "@angular/core";
+import {importProvidersFrom, isDevMode} from "@angular/core";
+import { TranslocoHttpLoader } from './transloco-loader';
+import { provideTransloco } from '@ngneat/transloco';
 
 bootstrapApplication(AppComponent, {
   providers: [
@@ -22,6 +24,15 @@ bootstrapApplication(AppComponent, {
     provideAuth(() => getAuth()),
     importProvidersFrom(IonicModule.forRoot({
       mode: 'ios',
-    }))
+    })), provideHttpClient(), provideTransloco({
+        config: {
+          availableLangs: ['es'],
+          defaultLang: 'es',
+          // Remove this option if your application doesn't support changing language in runtime.
+          reRenderOnLangChange: false,
+          prodMode: !isDevMode(),
+        },
+        loader: TranslocoHttpLoader
+      })
   ],
 })

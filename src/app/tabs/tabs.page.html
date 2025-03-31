@@ -1,24 +1,24 @@
-<ion-tabs>
+<ion-tabs *transloco="let t">
   <ion-tab-bar slot="bottom">
     <ion-tab-button tab="tab1" href="/tabs/tab1">
       <ion-icon aria-hidden="true" name="cart-sharp"></ion-icon>
-      <ion-label>Cart</ion-label>
+      <ion-label>{{t('Cart')}}</ion-label>
       <ion-badge *ngIf="sharpListSize > 0" color="danger">{{sharpListSize}}</ion-badge>
     </ion-tab-button>
 
     <ion-tab-button tab="tab2" href="/tabs/tab2">
       <ion-icon aria-hidden="true" name="bag-handle"></ion-icon>
-      <ion-label>Products</ion-label>
+      <ion-label>{{t('Products')}}</ion-label>
     </ion-tab-button>
 
     <ion-tab-button tab="tab3" href="/tabs/tab3">
       <ion-icon aria-hidden="true" name="person-add"></ion-icon>
-      <ion-label>Contact</ion-label>
+      <ion-label>{{t('Contact')}}</ion-label>
     </ion-tab-button>
 
     <ion-tab-button tab="tab4" href="/tabs/tab4">
       <ion-icon aria-hidden="true" name="cog"></ion-icon>
-      <ion-label>Configuration</ion-label>
+      <ion-label>{{t('Configuration')}}</ion-label>
     </ion-tab-button>
 
   </ion-tab-bar>

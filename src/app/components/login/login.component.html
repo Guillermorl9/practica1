@@ -1,56 +1,56 @@
-<ion-content scroll-y="false" class="background-image">
+<ion-content scroll-y="false" class="background-image" *transloco="let t">
   <div class="center-div">
     <form [formGroup]="formulario" (ngSubmit)="loginUser()">
       <ion-list>
         <ion-item>
           <ion-title>
-            Login
+            {{t('Login')}}
           </ion-title>
         </ion-item>
         <ion-item>
-          <ion-input formControlName="email" label-placement="stacked" label="Email" placeholder="Enter your email"></ion-input>
+          <ion-input formControlName="email" label-placement="stacked" [label]="t('Email')" [placeholder]="t('Enter your email')"></ion-input>
           <ion-text class="text-danger" *ngIf="hasErrors('email', 'required')">
-            Email address required
+            {{t('Email address required')}}
           </ion-text>
           <ion-text class="text-danger" *ngIf="hasErrors('email', 'email')">
-            Invalid email format
+            {{t('Invalid email format')}}
           </ion-text>
         </ion-item>
         <ion-item>
-          <ion-input type="password" formControlName="password" label-placement="stacked" label="Password" placeholder="Enter your password"></ion-input>
+          <ion-input type="password" formControlName="password" label-placement="stacked" [label]="t('Password')" [placeholder]="t('Enter your password')"></ion-input>
           <ion-text class="text-danger" *ngIf="hasErrors('password', 'required')">
-            Password required
+            {{t('Password required')}}
           </ion-text>
         </ion-item>
       </ion-list>
       <ion-button id="button-submit" type="submit">
-        Login
+        {{t('Login')}}
       </ion-button>
       <ion-item lines="none">
         <ion-text>
-          I do not have an account. <a href="register">Register</a>
+          {{t('I do not have an account.')}} <a href="register">{{t('Register')}}</a>
         </ion-text>
       </ion-item>
       <ion-item lines="none">
         <ion-text>
-          I can't remember my password. <a href="">Recover password</a>
+          {{t('I dont remember my password.')}} <a href="">{{t('Recover password')}}</a>
         </ion-text>
       </ion-item>
       <ion-alert
         [isOpen]="showSuccessAlert"
-        header="Success"
-        subHeader="Successful user login."
+        [header]="t('Success')"
+        [subHeader]="t('Successful user login.')"
         message="{{alertMessage}}"
-        [buttons]="[{ text: 'Accept', handler: navigateToHome }]"
+        [buttons]="[{ text: t('Accept'), handler: navigateToHome }]"
         (didDismiss)="showSuccessAlert = false"
         backdrop-dismiss="false">
       </ion-alert>
       <ion-alert
         [isOpen]="showErrorAlert"
         header="Error"
-        subHeader="An error occurred in the user login attempt."
+        [subHeader]="t('An error occurred in the user login attempt.')"
         message="{{alertMessage}}"
-        [buttons]="['Close']"
+        [buttons]="[t('Close')]"
         (didDismiss)="showErrorAlert = false">
       </ion-alert>
     </form>

@@ -20,11 +20,12 @@ import {Order} from "../models/Order";
 import {AuthService} from "../services/auth/auth.service";
 import {FirebaseService} from "../services/firebase-service/firebase.service";
 import {User} from "../models/User";
+import {TranslocoModule} from "@ngneat/transloco";
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
   styleUrls: ['tab1.page.scss'],
-  imports: [IonHeader, IonAlert, CustomHeaderComponent, CurrencyPipe, IonItemSliding, RouterLink, IonButton, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonToolbar, IonTitle, IonContent, ExploreContainerComponent, IonText, CommonModule, ProductCardComponent],
+  imports: [IonHeader, TranslocoModule, IonAlert, CustomHeaderComponent, CurrencyPipe, IonItemSliding, RouterLink, IonButton, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonToolbar, IonTitle, IonContent, ExploreContainerComponent, IonText, CommonModule, ProductCardComponent],
 })
 export class Tab1Page implements OnInit{
   sharpList: Array<Product> = [];

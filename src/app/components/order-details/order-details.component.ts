@@ -12,12 +12,13 @@ import {ActivatedRoute} from "@angular/router";
 import {AuthService} from "../../services/auth/auth.service";
 import {Order} from "../../models/Order";
 import {CommonModule, CurrencyPipe} from "@angular/common";
+import {TranslocoModule} from "@ngneat/transloco";
 
 @Component({
   selector: 'app-order-details',
   templateUrl: './order-details.component.html',
   styleUrls: ['./order-details.component.scss'],
-  imports: [IonHeader, IonCard, CurrencyPipe, CommonModule, IonCardHeader, IonList, IonLabel, IonItem, IonThumbnail, IonCardTitle, IonCardSubtitle, IonCardContent, IonText, IonToolbar, IonButtons, IonBackButton, IonTitle, IonContent]
+  imports: [IonHeader, TranslocoModule, IonCard, CurrencyPipe, CommonModule, IonCardHeader, IonList, IonLabel, IonItem, IonThumbnail, IonCardTitle, IonCardSubtitle, IonCardContent, IonText, IonToolbar, IonButtons, IonBackButton, IonTitle, IonContent]
 })
 export class OrderDetailsComponent  implements OnInit {
   private authService: AuthService = inject(AuthService);
