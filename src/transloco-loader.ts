@@ -11,7 +11,10 @@ export class TranslocoHttpLoader implements TranslocoLoader {
       ['fr', "Français"],
       ['it', "Italiano"],
       ['pt', "Português"],
-      ['el', "Ελληνική"]
+      ['el', "Ελληνική"],
+      ['ru', "Русский"],
+      ['de', "Deutsch"],
+      ['ja', "日本語"]
     ])
 
     getTranslation(lang: string) {
