@@ -24,7 +24,7 @@
         </ion-item>
         <ion-item class="ion-activatable">
           <ion-icon name="moon-outline"></ion-icon>
-          <ion-toggle [(ngModel)]="paletteToggle" (ionChange)="toggleChange($event)" justify="space-between" [checked]="true">
+          <ion-toggle [(ngModel)]="isDark" (ionChange)="toggleChange()" justify="space-between" [checked]="isDark">
             {{t('Dark theme')}}
           </ion-toggle>
         </ion-item>

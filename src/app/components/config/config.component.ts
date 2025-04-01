@@ -24,6 +24,7 @@ import {TranslocoModule, TranslocoService} from "@ngneat/transloco";
 import {TranslocoHttpLoader} from "../../../transloco-loader";
 import {CommonModule} from "@angular/common";
 import {LocalStorageService} from "../../services/local-storage/local-storage.service";
+import {PaletteService} from "../../services/palette/palette.service";
 @Component({
   selector: 'app-config',
   templateUrl: './config.component.html',
@@ -37,6 +38,7 @@ export class ConfigComponent  implements OnInit {
   private translocoService: TranslocoService = inject(TranslocoService);
   private translocoHttpLoader: TranslocoHttpLoader = inject(TranslocoHttpLoader);
   private localStorageService: LocalStorageService = inject(LocalStorageService);
+  private paletteService: PaletteService = inject(PaletteService);
   private readonly LANGUAGE_KEY: string = 'selectedLanguage';
   languages: Array<string> = Array.from(this.translocoHttpLoader.getLanguagesValues());
   languageMap: Map<string, string> = this.translocoHttpLoader.getLanguages();
@@ -44,18 +46,18 @@ export class ConfigComponent  implements OnInit {
   currentLanguage: string = '';
   user: User | null = null;
   firstName: string = this.authService.getFirstName();
-  paletteToggle: boolean = false;
+  isDark: boolean = false;
   constructor(private router: Router) {
     addIcons({personOutline, trendingUpOutline, logOutOutline, moonOutline, languageOutline});
   }
 
   ngOnInit() {
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
-    this.initiDarkPalette(prefersDark.matches);
-    prefersDark.addEventListener('change', (mediaQuery) => this.initiDarkPalette(mediaQuery.matches));
     this.authService.userData.subscribe(userData => {
       this.user = userData;
     });
+    this.paletteService.paletteToggle.subscribe((isDark) => {
+      this.isDark = isDark;
+    })
     this.languageMap.forEach((value, key) => {
       this.invertedLanguageMap.set(value, key);
     })
@@ -69,7 +71,7 @@ export class ConfigComponent  implements OnInit {
     if (langCode) {
       this.translocoService.setActiveLang(langCode);
       this.currentLanguage = selectedLanguageName;
-      this.localStorageService.clear();
+      this.localStorageService.removeItem(this.LANGUAGE_KEY);
       this.localStorageService.setItem(this.LANGUAGE_KEY, langCode);
     }
   }
@@ -88,17 +90,8 @@ export class ConfigComponent  implements OnInit {
     }
   }
 
-  initiDarkPalette(isDark: boolean): void{
-    this.paletteToggle = isDark;
-    this.toogleDarkPalette(isDark);
-  }
-
-  toogleDarkPalette(shouldAdd: boolean): void{
-    document.documentElement.classList.toggle('ion-palette-dark', shouldAdd);
-  }
-
-  toggleChange(event: CustomEvent){
-    this.toogleDarkPalette((event.detail.checked));
+  toggleChange(){
+    this.paletteService.toogleDarkPalette(this.isDark);
   }
 
   cancel(): void {
@@ -113,6 +106,7 @@ export class ConfigComponent  implements OnInit {
     this.localStorageService.clear();
     const langCode: string = navigator.language.split('-')[0];
     this.translocoService.setActiveLang(langCode);
+    this.paletteService.toogleDarkPalette(false);
     this.authService.logout().then((): void => {this.router.navigate(['/login'])});
   }
 
