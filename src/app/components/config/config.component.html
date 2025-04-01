@@ -18,7 +18,7 @@
         <ion-card-title>{{ t('Settings') }}</ion-card-title>
       </ion-card-header>
       <ion-list>
-        <ion-item class="ion-activatable" id="open-modal" (click)="changeName()">
+        <ion-item class="ion-activatable" id="open-modal">
           <ion-icon name="person-outline"></ion-icon>
           <ion-label>{{t('Change personal data')}}</ion-label>
         </ion-item>
@@ -35,16 +35,20 @@
             <ion-select-option *ngFor="let lang of languages">{{lang}}</ion-select-option>
           </ion-select>
         </ion-item>
-        <ion-item  class="ion-activatable" [routerLink]="['/tabs/tab4/my-orders']">
+        <ion-item class="ion-activatable" [routerLink]="['/tabs/tab4/my-orders']">
           <ion-icon name="trending-up-outline"></ion-icon>
           <ion-label>{{t('My orders')}}</ion-label>
+        </ion-item>
+        <ion-item class="ion-activatable" id="contact-modal">
+          <ion-icon name="person-add-outline"></ion-icon>
+          <ion-label>{{t('Contact')}}</ion-label>
         </ion-item>
         <ion-item class="ion-activatable" (click)="logOut()">
           <ion-icon name="log-out-outline"></ion-icon>
           <ion-label>{{t('Log out')}}</ion-label>
         </ion-item>
       </ion-list>
-      <ion-modal trigger="open-modal" (willDismiss)="onWillDismiss($event)">
+      <ion-modal #personalDataModal trigger="open-modal">
         <ng-template>
           <ion-header>
             <ion-toolbar>
@@ -68,6 +72,67 @@
               ></ion-input>
             </ion-item>
           </ion-content>
+        </ng-template>
+      </ion-modal>
+      <ion-modal #contactModal trigger="contact-modal">
+        <ng-template>
+          <ion-header>
+            <ion-toolbar>
+              <ion-buttons slot="start">
+                <ion-button (click)="cancelContactModal()">{{t('Cancel')}}</ion-button>
+              </ion-buttons>
+              <ion-title>{{t('Contact form')}}</ion-title>
+              <ion-buttons slot="end">
+                <ion-button (click)="confirmContactModal()" [strong]="true">{{t('Confirm')}}</ion-button>
+              </ion-buttons>
+            </ion-toolbar>
+          </ion-header>
+          <ion-content class="ion-padding">
+            <form [formGroup]="formulario" (ngSubmit)="confirmContactModal()">
+              <ion-item>
+                <ion-input formControlName="nombre" label-placement="stacked" [label]="t('First name')" [placeholder]="t('First name')"></ion-input>
+                <ion-icon slot="start" name="person" aria-hidden="true"></ion-icon>
+                <ion-text class="text-danger" *ngIf="hasErrors('nombre', 'required')">
+                  {{t('First name required')}}
+                </ion-text>
+              </ion-item>
+              <ion-item>
+                <ion-input formControlName="apellidos" label-placement="stacked" [label]="t('Last name')" [placeholder]="t('Last name')"></ion-input>
+                <ion-icon slot="start" name="people" aria-hidden="true"></ion-icon>
+                <ion-text class="text-danger" *ngIf="hasErrors('apellidos', 'required')">
+                  {{t('Last name required')}}
+                </ion-text>
+              </ion-item>
+              <ion-item>
+                <ion-input formControlName="telefono" label-placement="stacked" [label]="t('Phone number')" placeholder="Ej: 636123123"></ion-input>
+                <ion-icon slot="start" name="call" aria-hidden="true"></ion-icon>
+                <ion-text class="text-danger" *ngIf="hasErrors('telefono', 'required')">
+                  {{t('Phone number required')}}
+                </ion-text>
+                <ion-text class="text-danger" *ngIf="hasErrors('telefono', 'pattern')">
+                  {{t('Invalid phone number format. 9 numbers')}}
+                </ion-text>
+              </ion-item>
+              <ion-item>
+                <ion-input formControlName="email" label-placement="stacked" [label]="t('Email')" placeholder="email@domain.com"></ion-input>
+                <ion-icon slot="start" name="mail" aria-hidden="true"></ion-icon>
+                <ion-text class="text-danger" *ngIf="hasErrors('email', 'required')">
+                  {{t('Email address required')}}
+                </ion-text>
+                <ion-text class="text-danger" *ngIf="hasErrors('email', 'email')">
+                  {{t('Invalid email format')}}
+                </ion-text>
+              </ion-item>
+            </form>
+          </ion-content>
+          <ion-alert
+            [isOpen]="showAlert"
+            [header]="t('Sent')"
+            [subHeader]="t('Contact form was sent')"
+            [message]="t('We will soon contact you by e-mail.')"
+            [buttons]="[t('Accept')]"
+            (didDismiss)="showAlert = false">
+          </ion-alert>
         </ng-template>
       </ion-modal>
     </ion-card-content>
