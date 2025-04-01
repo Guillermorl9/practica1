@@ -1,7 +1,7 @@
 import {Component, inject, OnInit} from '@angular/core';
 import {IonTabs, IonTabBar, IonTabButton, IonIcon, IonLabel, IonBadge} from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
-import { personAdd, cartSharp, bagHandle, cog} from 'ionicons/icons';
+import { personAdd, home, bagHandle, cog} from 'ionicons/icons';
 import {SharpService} from "../services/sharp/sharp.service";
 import {CommonModule} from "@angular/common";
 import {ConfigComponent} from "../components/config/config.component";
@@ -18,7 +18,7 @@ export class TabsPage implements OnInit {
   sharpListSize: number = 0;
   user: User | null = null;
   constructor() {
-    addIcons({ personAdd, cartSharp, bagHandle, cog });
+    addIcons({ personAdd, home, bagHandle, cog });
   }
 
   ngOnInit() {

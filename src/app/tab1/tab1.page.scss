@@ -1,1 +1,47 @@
+.image {
+  width: auto;
+  height: 75px;
+  max-width: 100%;
+  object-fit: contain;
+  float: left;
+  margin: 12px;
+}
+
+.productCardCart{
+  height: 100px;
+  align-items: center;
+  display: flex;
+  position: relative;
+}
+
+ion-item-sliding {
+  background-color: green;
+}
+
+ion-item {
+  color: blue;
+}
+
+.cartProductTitle {
+  font-size: 15px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.placeOrderButton {
+  margin: 6px;
+}
+
+.deleteIcon{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+
 

@@ -7,10 +7,6 @@ ion-img{
   object-fit: contain;
   justify-content: center;
 }
-ion-card-title{
-  font-size: 17px;
-  margin-bottom: 15px;
-}
 
 ion-avatar{
   width: $width-avatar-image;
@@ -30,6 +26,8 @@ ion-card-title {
   -webkit-line-clamp: 3;
   line-clamp: 3;
   -webkit-box-orient: vertical;
+  font-size: 17px;
+  margin-bottom: 15px;
 }
 
 ion-card {

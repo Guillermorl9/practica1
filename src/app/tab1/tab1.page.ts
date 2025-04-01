@@ -7,9 +7,19 @@ import {
   IonText,
   IonCard,
   IonCardHeader,
-  IonCardTitle, IonCardSubtitle, IonCardContent, IonButton, IonItemSliding, IonAlert, LoadingController
+  IonCardTitle,
+  IonCardSubtitle,
+  IonCardContent,
+  IonButton,
+  IonItemSliding,
+  IonAlert,
+  LoadingController,
+  IonMenu,
+  IonButtons, IonMenuButton, IonItem, IonItemDivider, IonItemOptions, IonItemOption, IonList, IonIcon, IonBadge
 } from '@ionic/angular/standalone';
 import { ExploreContainerComponent } from '../components/explore-container/explore-container.component';
+import {trash, cartOutline} from "ionicons/icons";
+import {addIcons} from "ionicons";
 import {SharpService} from "../services/sharp/sharp.service";
 import {Product} from "../models/Product";
 import {CommonModule, CurrencyPipe} from "@angular/common";
@@ -21,11 +31,12 @@ import {AuthService} from "../services/auth/auth.service";
 import {FirebaseService} from "../services/firebase-service/firebase.service";
 import {User} from "../models/User";
 import {TranslocoModule} from "@ngneat/transloco";
+import {IonicModule} from "@ionic/angular";
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
   styleUrls: ['tab1.page.scss'],
-  imports: [IonHeader, TranslocoModule, IonAlert, CustomHeaderComponent, CurrencyPipe, IonItemSliding, RouterLink, IonButton, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonToolbar, IonTitle, IonContent, ExploreContainerComponent, IonText, CommonModule, ProductCardComponent],
+  imports: [IonHeader, TranslocoModule, IonBadge, IonIcon, IonList, IonItemSliding, IonItemOptions, IonItemOption, IonItemDivider, IonItem, CommonModule, IonMenu, IonButtons, IonMenuButton, TranslocoModule, IonAlert, CustomHeaderComponent, CurrencyPipe, IonItemSliding, RouterLink, IonButton, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonToolbar, IonTitle, IonContent, ExploreContainerComponent, IonText, CommonModule, ProductCardComponent],
 })
 export class Tab1Page implements OnInit{
   sharpList: Array<Product> = [];
@@ -35,18 +46,26 @@ export class Tab1Page implements OnInit{
   private firestoreService: FirebaseService = inject(FirebaseService);
   private sharpService: SharpService = inject(SharpService);
   private user: User | null = null;
-  constructor(private loadingController: LoadingController) {}
+  sharpListSize: number = 0;
+  constructor(private loadingController: LoadingController) {
+    addIcons({trash, cartOutline})
+  }
   async ngOnInit() {
     const loading = await this.presentLoading();
     this.sharpService.currentSharp.subscribe((data) => {
       this.sharpList = data;
       this.precioTotal = this.sharpService.getPrecioTotal();
+      this.sharpListSize = data.length;
       loading.dismiss();
     })
     this.authService.userData.subscribe((userData) => {
       this.user = userData;
       loading.dismiss();
     })
+  }
+
+  removeProduct(product: Product): void {
+    this.sharpService.removeProduct(product);
   }
 
   async placeOrder(): Promise<void> {

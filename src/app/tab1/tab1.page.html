@@ -1,36 +1,63 @@
-<app-custom-header [translucent]="true" *transloco="let t" [title]="t('Cart')"></app-custom-header>
-<ion-content [fullscreen]="true" *transloco="let t">
-  <app-custom-header [size]="'large'" [title]="t('Your cart')" [collapse]="'condense'"></app-custom-header>
+<ion-menu contentId="main-content" *transloco="let t">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Mi carrito</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content class="ion-padding">
+      <ng-container *ngFor="let product of sharpList">
+          <ion-card class="productCardCart">
+            <img alt="Silhouette of mountains" src="{{product.imagen}}" class="image" />
+            <ion-card-header>
+              <ion-card-title class="cartProductTitle">{{product.nombre}}</ion-card-title>
+              <ion-card-subtitle>{{product.precio | currency: 'EUR'}}</ion-card-subtitle>
+            </ion-card-header>
+            <ion-icon class="deleteIcon" name="trash" color="danger" (click)="removeProduct(product)"></ion-icon>
+          </ion-card>
+      </ng-container>
+    <ion-card *ngIf="sharpListSize > 0">
+      <ion-card-header>
+        <ion-card-title class="cartProductTitle">{{precioTotal | currency: 'EUR'}}</ion-card-title>
+        <ion-card-subtitle>Total</ion-card-subtitle>
+      </ion-card-header>
+      <ion-button class="placeOrderButton" (click)="placeOrder()">Realizar pedido</ion-button>
+    </ion-card>
+    <ng-container  *ngIf="sharpList.length < 1">
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>{{t('Your cart is currently empty')}}</ion-card-title>
+          <ion-card-subtitle>{{t('Empty cart')}}</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-card-subtitle>{{t('Go to products and add some products to your cart')}}</ion-card-subtitle>
+          <ion-button expand="block" [routerLink]="['/tabs/tab2']">{{t('Go to products')}}</ion-button>
+        </ion-card-content>
+      </ion-card>
+    </ng-container>
+    <ion-alert
+      [isOpen]="showOrderAlert"
+      [header]="t('Success')"
+      [subHeader]="t('Order successfully registered')"
+      [message]="t('You can view the order information in -Configuration/My orders-.')"
+      [buttons]="[{ text: t('Accept')}]"
+      (didDismiss)="showOrderAlert = false"
+      backdrop-dismiss="false">
+    </ion-alert>
+  </ion-content>
+</ion-menu>
 
-  <ion-card *ngIf="sharpList.length > 0">
-    <ion-card-header>
-      <ion-card-title>{{precioTotal | currency: "EUR"}}</ion-card-title>
-      <ion-card-subtitle>Total</ion-card-subtitle>
-    </ion-card-header>
-    <ion-card-content>
-      <ion-button expand="block" (click)="placeOrder()">{{t('Place order')}}</ion-button>
-    </ion-card-content>
-  </ion-card>
-
-  <ion-card *ngIf="sharpList.length < 1">
-    <ion-card-header>
-      <ion-card-title>{{t('Your cart is currently empty')}}</ion-card-title>
-      <ion-card-subtitle>{{t('Empty cart')}}</ion-card-subtitle>
-    </ion-card-header>
-
-    <ion-card-content>
-      <ion-card-subtitle>{{t('Go to products and add some products to your cart')}}</ion-card-subtitle>
-      <ion-button expand="block" [routerLink]="['/tabs/tab2']">{{t('Go to products')}}</ion-button>
-    </ion-card-content>
-  </ion-card>
-  <ion-alert
-    [isOpen]="showOrderAlert"
-    [header]="t('Success')"
-    [subHeader]="t('Order successfully registered')"
-    [message]="t('You can view the order information in -Configuration/My orders-.')"
-    [buttons]="[{ text: t('Accept')}]"
-    (didDismiss)="showOrderAlert = false"
-    backdrop-dismiss="false">
-  </ion-alert>
-  <app-product-card *ngIf="sharpList.length > 0" [products]="sharpList" [isCart]="true"> </app-product-card>
-</ion-content>
+<div class="ion-page" id="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button name="main-content">
+          <ion-icon name="cart-outline">
+          </ion-icon>
+          <ion-badge *ngIf="sharpListSize > 0" color="danger">{{sharpListSize}}</ion-badge>
+        </ion-menu-button>
+      </ion-buttons>
+      <ion-title>Menu</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content class="ion-padding"> Tap the button in the toolbar to open the menu. </ion-content>
+</div>
