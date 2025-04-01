@@ -26,7 +26,7 @@
         </ion-text>
       </ion-item>
       <ion-item>
-        <ion-input formControlName="email" label-placement="stacked" label="Email" placeholder="email@domain.com"></ion-input>
+        <ion-input formControlName="email" label-placement="stacked" [label]="t('Email')" placeholder="email@domain.com"></ion-input>
         <ion-icon slot="start" name="mail" aria-hidden="true"></ion-icon>
         <ion-text class="text-danger" *ngIf="hasErrors('email', 'required')">
           {{t('Email address required')}}

@@ -1,7 +1,18 @@
-<app-custom-header [translucent]="true" *transloco="let t" [title]="t('Contact')"></app-custom-header>
+<app-custom-header
+  [translucent]="true"
+  *transloco="let t"
+  [title]="t('Contact')"
+  >
+</app-custom-header>
 
 <ion-content [fullscreen]="true">
-  <app-custom-header [size]="'large'" *transloco="let t" [title]="t('Contact form')" [collapse]="'condense'"></app-custom-header>
+  <app-custom-header
+    [size]="'large'"
+    *transloco="let t"
+    [title]="t('Contact form')"
+    [collapse]="'condense'">
+  </app-custom-header>
 
   <app-explore-container name="Tab 3 page"></app-explore-container>
 </ion-content>
+
