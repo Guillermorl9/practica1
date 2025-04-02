@@ -25,4 +25,10 @@ export class ApiService {
     );
   }
 
+  public getProductsByCategory(category: string): Observable<Array<Product>>{
+    return this.httpClient.get<Array<ProductResponse>>(`${this.baseURL}/category/${category}`).pipe(
+      map(response => response.map(item => productMapper(item)))
+    );
+  }
+
 }

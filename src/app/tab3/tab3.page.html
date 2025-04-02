@@ -1,18 +1,14 @@
-<app-custom-header
-  [translucent]="true"
-  *transloco="let t"
-  [title]="t('Contact')"
-  >
-</app-custom-header>
-
-<ion-content [fullscreen]="true">
-  <app-custom-header
-    [size]="'large'"
-    *transloco="let t"
-    [title]="t('Contact form')"
-    [collapse]="'condense'">
-  </app-custom-header>
-
-  <app-explore-container name="Tab 3 page"></app-explore-container>
-</ion-content>
-
+<div class="ion-page" id="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Title</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content class="ion-padding">
+      <ng-container *ngFor="let item of categories; let i = index">
+        <ion-text>
+          {{item}}
+        </ion-text>
+      </ng-container>
+  </ion-content>
+</div>

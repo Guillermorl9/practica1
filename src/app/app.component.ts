@@ -3,12 +3,10 @@ import { IonApp, IonRouterOutlet } from '@ionic/angular/standalone';
 import {TranslocoService} from "@ngneat/transloco";
 import {LocalStorageService} from "./services/local-storage/local-storage.service";
 import {PaletteService} from "./services/palette/palette.service";
-
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
   imports: [IonApp, IonRouterOutlet ],
-  providers: []
 })
 export class AppComponent implements OnInit{
   private translocoService: TranslocoService = inject(TranslocoService);

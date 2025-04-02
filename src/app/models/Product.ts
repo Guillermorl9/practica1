@@ -6,4 +6,5 @@ export interface Product{
   descripcion: string;
   valoracion: number;
   numVotos: number;
+  categoria: string;
 }

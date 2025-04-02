@@ -9,6 +9,7 @@ export const productMapper = (item: ProductResponse): Product => {
     imagen: item.image,
     descripcion: item.description,
     valoracion: item.rating.rate,
-    numVotos: item.rating.count
+    numVotos: item.rating.count,
+    categoria: item.category.toString()
   }
 }
