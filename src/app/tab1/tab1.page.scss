@@ -12,10 +12,13 @@
   align-items: center;
   display: flex;
   position: relative;
+  cursor: pointer;
+  transition: transform 0.4s, box-shadow 0.4s;
 }
 
-ion-item-sliding {
-  background-color: green;
+.productCardCart:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 ion-item {
