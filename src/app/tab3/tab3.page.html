@@ -1,14 +1,25 @@
-<div class="ion-page" id="main-content">
   <ion-header>
     <ion-toolbar>
-      <ion-title>Title</ion-title>
+      <ion-title>Categories</ion-title>
     </ion-toolbar>
   </ion-header>
   <ion-content class="ion-padding">
-      <ng-container *ngFor="let item of categories; let i = index">
-        <ion-text>
-          {{item}}
-        </ion-text>
-      </ng-container>
+    <ng-container *ngFor="let cat of categories; let i = index">
+      <ion-text>
+        <h3>{{cat | titlecase}}</h3>
+      </ion-text>
+      <swiper-container [breakpoints]="breakpoints" pagination="true" navigation="true" gap="40">
+        <ng-container *ngFor="let product of lists[i]">
+          <swiper-slide>
+            <ion-card [routerLink]="['/tabs/tab3', product.id]">
+              <img class="card-image" alt="Silhouette of mountains" src="{{product.imagen}}" />
+              <ion-card-header>
+                <ion-card-title>{{product.nombre}}</ion-card-title>
+                <ion-card-subtitle>{{product.precio | currency: 'EUR'}}</ion-card-subtitle>
+              </ion-card-header>
+            </ion-card>
+          </swiper-slide>
+        </ng-container>
+      </swiper-container>
+    </ng-container>
   </ion-content>
-</div>

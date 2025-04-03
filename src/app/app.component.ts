@@ -1,12 +1,14 @@
-import {Component, inject, OnInit} from '@angular/core';
+import {Component, CUSTOM_ELEMENTS_SCHEMA, inject, OnInit} from '@angular/core';
 import { IonApp, IonRouterOutlet } from '@ionic/angular/standalone';
 import {TranslocoService} from "@ngneat/transloco";
 import {LocalStorageService} from "./services/local-storage/local-storage.service";
 import {PaletteService} from "./services/palette/palette.service";
+import {register} from "swiper/element/bundle";
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
   imports: [IonApp, IonRouterOutlet ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppComponent implements OnInit{
   private translocoService: TranslocoService = inject(TranslocoService);
@@ -14,7 +16,9 @@ export class AppComponent implements OnInit{
   private paletteService: PaletteService = inject(PaletteService);
   private readonly LANGUAGE_KEY: string = 'selectedLanguage';
   private readonly PALETTE_KEY: string = 'isDark';
-  constructor() {}
+  constructor() {
+    register();
+  }
 
   ngOnInit() {
     this.loadSavedLanguage();

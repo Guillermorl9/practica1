@@ -9,7 +9,7 @@ import {provideIonicAngular} from "@ionic/angular/standalone";
 import {provideHttpClient} from "@angular/common/http";
 import {routes} from "./app/app.routes";
 import { provideAuth, getAuth } from '@angular/fire/auth';
-import {importProvidersFrom, isDevMode} from "@angular/core";
+import {CUSTOM_ELEMENTS_SCHEMA, importProvidersFrom, isDevMode} from "@angular/core";
 import { TranslocoHttpLoader } from './transloco-loader';
 import { provideTransloco } from '@ngneat/transloco';
 
@@ -28,7 +28,6 @@ bootstrapApplication(AppComponent, {
         config: {
           availableLangs: ['es', 'fr', 'en', 'pt', 'it', 'el', 'ru', 'de', 'ja'],
           defaultLang: 'es',
-          // Remove this option if your application doesn't support changing language in runtime.
           reRenderOnLangChange: true,
           prodMode: !isDevMode(),
         },

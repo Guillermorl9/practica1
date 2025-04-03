@@ -1,44 +1,22 @@
-$width-avatar-image: 70px;
-$height-avatar-image: 70px;
-
-ion-img {
-  width: $width-avatar-image;
-  height: $height-avatar-image;
-  object-fit: contain;
-  display: block;
+ion-card {
+  cursor: pointer;
+  transition: transform 0.4s, box-shadow 0.4s;
+  width: 100%;
+  height: 250px;
   margin: 0 auto;
-}
-
-ion-avatar {
-  width: $width-avatar-image;
-  height: $height-avatar-image;
-  object-fit: contain;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  --border-radius: 0px;
-}
-
-ion-item-option {
-  width: 25%;
+  margin-bottom: 40px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 ion-card-title {
   overflow: hidden;
   display: -webkit-box;
-  -webkit-line-clamp: 3;
-  line-clamp: 3;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
   -webkit-box-orient: vertical;
   font-size: 17px;
   margin-bottom: 15px;
-}
-
-ion-card {
-  cursor: pointer;
-  transition: transform 0.4s, box-shadow 0.4s;
-  min-height: 150px;
-  display: flex;
-  flex-direction: column;
 }
 
 ion-card:hover {
@@ -46,17 +24,31 @@ ion-card:hover {
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-ion-card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  transition: all 0.3s ease;
+.card-image {
+  width: 100%;
+  height: 150px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+  padding: 6px;
 }
 
-ion-label {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: flex-start;
+ion-card-header {
+  padding: 16px;
 }
+
+ion-card-title {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+ion-card-subtitle {
+  font-size: 16px;
+  margin-top: 8px;
+}
+
+swiper-slide {
+  padding: 10px;
+}
+
 
