@@ -9,4 +9,5 @@ export interface User {
   password?: string;
   orderList: Array<Order>;
   cartList: Array<Product>;
+  favoritesList: Array<Product>;
 }

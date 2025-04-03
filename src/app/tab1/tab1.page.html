@@ -59,5 +59,22 @@
       <ion-title>Menu</ion-title>
     </ion-toolbar>
   </ion-header>
-  <ion-content class="ion-padding"> Tap the button in the toolbar to open the menu. </ion-content>
+  <ion-content class="ion-padding">
+      <ion-text>
+        <h3>Favoritos</h3>
+      </ion-text>
+      <swiper-container [breakpoints]="breakpoints" pagination="true" navigation="true" gap="40">
+        <ng-container *ngFor="let product of favoritesList">
+          <swiper-slide>
+            <ion-card [routerLink]="['/tabs/tab3', product.id]">
+              <img class="card-image" alt="Silhouette of mountains" src="{{product.imagen}}" />
+              <ion-card-header>
+                <ion-card-title>{{product.nombre}}</ion-card-title>
+                <ion-card-subtitle>{{product.precio | currency: 'EUR'}}</ion-card-subtitle>
+              </ion-card-header>
+            </ion-card>
+          </swiper-slide>
+        </ng-container>
+      </swiper-container>
+  </ion-content>
 </div>

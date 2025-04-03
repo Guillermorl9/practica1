@@ -1,4 +1,4 @@
-import {Component, inject, OnInit} from '@angular/core';
+import {Component, CUSTOM_ELEMENTS_SCHEMA, inject, OnInit} from '@angular/core';
 import {
   IonHeader,
   IonToolbar,
@@ -32,21 +32,32 @@ import {FirebaseService} from "../services/firebase-service/firebase.service";
 import {User} from "../models/User";
 import {TranslocoModule} from "@ngneat/transloco";
 import {IonicModule} from "@ionic/angular";
+import {FavoritesService} from "../services/favorites/favorites.service";
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
   styleUrls: ['tab1.page.scss'],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [IonHeader, TranslocoModule, IonBadge, IonIcon, IonList, IonItemSliding, IonItemOptions, IonItemOption, IonItemDivider, IonItem, CommonModule, IonMenu, IonButtons, IonMenuButton, TranslocoModule, IonAlert, CustomHeaderComponent, CurrencyPipe, IonItemSliding, RouterLink, IonButton, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonToolbar, IonTitle, IonContent, ExploreContainerComponent, IonText, CommonModule, ProductCardComponent],
 })
 export class Tab1Page implements OnInit{
   sharpList: Array<Product> = [];
+  favoritesList: Array<Product> = [];
   precioTotal: number = 0;
   showOrderAlert: boolean = false;
   private authService: AuthService = inject(AuthService);
   private firestoreService: FirebaseService = inject(FirebaseService);
   private sharpService: SharpService = inject(SharpService);
+  private favoritesService: FavoritesService = inject(FavoritesService);
   private user: User | null = null;
   sharpListSize: number = 0;
+  favoritesListSize: number = 0;
+  breakpoints = {
+    0: { slidesPerView: 1 },
+    576: { slidesPerView: 2 },
+    990: { slidesPerView: 3 },
+    1200: { slidesPerView: 4 },
+  };
   constructor(private loadingController: LoadingController) {
     addIcons({trash, cartOutline})
   }
@@ -61,6 +72,10 @@ export class Tab1Page implements OnInit{
     this.authService.userData.subscribe((userData) => {
       this.user = userData;
       loading.dismiss();
+    })
+    this.favoritesService.currentFavorites.subscribe((data: Array<Product>) => {
+      this.favoritesList = data;
+      this.favoritesListSize = this.favoritesList.length;
     })
   }
 

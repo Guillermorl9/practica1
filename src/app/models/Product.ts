@@ -7,4 +7,5 @@ export interface Product{
   valoracion: number;
   numVotos: number;
   categoria: string;
+  favorito: boolean;
 }

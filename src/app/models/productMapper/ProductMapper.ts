@@ -10,6 +10,7 @@ export const productMapper = (item: ProductResponse): Product => {
     descripcion: item.description,
     valoracion: item.rating.rate,
     numVotos: item.rating.count,
-    categoria: item.category.toString()
+    categoria: item.category.toString(),
+    favorito: false
   }
 }

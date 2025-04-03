@@ -14,12 +14,13 @@ import {Product} from "../../models/Product";
 import {ApiService} from "../../services/api/api.service";
 import {CurrencyPipe} from "@angular/common";
 import {IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle} from "@ionic/angular/standalone";
-import {starOutline, starHalf, star, add, remove} from 'ionicons/icons';
+import {starOutline, starHalf, star, add, remove, heart, heartOutline} from 'ionicons/icons';
 import {addIcons} from "ionicons";
 import {CommonModule} from "@angular/common";
 import {SharpService} from "../../services/sharp/sharp.service";
 import {Router} from "@angular/router";
 import {LoadingController} from "@ionic/angular/standalone";
+import {FavoritesService} from "../../services/favorites/favorites.service";
 
 @Component({
   selector: 'app-product-details',
@@ -28,6 +29,9 @@ import {LoadingController} from "@ionic/angular/standalone";
   imports: [IonHeader, IonSkeletonText, IonAlert, CommonModule, IonToolbar, IonInput, IonButtons, IonItem, IonIcon, IonBackButton, IonTitle, IonContent, IonButton, IonText, CurrencyPipe, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle]
 })
 export class ProductDetailsComponent implements OnInit{
+  private apiService: ApiService = inject(ApiService);
+  private sharpService: SharpService = inject(SharpService);
+  private favoritesService: FavoritesService = inject(FavoritesService);
   loaded: boolean = false;
   productoId?: string | null;
   producto?: Product;
@@ -35,10 +39,8 @@ export class ProductDetailsComponent implements OnInit{
   cantidad: number = 1;
   buttonAddDisabled: boolean = this.cantidad == 10;
   buttonRemoveDisabled: boolean = this.cantidad == 1;
-  private apiService: ApiService = inject(ApiService);
-  private sharpService: SharpService = inject(SharpService);
   constructor(private route: ActivatedRoute, private router: Router, private loadingController: LoadingController) {
-    addIcons({ starOutline, starHalf, star, add, remove});
+    addIcons({ starOutline, starHalf, star, add, remove, heart, heartOutline});
   }
 
   async ngOnInit() {
@@ -48,6 +50,7 @@ export class ProductDetailsComponent implements OnInit{
       // @ts-ignore
       this.apiService.getProduct(this.productoId).subscribe((data: Product) => {
         this.producto = data;
+        console.log(`Producto favorito: ${this.producto.favorito}`);
         this.iconos =  this.calcularIcono();
         this.loaded = true;
         //loading.dismiss();
@@ -60,6 +63,23 @@ export class ProductDetailsComponent implements OnInit{
       this.buttonAddDisabled = this.cantidad == 10;
       this.buttonRemoveDisabled = this.cantidad == 1;
     }
+  }
+
+  public addFavoriteProduct(product: Product): void{
+    console.log(`Producto favorito: ${this.producto?.favorito}`);
+    if(!this.producto){
+      return;
+    }
+    this.producto.favorito = true;
+    this.favoritesService.addProduct(product);
+  }
+
+  public removeFavoriteProduct(product: Product): void{
+    if(!this.producto){
+      return;
+    }
+    this.producto.favorito = false;
+    this.favoritesService.removeProduct(product);
   }
 
   private async presentLoading(){

@@ -50,6 +50,9 @@
           ({{producto?.numVotos}})
         </ion-text>
       </div>
+      <ion-icon *ngIf="!producto?.favorito" class="favoriteIcon" name="heart-outline" color="danger" (click)="addFavoriteProduct(producto!)"></ion-icon>
+      <ion-icon *ngIf="producto?.favorito" class="favoriteIcon" name="heart" color="danger" (click)="removeFavoriteProduct(producto!)"></ion-icon>
+
     </ion-card>
 
     <ion-card class="ion-justify-content-center">
