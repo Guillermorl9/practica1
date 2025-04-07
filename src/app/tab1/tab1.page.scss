@@ -99,5 +99,33 @@ swiper-slide {
   padding: 10px;
 }
 
+.featuredCard {
+  width: 50%;
+  height: 250px;
+  margin: 0 auto;
+  margin-bottom: 40px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.categoryImage{
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.categoryCard{
+  height: 100%;
+  object-fit: contain;
+}
+
+ion-col{
+  height: 250px;
+}
+
+.categoryCardHeader{
+  height: 75%;
+}
+
 
 

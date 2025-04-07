@@ -62,16 +62,26 @@
   <ion-content class="ion-padding">
     <ion-header collapse="condense">
       <ion-toolbar>
-        <ion-title size="large">Menu</ion-title>
+        <ion-title size="large">{{t('Home')}}</ion-title>
       </ion-toolbar>
     </ion-header>
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>{{t('Welcome to our shop!')}}</ion-card-title>
+        <ion-card-subtitle>{{t('Explore our amazing products and enjoy your shopping experience.')}}</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-button expand="block" [routerLink]="['/tabs/tab2']">{{t('Start shopping')}}</ion-button>
+      </ion-card-content>
+    </ion-card>
+    <ng-container *ngIf="favoritesList.length > 0">
       <ion-text>
         <h3>{{t('Favorites')}}</h3>
       </ion-text>
       <swiper-container [breakpoints]="breakpoints" pagination="true" navigation="true" gap="40">
         <ng-container *ngFor="let product of favoritesList">
           <swiper-slide>
-            <ion-card [routerLink]="['/tabs/tab3', product.id]">
+            <ion-card [routerLink]="['/tabs/tab1', product.id]">
               <img class="card-image" alt="Silhouette of mountains" src="{{product.imagen}}" />
               <ion-card-header>
                 <ion-card-title>{{product.nombre}}</ion-card-title>
@@ -81,5 +91,44 @@
           </swiper-slide>
         </ng-container>
       </swiper-container>
+    </ng-container>
+    <ion-text>
+      <h3>{{t('Categories')}}</h3>
+    </ion-text>
+    <ion-grid>
+      <ion-row>
+        <ion-col *ngFor="let category of categories; let i = index" size="12" size-md="6" size-lg="4">
+          <ion-card [routerLink]="['/tabs/tab3']" class="categoryCard">
+            <ion-card-header class="categoryCardHeader">
+              <ion-img class="categoryImage" src="{{images[i]}}"></ion-img>
+            </ion-card-header>
+            <ion-card-content>
+              <ion-card-title>{{t(category)}}</ion-card-title>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <div class="featuredHeader">
+      <ion-text>
+        <h3>{{t('Featured section')}}</h3>
+      </ion-text>
+      <ion-text>
+        <h4>{{t('Explore our collection of')}} {{t(category)}}</h4>
+      </ion-text>
+    </div>
+    <swiper-container pagination="true" navigation="true" gap="40" [slidesPerView]="1" slidesPerView="2" [breakpoints]="breakpoints">
+      <ng-container *ngFor="let product of featuredProducts">
+        <swiper-slide>
+          <ion-card [routerLink]="['/tabs/tab1', product.id]" class="featuredCard">
+            <img class="card-image" alt="Silhouette of mountains" src="{{product.imagen}}" />
+            <ion-card-header>
+              <ion-card-title>{{product.nombre}}</ion-card-title>
+              <ion-card-subtitle>{{product.precio | currency: 'EUR'}}</ion-card-subtitle>
+            </ion-card-header>
+          </ion-card>
+        </swiper-slide>
+      </ng-container>
+    </swiper-container>
   </ion-content>
 </div>

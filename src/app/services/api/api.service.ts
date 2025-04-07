@@ -30,5 +30,4 @@ export class ApiService {
       map(response => response.map(item => productMapper(item)))
     );
   }
-
 }

@@ -28,11 +28,11 @@ export class FavoritesService{
     this.firestoreService.updateFavoritesList(uid, this.favoriteList.value);
   }
 
-  removeProduct(product: Product): void{
+  removeProduct(product: Product): void {
     const uid: string = this.authService.getUid();
-    if(this.favoriteList.value.find((p => p.id === product.id))){
-      const currentFavorites: Array<Product> = this.favoriteList.getValue();
-      const index: number = currentFavorites.indexOf(product);
+    const currentFavorites: Array<Product> = this.favoriteList.getValue();
+    const index: number = currentFavorites.findIndex(item => item.id === product.id);
+    if (index > -1) {
       product.favorito = false;
       currentFavorites.splice(index, 1);
       this.favoriteList.next([...currentFavorites]);
