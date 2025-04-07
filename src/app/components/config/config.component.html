@@ -1,8 +1,16 @@
-<app-custom-header [translucent]="true" [title]="'Config'"></app-custom-header>
-
+<ion-header [translucent]="true" *transloco="let t">
+  <ion-toolbar>
+    <ion-title>
+      Config
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
 <ion-content [fullscreen]="true" *transloco="let t">
-  <app-custom-header [size]="'large'" [title]="t('Configuration')" [collapse]="'condense'"></app-custom-header>
-  <ion-card>
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">{{t('Configuration')}}</ion-title>
+    </ion-toolbar>
+  </ion-header>  <ion-card>
     <ion-avatar>
       <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
     </ion-avatar>

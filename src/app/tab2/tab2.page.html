@@ -1,6 +1,16 @@
-<app-custom-header [translucent]="true" *transloco="let t" [title]="t('Products')"></app-custom-header>
-<ion-content [fullscreen]="true">
-  <app-custom-header [size]="'large'" *transloco="let t" [title]="t('Products')" [collapse]="'condense'"></app-custom-header>
+<ion-header [translucent]="true" *transloco="let t">
+  <ion-toolbar>
+    <ion-title>
+      {{t('Products')}}
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true" *transloco="let t">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">{{t('Products')}}</ion-title>
+    </ion-toolbar>
+  </ion-header>
   <ion-toolbar>
     <ion-searchbar [debounce]="1000" (ionInput)="handleInput($event)"></ion-searchbar>
   </ion-toolbar>

@@ -34,7 +34,7 @@ import {TranslocoModule} from "@ngneat/transloco";
   selector: 'app-tab2',
   templateUrl: 'tab2.page.html',
   styleUrls: ['tab2.page.scss'],
-  imports: [IonHeader, TranslocoModule, CustomHeaderComponent, ProductCardComponent, IonToolbar, IonSearchbar, IonTitle, IonAvatar, IonImg, IonLabel, IonIcon, IonItem, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonContent, ExploreContainerComponent, IonGrid, IonCol, IonRow, IonButton, IonNav, IonNavLink, ProductDetailsComponent, CommonModule, RouterLink, CurrencyPipe]
+  imports: [IonHeader, IonContent, TranslocoModule, CustomHeaderComponent, ProductCardComponent, IonToolbar, IonSearchbar, IonTitle, IonAvatar, IonImg, IonLabel, IonIcon, IonItem, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonContent, ExploreContainerComponent, IonGrid, IonCol, IonRow, IonButton, IonNav, IonNavLink, ProductDetailsComponent, CommonModule, RouterLink, CurrencyPipe]
 })
 export class Tab2Page implements OnInit{
   private apiService: ApiService = inject(ApiService);

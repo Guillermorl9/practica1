@@ -1,9 +1,16 @@
-  <ion-header>
-    <ion-toolbar>
-      <ion-title>Categories</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-header [translucent]="true" *transloco="let t">
+  <ion-toolbar>
+    <ion-title>
+      Categories
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
   <ion-content class="ion-padding">
+    <ion-header collapse="condense">
+      <ion-toolbar>
+        <ion-title size="large">Categories</ion-title>
+      </ion-toolbar>
+    </ion-header>
     <ng-container *ngFor="let cat of categories; let i = index">
       <ion-text>
         <h3>{{cat | titlecase}}</h3>
