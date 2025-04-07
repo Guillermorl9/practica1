@@ -44,16 +44,16 @@ export class ProductDetailsComponent implements OnInit{
   }
 
   async ngOnInit() {
-    //const loading = await this.presentLoading();
     this.route.paramMap.subscribe(params => {
       this.productoId = params.get('productoId');
       // @ts-ignore
       this.apiService.getProduct(this.productoId).subscribe((data: Product) => {
         this.producto = data;
-        console.log(`Producto favorito: ${this.producto.favorito}`);
+        if(this.favoritesService.exists(this.producto)){
+          this.producto.favorito = true;
+        }
         this.iconos =  this.calcularIcono();
         this.loaded = true;
-        //loading.dismiss();
       })
     });
   }
@@ -66,7 +66,6 @@ export class ProductDetailsComponent implements OnInit{
   }
 
   public addFavoriteProduct(product: Product): void{
-    console.log(`Producto favorito: ${this.producto?.favorito}`);
     if(!this.producto){
       return;
     }

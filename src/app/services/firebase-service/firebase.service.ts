@@ -78,10 +78,10 @@ export class FirebaseService {
     }
   }
 
-  updateFavoritesList(uid: string, favoritesList: Array<Product>){
+  async updateFavoritesList(uid: string, favoritesList: Array<Product>){
     try{
       const userRef = doc(this.firestore, `${this.USERS_COLLECTION}/${uid}`);
-      setDoc(userRef, {favoritesList: []}, {merge: true});
+      await setDoc(userRef, {favoritesList: favoritesList}, {merge: true});
     } catch (error) {
       console.error('Error updating favorites list', error);
     }
