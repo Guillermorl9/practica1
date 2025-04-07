@@ -11,7 +11,16 @@ import {
   IonButtons,
   IonList,
   IonItem,
-  IonText, IonCard, IonCardHeader, IonAvatar, IonImg, IonLabel, IonCardTitle, IonCardSubtitle, LoadingController
+  IonText,
+  IonCard,
+  IonCardHeader,
+  IonAvatar,
+  IonImg,
+  IonLabel,
+  IonCardTitle,
+  IonCardSubtitle,
+  LoadingController,
+  IonSkeletonText
 } from '@ionic/angular/standalone';
 import { CustomHeaderComponent } from "../components/custom-header/custom-header/custom-header.component";
 import {TranslocoModule, TranslocoService} from "@ngneat/transloco";
@@ -26,11 +35,12 @@ import { HomeSwiperComponent } from "../components/home-swiper/home-swiper.compo
   templateUrl: 'tab3.page.html',
   styleUrls: ['tab3.page.scss'],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  imports: [IonHeader, TitleCasePipe, HomeSwiperComponent, IonCard, IonCardHeader, RouterLink, IonAvatar, IonImg, IonLabel, IonCardTitle, IonCardSubtitle, IonList, IonItem, IonText, CommonModule, IonButtons, TranslocoModule, CustomHeaderComponent, IonToolbar, IonTitle, IonContent],
+  imports: [IonHeader, IonSkeletonText, TitleCasePipe, HomeSwiperComponent, IonCard, IonCardHeader, RouterLink, IonAvatar, IonImg, IonLabel, IonCardTitle, IonCardSubtitle, IonList, IonItem, IonText, CommonModule, IonButtons, TranslocoModule, CustomHeaderComponent, IonToolbar, IonTitle, IonContent],
 })
 export class Tab3Page implements OnInit {
   private translocoService: TranslocoService = inject(TranslocoService);
   private apiService: ApiService = inject(ApiService);
+  loaded: boolean = false;
   lists: Array<Array<Product>> = [];
   categories: Array<string> = [
     'electronics',
@@ -47,11 +57,12 @@ export class Tab3Page implements OnInit {
   constructor(private loadingController: LoadingController) {}
 
   async ngOnInit() {
-    const loading = await this.presentLoading();
+    //const loading = await this.presentLoading();
     this.categories.forEach((item: string, index: number) => {
       this.apiService.getProductsByCategory(item).subscribe((data: Array<Product>) => {
         this.lists[index] = data;
-        loading.dismiss();
+        //loading.dismiss();
+        this.loaded = true;
       });
     });
   }
