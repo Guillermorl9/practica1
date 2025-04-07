@@ -28,7 +28,7 @@ import {addIcons} from "ionicons";
 import {cartSharp} from "ionicons/icons";
 import {ProductCardComponent} from "../components/product-card/product-card.component";
 import {CustomHeaderComponent} from "../components/custom-header/custom-header/custom-header.component";
-import {TranslocoModule} from "@ngneat/transloco";
+import {TranslocoModule, TranslocoService} from "@ngneat/transloco";
 
 @Component({
   selector: 'app-tab2',
@@ -38,6 +38,7 @@ import {TranslocoModule} from "@ngneat/transloco";
 })
 export class Tab2Page implements OnInit{
   private apiService: ApiService = inject(ApiService);
+  private translocoService: TranslocoService = inject(TranslocoService);
   component = ProductDetailsComponent;
   productList: Array<Product> = [];
   results: Array<Product> = [];
@@ -62,7 +63,7 @@ export class Tab2Page implements OnInit{
 
   private async presentLoading(){
     const loading = await this.loadingController.create({
-      message: "Loading...",
+      message: this.translocoService.translate("Loading..."),
       spinner: 'crescent',
       translucent: true,
       backdropDismiss: false,

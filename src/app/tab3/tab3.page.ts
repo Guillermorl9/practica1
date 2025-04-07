@@ -14,7 +14,7 @@ import {
   IonText, IonCard, IonCardHeader, IonAvatar, IonImg, IonLabel, IonCardTitle, IonCardSubtitle, LoadingController
 } from '@ionic/angular/standalone';
 import { CustomHeaderComponent } from "../components/custom-header/custom-header/custom-header.component";
-import { TranslocoModule } from "@ngneat/transloco";
+import {TranslocoModule, TranslocoService} from "@ngneat/transloco";
 import { ApiService } from "../services/api/api.service";
 import { Product } from "../models/Product";
 import { CommonModule, TitleCasePipe } from "@angular/common";
@@ -29,9 +29,14 @@ import { HomeSwiperComponent } from "../components/home-swiper/home-swiper.compo
   imports: [IonHeader, TitleCasePipe, HomeSwiperComponent, IonCard, IonCardHeader, RouterLink, IonAvatar, IonImg, IonLabel, IonCardTitle, IonCardSubtitle, IonList, IonItem, IonText, CommonModule, IonButtons, TranslocoModule, CustomHeaderComponent, IonToolbar, IonTitle, IonContent],
 })
 export class Tab3Page implements OnInit {
+  private translocoService: TranslocoService = inject(TranslocoService);
   private apiService: ApiService = inject(ApiService);
   lists: Array<Array<Product>> = [];
-  categories: Array<string> = ['electronics', 'jewelery', 'men\'s clothing', 'women\'s clothing'];
+  categories: Array<string> = [
+    'electronics',
+    'jewelery',
+    'men\'s clothing',
+    'women\'s clothing'];
   breakpoints = {
     0: { slidesPerView: 1 },
     576: { slidesPerView: 2 },
@@ -53,7 +58,7 @@ export class Tab3Page implements OnInit {
 
   private async presentLoading() {
     const loading = await this.loadingController.create({
-      message: "Loading...",
+      message: this.translocoService.translate( "Loading..."),
       spinner: 'crescent',
       translucent: true,
       backdropDismiss: false,

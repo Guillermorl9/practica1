@@ -14,7 +14,7 @@ import {
 import {Order} from "../../models/Order";
 import {CommonModule, CurrencyPipe, DatePipe} from "@angular/common";
 import {RouterLink} from "@angular/router";
-import {TranslocoModule} from "@ngneat/transloco";
+import {TranslocoModule, TranslocoService} from "@ngneat/transloco";
 
 @Component({
   selector: 'app-my-orders',
@@ -23,9 +23,11 @@ import {TranslocoModule} from "@ngneat/transloco";
   imports: [CustomHeaderComponent, TranslocoModule, RouterLink, IonList, IonItem, IonHeader, IonToolbar, IonButtons, IonBackButton, IonTitle, IonButton, RouterLink, CurrencyPipe, DatePipe, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonContent, CommonModule]
 })
 export class MyOrdersComponent  implements OnInit {
-  ordersList: Array<Order>= [];
   private authService: AuthService = inject(AuthService);
+  private transLocoService: TranslocoService = inject(TranslocoService);
   private loadingController: LoadingController = inject(LoadingController);
+  ordersList: Array<Order>= [];
+
   constructor() { }
 
   async ngOnInit() {
@@ -38,7 +40,7 @@ export class MyOrdersComponent  implements OnInit {
 
   private async presentLoading(){
     const loading = await this.loadingController.create({
-      message: "Loading...",
+      message: this.transLocoService.translate( "Loading..."),
       spinner: 'crescent',
       translucent: true,
       backdropDismiss: false,

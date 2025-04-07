@@ -1,7 +1,7 @@
 <ion-menu contentId="main-content" side="end" *transloco="let t">
   <ion-header>
     <ion-toolbar>
-      <ion-title>Mi carrito</ion-title>
+      <ion-title>{{t('My cart')}}</ion-title>
     </ion-toolbar>
   </ion-header>
   <ion-content class="ion-padding">
@@ -20,7 +20,7 @@
         <ion-card-title class="cartProductTitle">{{precioTotal | currency: 'EUR'}}</ion-card-title>
         <ion-card-subtitle>Total</ion-card-subtitle>
       </ion-card-header>
-      <ion-button class="placeOrderButton" (click)="placeOrder()">Realizar pedido</ion-button>
+      <ion-button class="placeOrderButton" (click)="placeOrder()">{{t('Place order')}}</ion-button>
     </ion-card>
     <ng-container  *ngIf="sharpList.length < 1">
       <ion-card>
@@ -46,7 +46,7 @@
   </ion-content>
 </ion-menu>
 
-<div class="ion-page" id="main-content">
+<div class="ion-page" id="main-content" *transloco="let t">
   <ion-header>
     <ion-toolbar>
       <ion-buttons slot="end">
@@ -56,7 +56,7 @@
           <ion-badge *ngIf="sharpListSize > 0" color="danger">{{sharpListSize}}</ion-badge>
         </ion-menu-button>
       </ion-buttons>
-      <ion-title>Menu</ion-title>
+      <ion-title>{{t('Home')}}</ion-title>
     </ion-toolbar>
   </ion-header>
   <ion-content class="ion-padding">
@@ -66,7 +66,7 @@
       </ion-toolbar>
     </ion-header>
       <ion-text>
-        <h3>Favoritos</h3>
+        <h3>{{t('Favorites')}}</h3>
       </ion-text>
       <swiper-container [breakpoints]="breakpoints" pagination="true" navigation="true" gap="40">
         <ng-container *ngFor="let product of favoritesList">

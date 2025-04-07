@@ -15,12 +15,13 @@ import {CommonModule, CurrencyPipe} from "@angular/common";
 import {addIcons} from "ionicons";
 import {trash} from "ionicons/icons";
 import {SharpService} from "../../services/sharp/sharp.service";
+import {TranslocoModule} from "@ngneat/transloco";
 
 @Component({
   selector: 'app-product-card',
   templateUrl: './product-card.component.html',
   styleUrls: ['./product-card.component.scss'],
-  imports: [IonCard, IonGrid, IonCol, IonRow, IonIcon, IonItemOptions, IonItemOption, IonItemSliding, IonCardHeader, IonItem, RouterLink, IonAvatar, IonImg, IonLabel, IonCardTitle, IonCardSubtitle, CurrencyPipe, CommonModule]
+  imports: [IonCard, TranslocoModule, IonGrid, IonCol, IonRow, IonIcon, IonItemOptions, IonItemOption, IonItemSliding, IonCardHeader, IonItem, RouterLink, IonAvatar, IonImg, IonLabel, IonCardTitle, IonCardSubtitle, CurrencyPipe, CommonModule]
 })
 export class ProductCardComponent{
    @Input() products: Array<Product> = [];

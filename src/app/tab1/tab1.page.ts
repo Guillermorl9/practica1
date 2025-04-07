@@ -30,7 +30,7 @@ import {Order} from "../models/Order";
 import {AuthService} from "../services/auth/auth.service";
 import {FirebaseService} from "../services/firebase-service/firebase.service";
 import {User} from "../models/User";
-import {TranslocoModule} from "@ngneat/transloco";
+import {TranslocoModule, TranslocoService} from "@ngneat/transloco";
 import {IonicModule} from "@ionic/angular";
 import {FavoritesService} from "../services/favorites/favorites.service";
 @Component({
@@ -50,6 +50,7 @@ export class Tab1Page implements OnInit{
   private sharpService: SharpService = inject(SharpService);
   private favoritesService: FavoritesService = inject(FavoritesService);
   private user: User | null = null;
+  private translocoService: TranslocoService = inject(TranslocoService);
   sharpListSize: number = 0;
   favoritesListSize: number = 0;
   breakpoints = {
@@ -106,7 +107,7 @@ export class Tab1Page implements OnInit{
 
   private async presentLoading(){
     const loading = await this.loadingController.create({
-      message: "Loading...",
+      message: this.translocoService.translate( "Loading..."),
       spinner: 'crescent',
       translucent: true,
       backdropDismiss: false,

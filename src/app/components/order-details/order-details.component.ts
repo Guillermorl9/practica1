@@ -12,7 +12,7 @@ import {ActivatedRoute} from "@angular/router";
 import {AuthService} from "../../services/auth/auth.service";
 import {Order} from "../../models/Order";
 import {CommonModule, CurrencyPipe} from "@angular/common";
-import {TranslocoModule} from "@ngneat/transloco";
+import {TranslocoModule, TranslocoService} from "@ngneat/transloco";
 
 @Component({
   selector: 'app-order-details',
@@ -22,6 +22,7 @@ import {TranslocoModule} from "@ngneat/transloco";
 })
 export class OrderDetailsComponent  implements OnInit {
   private authService: AuthService = inject(AuthService);
+  private translocoService: TranslocoService = inject(TranslocoService);
   index: number = 0;
   order?: Order;
   constructor(private route: ActivatedRoute, private loadingController: LoadingController) { }
@@ -42,7 +43,7 @@ export class OrderDetailsComponent  implements OnInit {
 
   private async presentLoading(){
     const loading = await this.loadingController.create({
-      message: "Loading...",
+      message: this.translocoService.translate( "Loading..."),
       spinner: 'crescent',
       translucent: true,
       backdropDismiss: false,
