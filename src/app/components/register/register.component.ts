@@ -2,42 +2,32 @@ import {Component, inject} from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {FirebaseService} from "../../services/firebase-service/firebase.service";
-import {
-  IonAlert,
-  IonButton, IonCardSubtitle,
-  IonContent,
-  IonInput,
-  IonItem,
-  IonList,
-  IonText,
-  IonTitle
-} from "@ionic/angular/standalone";
 import {CommonModule} from "@angular/common";
 import {AuthService} from "../../services/auth/auth.service";
 import {operatingError} from "../../services/auth/authErrors";
 import {Product} from "../../models/Product";
 import {Order} from "../../models/Order";
 import {TranslocoModule} from "@ngneat/transloco";
+import {IonicModule} from "@ionic/angular";
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
-  imports: [IonContent, TranslocoModule, IonAlert, IonText, IonList, IonItem, IonInput, IonButton, CommonModule, ReactiveFormsModule, IonTitle, IonCardSubtitle],
+  imports: [TranslocoModule, CommonModule, ReactiveFormsModule, IonicModule],
   standalone: true,
 })
 export class RegisterComponent{
-  showSuccessAlert:boolean = false;
-  showErrorAlert:boolean = false;
-  alertMessage: string = '';
-  formulario: FormGroup;
+  // Services
   private firebaseService: FirebaseService = inject(FirebaseService);
   private authService: AuthService = inject(AuthService);
-  constructor(
-    private form: FormBuilder,
-    private router: Router,
-  )
-  {
+
+  // Variables
+  showSuccessAlert: boolean = false;
+  showErrorAlert: boolean = false;
+  alertMessage: string = '';
+  formulario: FormGroup;
+  constructor(private form: FormBuilder, private router: Router) {
     this.formulario = this.form.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
@@ -46,10 +36,12 @@ export class RegisterComponent{
     })
   }
 
+  // Check form errors
   hasErrors(controlName: string, errorName: string): boolean | undefined {
     return this.formulario.get(controlName)?.hasError(errorName) && this.formulario.get(controlName)?.touched
   }
 
+  // Register form: Send form button
   async registerUser(): Promise<void> {
     if (this.formulario.invalid) {
       this.formulario.markAllAsTouched();
@@ -79,6 +71,7 @@ export class RegisterComponent{
     }
   }
 
+  // Navigate to login compoment
   navigateToLogin = () => {
     this.router.navigate(['/login']);
   };

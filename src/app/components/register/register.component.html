@@ -1,7 +1,9 @@
 <ion-content scroll-y="false" class="background-image" *transloco="let t">
   <div class="center-div">
+    <!-- Register form -->
     <form [formGroup]="formulario" (ngSubmit)="registerUser()">
       <ion-list>
+        <!-- Back to login component -->
         <ion-item>
           <ion-text>
             <a href="login">{{t('Back')}}</a>
@@ -10,18 +12,24 @@
             {{t('Register')}}
           </ion-title>
         </ion-item>
+
+        <!-- Register form: First name-->
         <ion-item>
           <ion-input formControlName="firstName" label-placement="stacked" [label]="t('First name')" [placeholder]="t('Enter your first name')"></ion-input>
           <ion-text class="text-danger" *ngIf="hasErrors('firstName', 'required')">
             {{t('First name required')}}
           </ion-text>
         </ion-item>
+
+        <!-- Register form: Last name-->
         <ion-item>
           <ion-input formControlName="lastName" label-placement="stacked" [label]="t('Last name')" [placeholder]="t('Enter your last name')"></ion-input>
           <ion-text class="text-danger" *ngIf="hasErrors('lastName', 'required')">
             {{t('Last name required')}}
           </ion-text>
         </ion-item>
+
+        <!-- Register form: Email address-->
         <ion-item>
           <ion-input formControlName="email" label-placement="stacked" [label]="t('Email')" [placeholder]="t('Enter your email')"></ion-input>
           <ion-text class="text-danger" *ngIf="hasErrors('email', 'required')">
@@ -31,6 +39,8 @@
             {{t('Invalid email format')}}
           </ion-text>
         </ion-item>
+
+        <!-- Register form: Password-->
         <ion-item>
           <ion-input type="password" formControlName="password" label-placement="stacked" [label]="t('Password')" [placeholder]="t('Enter your password')"></ion-input>
           <ion-text class="text-danger" *ngIf="hasErrors('password', 'required')">
@@ -38,9 +48,13 @@
           </ion-text>
         </ion-item>
       </ion-list>
+
+      <!-- Register form: Confirm button-->
       <ion-button id="button-submit" type="submit">
         {{t('Register')}}
       </ion-button>
+
+      <!-- Register form: Alert, success sent register form -->
       <ion-alert
         [isOpen]="showSuccessAlert"
         [header]="t('Success')"
@@ -50,6 +64,8 @@
         (didDismiss)="showSuccessAlert = false"
         backdrop-dismiss="false">
       </ion-alert>
+
+      <!-- Register form: Alert, error sent register form -->
       <ion-alert
         [isOpen]="showErrorAlert"
         header="Error"
