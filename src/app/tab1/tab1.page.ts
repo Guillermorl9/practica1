@@ -47,18 +47,33 @@ import {ApiService} from "../services/api/api.service";
   imports: [IonHeader, CommonModule, TranslocoModule, IonBadge, IonIcon, IonList, IonItemSliding, IonItemOptions, IonItemOption, IonItemDivider, IonItem, CommonModule, IonMenu, IonButtons, IonMenuButton, TranslocoModule, IonAlert, CurrencyPipe, IonItemSliding, RouterLink, IonButton, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonToolbar, IonTitle, IonContent, IonText, CommonModule],
 })
 export class Tab1Page implements OnInit{
-  sharpList: Array<Product> = [];
-  favoritesList: Array<Product> = [];
-  featuredProducts: Array<Product> = [];
-  precioTotal: number = 0;
-  showOrderAlert: boolean = false;
+  // Services
   private authService: AuthService = inject(AuthService);
   private firestoreService: FirebaseService = inject(FirebaseService);
   private sharpService: SharpService = inject(SharpService);
   private favoritesService: FavoritesService = inject(FavoritesService);
   private apiService: ApiService = inject(ApiService);
-  private user: User | null = null;
   private translocoService: TranslocoService = inject(TranslocoService);
+  // Constants
+  readonly categories: Array<string> = [
+    'electronics',
+    'jewelery',
+    'men\'s clothing',
+    'women\'s clothing'];
+
+  readonly IMAGES: Array<String> = [
+    'https://fakestoreapi.com/img/71kWymZ+c+L._AC_SX679_.jpg',
+    'https://fakestoreapi.com/img/71pWzhdJNwL._AC_UL640_QL65_ML3_.jpg',
+    'https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg',
+    'https://fakestoreapi.com/img/51Y5NI-I5jL._AC_UX679_.jpg',
+  ]
+  // Variables
+  sharpList: Array<Product> = [];
+  favoritesList: Array<Product> = [];
+  featuredProducts: Array<Product> = [];
+  precioTotal: number = 0;
+  showOrderAlert: boolean = false;
+  private user: User | null = null;
   sharpListSize: number = 0;
   favoritesListSize: number = 0;
   breakpoints = {
@@ -67,18 +82,6 @@ export class Tab1Page implements OnInit{
     990: { slidesPerView: 3 },
     1200: { slidesPerView: 4 },
   };
-  categories: Array<string> = [
-    'electronics',
-    'jewelery',
-    'men\'s clothing',
-    'women\'s clothing'];
-
-  images: Array<String> = [
-    'https://fakestoreapi.com/img/71kWymZ+c+L._AC_SX679_.jpg',
-    'https://fakestoreapi.com/img/71pWzhdJNwL._AC_UL640_QL65_ML3_.jpg',
-    'https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg',
-    'https://fakestoreapi.com/img/51Y5NI-I5jL._AC_UX679_.jpg',
-  ]
   category: string = this.categories[Math.floor(Math.random() * this.categories.length)];
 
   constructor(private loadingController: LoadingController) {
@@ -105,10 +108,12 @@ export class Tab1Page implements OnInit{
     })
   }
 
+  // Remove product from cart
   removeProduct(product: Product): void {
     this.sharpService.removeProduct(product);
   }
 
+  // Place order from cart
   async placeOrder(): Promise<void> {
     if(!this.user){
       return;
@@ -130,6 +135,7 @@ export class Tab1Page implements OnInit{
       this.showOrderAlert = true;
   }
 
+  // Loading spinner
   private async presentLoading(){
     const loading = await this.loadingController.create({
       message: this.translocoService.translate( "Loading..."),

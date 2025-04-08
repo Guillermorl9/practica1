@@ -100,7 +100,7 @@
         <ion-col *ngFor="let category of categories; let i = index" size="12" size-md="6" size-lg="4">
           <ion-card [routerLink]="['/tabs/tab3']" class="categoryCard">
             <ion-card-header class="categoryCardHeader">
-              <ion-img class="categoryImage" src="{{images[i]}}"></ion-img>
+              <ion-img class="categoryImage" src="{{IMAGES[i]}}"></ion-img>
             </ion-card-header>
             <ion-card-content>
               <ion-card-title>{{t(category)}}</ion-card-title>
