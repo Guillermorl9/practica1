@@ -1,15 +1,4 @@
 import {Component, inject, OnInit} from '@angular/core';
-import {
-  IonAlert,
-  IonButton,
-  IonContent,
-  IonIcon,
-  IonInput,
-  IonItem,
-  IonList,
-  IonText,
-  IonTitle
-} from "@ionic/angular/standalone";
 import {ReactiveFormsModule, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {CommonModule} from "@angular/common";
 import {Router} from "@angular/router";
@@ -17,11 +6,12 @@ import {AuthService} from "../../services/auth/auth.service";
 import {operatingError} from "../../services/auth/authErrors";
 import {Auth, getAuth, onAuthStateChanged} from "@angular/fire/auth";
 import {TranslocoModule} from "@ngneat/transloco";
+import {IonicModule} from "@ionic/angular";
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
-  imports: [IonContent, TranslocoModule, IonAlert, IonText, IonList, IonItem, IonInput, IonIcon, IonButton, CommonModule, ReactiveFormsModule, IonTitle]
+  imports: [TranslocoModule, CommonModule, ReactiveFormsModule, IonicModule]
 })
 export class LoginComponent implements OnInit {
   private authService: AuthService = inject(AuthService);
@@ -45,10 +35,12 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  // Check login form errors
   hasErrors(controlName: string, errorName: string): boolean | undefined {
     return this.formulario.get(controlName)?.hasError(errorName) && this.formulario.get(controlName)?.touched
   }
 
+  // Login form: Send form button
   async loginUser(): Promise<void> {
     if (this.formulario.invalid) {
       this.formulario.markAllAsTouched();
@@ -68,10 +60,6 @@ export class LoginComponent implements OnInit {
       this.alertMessage = operatingError(error);
       this.showErrorAlert = true;
     }
-  }
-
-  navigateToHome = () => {
-    this.router.navigate(['/tabs/tab1']);
   }
 
 }

@@ -1,5 +1,7 @@
 <ion-content scroll-y="false" *transloco="let t">
   <div class="center-div">
+
+    <!-- Login form -->
     <form [formGroup]="formulario" (ngSubmit)="loginUser()">
       <ion-list>
         <ion-item>
@@ -7,6 +9,8 @@
             {{t('Login')}}
           </ion-title>
         </ion-item>
+
+        <!-- Login form: Email address -->
         <ion-item>
           <ion-input formControlName="email" label-placement="stacked" [label]="t('Email')" [placeholder]="t('Enter your email')"></ion-input>
           <ion-text class="text-danger" *ngIf="hasErrors('email', 'required')">
@@ -16,6 +20,8 @@
             {{t('Invalid email format')}}
           </ion-text>
         </ion-item>
+
+        <!-- Login form: Password-->
         <ion-item>
           <ion-input type="password" formControlName="password" label-placement="stacked" [label]="t('Password')" [placeholder]="t('Enter your password')"></ion-input>
           <ion-text class="text-danger" *ngIf="hasErrors('password', 'required')">
@@ -23,19 +29,27 @@
           </ion-text>
         </ion-item>
       </ion-list>
+
+      <!-- Login form: Confirm button-->
       <ion-button id="button-submit" type="submit">
         {{t('Login')}}
       </ion-button>
+
+      <!-- Login form: Register, link to register component -->
       <ion-item lines="none">
         <ion-text>
           {{t('I do not have an account.')}} <a href="register">{{t('Register')}}</a>
         </ion-text>
       </ion-item>
+
+      <!-- Login form: Recover password, link to recover password component -->
       <ion-item lines="none">
         <ion-text>
           {{t('I dont remember my password.')}} <a href="">{{t('Recover password')}}</a>
         </ion-text>
       </ion-item>
+
+      <!-- Login form: Alert, error sent login form-->
       <ion-alert
         [isOpen]="showErrorAlert"
         header="Error"

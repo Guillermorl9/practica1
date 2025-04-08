@@ -27,14 +27,13 @@ import { ApiService } from "../services/api/api.service";
 import { Product } from "../models/Product";
 import { CommonModule, TitleCasePipe } from "@angular/common";
 import { RouterLink } from "@angular/router";
-import { HomeSwiperComponent } from "../components/home-swiper/home-swiper.component";
 
 @Component({
   selector: 'app-tab3',
   templateUrl: 'tab3.page.html',
   styleUrls: ['tab3.page.scss'],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  imports: [IonHeader, IonSkeletonText, TitleCasePipe, HomeSwiperComponent, IonCard, IonCardHeader, RouterLink, IonAvatar, IonImg, IonLabel, IonCardTitle, IonCardSubtitle, IonList, IonItem, IonText, CommonModule, IonButtons, TranslocoModule, IonToolbar, IonTitle, IonContent],
+  imports: [IonHeader, IonSkeletonText, TitleCasePipe, IonCard, IonCardHeader, RouterLink, IonAvatar, IonImg, IonLabel, IonCardTitle, IonCardSubtitle, IonList, IonItem, IonText, CommonModule, IonButtons, TranslocoModule, IonToolbar, IonTitle, IonContent],
 })
 export class Tab3Page implements OnInit {
   private translocoService: TranslocoService = inject(TranslocoService);
