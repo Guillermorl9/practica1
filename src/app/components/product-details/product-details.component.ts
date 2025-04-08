@@ -29,9 +29,11 @@ import {FavoritesService} from "../../services/favorites/favorites.service";
   imports: [IonHeader, IonSkeletonText, IonAlert, CommonModule, IonToolbar, IonInput, IonButtons, IonItem, IonIcon, IonBackButton, IonTitle, IonContent, IonButton, IonText, CurrencyPipe, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle]
 })
 export class ProductDetailsComponent implements OnInit{
+  // Services
   private apiService: ApiService = inject(ApiService);
   private sharpService: SharpService = inject(SharpService);
   private favoritesService: FavoritesService = inject(FavoritesService);
+  // Variables
   loaded: boolean = false;
   productoId?: string | null;
   producto?: Product;
@@ -57,14 +59,8 @@ export class ProductDetailsComponent implements OnInit{
       })
     });
   }
-  public incrementarCantidad(){
-    if(this.cantidad < 10){
-      this.cantidad++;
-      this.buttonAddDisabled = this.cantidad == 10;
-      this.buttonRemoveDisabled = this.cantidad == 1;
-    }
-  }
 
+  // Add the product to the favorites list
   public addFavoriteProduct(product: Product): void{
     if(!this.producto){
       return;
@@ -74,6 +70,7 @@ export class ProductDetailsComponent implements OnInit{
     this.router.navigate(['/tabs/tab1/']);
   }
 
+  // Remove the product from the favorites list
   public removeFavoriteProduct(product: Product): void{
     if(!this.producto){
       return;
@@ -82,22 +79,7 @@ export class ProductDetailsComponent implements OnInit{
     this.favoritesService.removeProduct(product);
   }
 
-  public addProductToCart(){
-    if(this.producto) {
-      this.sharpService.addProduct(this.producto, this.cantidad);
-      this.cantidad = 1;
-      this.router.navigate(['/tabs/tab1/']);
-    }
-  }
-
-  public decrementarCantidad(){
-    if(this.cantidad > 1){
-      this.cantidad--;
-      this.buttonAddDisabled = this.cantidad == 10;
-      this.buttonRemoveDisabled = this.cantidad == 1;
-    }
-  }
-
+  // Set the icons to be displayed
   private calcularIcono(): Array<String>{
     let iconos: Array<String> = [];
     let valoracion: number | undefined = this.producto?.valoracion;
@@ -112,6 +94,7 @@ export class ProductDetailsComponent implements OnInit{
     return iconos;
   }
 
+  // Get the icon based on the rating
   private getIcono(valoracion: number): String {
     let icono: String;
     if(valoracion > 0 && valoracion < 1){
@@ -124,6 +107,33 @@ export class ProductDetailsComponent implements OnInit{
       icono = 'star-outline';
     }
     return icono;
+  }
+
+  // Increase the quantity of the product
+  public incrementarCantidad(){
+    if(this.cantidad < 10){
+      this.cantidad++;
+      this.buttonAddDisabled = this.cantidad == 10;
+      this.buttonRemoveDisabled = this.cantidad == 1;
+    }
+  }
+
+  // Decrease the quantity of the product
+  public decrementarCantidad(){
+    if(this.cantidad > 1){
+      this.cantidad--;
+      this.buttonAddDisabled = this.cantidad == 10;
+      this.buttonRemoveDisabled = this.cantidad == 1;
+    }
+  }
+
+  // Add the product to the cart
+  public addProductToCart(){
+    if(this.producto) {
+      this.sharpService.addProduct(this.producto, this.cantidad);
+      this.cantidad = 1;
+      this.router.navigate(['/tabs/tab1/']);
+    }
   }
 
 }

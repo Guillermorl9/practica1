@@ -1,3 +1,4 @@
+<!-- Header -->
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
@@ -11,6 +12,7 @@
 
 <ion-content [fullscreen]="true">
 
+  <!-- Skeleton container-->
   <ng-container *ngIf="!loaded">
     <ion-card>
       <ion-skeleton-text [animated]="true"></ion-skeleton-text>
@@ -26,7 +28,6 @@
         <ion-skeleton-text></ion-skeleton-text>
       </ion-card-content>
     </ion-card>
-
     <ion-card>
         <ion-skeleton-text></ion-skeleton-text>
     </ion-card>
@@ -35,26 +36,34 @@
   </ng-container>
 
   <ng-container *ngIf="loaded">
+    <!-- Product details -->
     <ion-card class="ion-justify-content-center">
+      <!-- Product image-->
       <img src="{{producto?.imagen}}" class="fixed-size-img" />
       <ion-card-header>
+        <!-- Product name -->
         <ion-card-title>{{producto?.nombre}}</ion-card-title>
+        <!-- Product price -->
         <ion-card-subtitle>{{producto?.precio | currency: "EUR"}}</ion-card-subtitle>
       </ion-card-header>
+      <!-- Product description -->
       <ion-card-content>
         {{producto?.descripcion}}
       </ion-card-content>
       <div class="ion-icons-div" >
+        <!-- Product rating -->
         <ion-icon *ngFor="let iconName of iconos" name="{{iconName}}" class="ion-icon-star"/>
         <ion-text>
           ({{producto?.numVotos}})
         </ion-text>
       </div>
+
+      <!-- Favorite icon -->
       <ion-icon *ngIf="!producto?.favorito" class="favoriteIcon" name="heart-outline" color="danger" (click)="addFavoriteProduct(producto!)"></ion-icon>
       <ion-icon *ngIf="producto?.favorito" class="favoriteIcon" name="heart" color="danger" (click)="removeFavoriteProduct(producto!)"></ion-icon>
-
     </ion-card>
 
+    <!-- Product quantity -->
     <ion-card class="ion-justify-content-center">
       <ion-item>
         <ion-button [disabled]="buttonRemoveDisabled" (click)="decrementarCantidad()">
@@ -67,6 +76,7 @@
       </ion-item>
     </ion-card>
 
+    <!-- Add to cart button -->
     <ion-button (click)="addProductToCart()">
       Añadir al carrito
     </ion-button>
