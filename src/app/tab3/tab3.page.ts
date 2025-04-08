@@ -1,6 +1,6 @@
 import {
   Component, CUSTOM_ELEMENTS_SCHEMA,
-  inject, OnDestroy,
+  inject,
   OnInit
 } from '@angular/core';
 import {
@@ -19,10 +19,9 @@ import {
   IonLabel,
   IonCardTitle,
   IonCardSubtitle,
-  LoadingController,
   IonSkeletonText
 } from '@ionic/angular/standalone';
-import {TranslocoModule, TranslocoService} from "@ngneat/transloco";
+import {TranslocoModule} from "@ngneat/transloco";
 import { ApiService } from "../services/api/api.service";
 import { Product } from "../models/Product";
 import { CommonModule, TitleCasePipe } from "@angular/common";
@@ -36,43 +35,32 @@ import { RouterLink } from "@angular/router";
   imports: [IonHeader, IonSkeletonText, TitleCasePipe, IonCard, IonCardHeader, RouterLink, IonAvatar, IonImg, IonLabel, IonCardTitle, IonCardSubtitle, IonList, IonItem, IonText, CommonModule, IonButtons, TranslocoModule, IonToolbar, IonTitle, IonContent],
 })
 export class Tab3Page implements OnInit {
-  private translocoService: TranslocoService = inject(TranslocoService);
+  // Services
   private apiService: ApiService = inject(ApiService);
-  loaded: boolean = false;
-  lists: Array<Array<Product>> = [];
-  categories: Array<string> = [
+  // Constants
+  readonly CATEGORIES: Array<string> = [
     'electronics',
     'jewelery',
     'men\'s clothing',
     'women\'s clothing'];
-  breakpoints = {
+  readonly BREAKPOINTS = {
     0: { slidesPerView: 1 },
     576: { slidesPerView: 2 },
     990: { slidesPerView: 3 },
     1200: { slidesPerView: 4 },
   };
+  // Variables
+  loaded: boolean = false;
+  lists: Array<Array<Product>> = [];
 
-  constructor(private loadingController: LoadingController) {}
+  constructor() {}
 
   async ngOnInit() {
-    //const loading = await this.presentLoading();
-    this.categories.forEach((item: string, index: number) => {
+    this.CATEGORIES.forEach((item: string, index: number) => {
       this.apiService.getProductsByCategory(item).subscribe((data: Array<Product>) => {
         this.lists[index] = data;
-        //loading.dismiss();
         this.loaded = true;
       });
     });
-  }
-
-  private async presentLoading() {
-    const loading = await this.loadingController.create({
-      message: this.translocoService.translate( "Loading..."),
-      spinner: 'crescent',
-      translucent: true,
-      backdropDismiss: false,
-    });
-    await loading.present();
-    return loading;
   }
 }

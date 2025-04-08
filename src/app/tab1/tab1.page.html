@@ -1,11 +1,15 @@
+<!-- Cart menu -->
 <ion-menu contentId="main-content" side="end" *transloco="let t">
+  <!-- Header -->
   <ion-header>
     <ion-toolbar>
       <ion-title>{{t('My cart')}}</ion-title>
     </ion-toolbar>
   </ion-header>
   <ion-content class="ion-padding">
+      <!-- Cart products-->
       <ng-container *ngFor="let product of sharpList">
+        <!-- Product -->
           <ion-card class="productCardCart">
             <img alt="Silhouette of mountains" src="{{product.imagen}}" class="image" />
             <ion-card-header>
@@ -15,6 +19,7 @@
             <ion-icon class="deleteIcon" name="trash" color="danger" (click)="removeProduct(product)"></ion-icon>
           </ion-card>
       </ng-container>
+      <!-- Total price and place order card -->
     <ion-card *ngIf="sharpListSize > 0">
       <ion-card-header>
         <ion-card-title class="cartProductTitle">{{precioTotal | currency: 'EUR'}}</ion-card-title>
@@ -23,6 +28,7 @@
       <ion-button class="placeOrderButton" (click)="placeOrder()">{{t('Place order')}}</ion-button>
     </ion-card>
     <ng-container  *ngIf="sharpList.length < 1">
+      <!-- Empty cart message -->
       <ion-card>
         <ion-card-header>
           <ion-card-title>{{t('Your cart is currently empty')}}</ion-card-title>
@@ -34,6 +40,8 @@
         </ion-card-content>
       </ion-card>
     </ng-container>
+
+    <!-- Success place order alert-->
     <ion-alert
       [isOpen]="showOrderAlert"
       [header]="t('Success')"
@@ -47,12 +55,14 @@
 </ion-menu>
 
 <div class="ion-page" id="main-content" *transloco="let t">
+  <!-- Header -->
   <ion-header>
     <ion-toolbar>
       <ion-buttons slot="end">
         <ion-menu-button name="main-content">
           <ion-icon name="cart-outline">
           </ion-icon>
+          <!-- Badge, total number of products in the cart -->
           <ion-badge *ngIf="sharpListSize > 0" color="danger">{{sharpListSize}}</ion-badge>
         </ion-menu-button>
       </ion-buttons>
@@ -60,11 +70,14 @@
     </ion-toolbar>
   </ion-header>
   <ion-content class="ion-padding">
+    <!-- Condense header -->
     <ion-header collapse="condense">
       <ion-toolbar>
         <ion-title size="large">{{t('Home')}}</ion-title>
       </ion-toolbar>
     </ion-header>
+
+    <!-- Welcome card -->
     <ion-card>
       <ion-card-header>
         <ion-card-title>{{t('Welcome to our shop!')}}</ion-card-title>
@@ -74,6 +87,8 @@
         <ion-button expand="block" [routerLink]="['/tabs/tab2']">{{t('Start shopping')}}</ion-button>
       </ion-card-content>
     </ion-card>
+
+    <!-- Favorites section -->
     <ng-container *ngIf="favoritesList.length > 0">
       <ion-text>
         <h3>{{t('Favorites')}}</h3>
@@ -92,6 +107,8 @@
         </ng-container>
       </swiper-container>
     </ng-container>
+
+    <!-- Categories section -->
     <ion-text>
       <h3>{{t('Categories')}}</h3>
     </ion-text>
@@ -109,6 +126,8 @@
         </ion-col>
       </ion-row>
     </ion-grid>
+
+    <!-- Featured section -->
     <div class="featuredHeader">
       <ion-text>
         <h3>{{t('Featured section')}}</h3>
