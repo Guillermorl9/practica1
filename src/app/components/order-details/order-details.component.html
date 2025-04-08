@@ -1,3 +1,4 @@
+<!-- Header -->
 <ion-header [translucent]="true" *transloco="let t">
   <ion-toolbar>
     <ion-buttons slot="start">
@@ -10,22 +11,30 @@
 </ion-header>
 
 <ion-content [fullscreen]="true" *transloco="let t">
+
+  <!-- Order info card-->
   <ion-card>
+    <!-- Order price -->
     <ion-card-header>
       <ion-card-title>{{order?.precio | currency: 'EUR'}}</ion-card-title>
       <ion-card-subtitle>Total</ion-card-subtitle>
     </ion-card-header>
+    <!-- Order date -->
     <ion-card-content>
       {{order?.fecha}}
     </ion-card-content>
   </ion-card>
+
+  <!-- Order products card -->
   <ion-card>
     <ion-card-header>
       <ion-card-title>{{t('Products')}}</ion-card-title>
       <ion-card-subtitle>{{t('Order products')}}</ion-card-subtitle>
     </ion-card-header>
     <ion-card-content>
+      <!-- Product list -->
       <ion-list>
+        <!-- Product item -->
         <ion-item *ngFor="let product of order?.products">
           <ion-thumbnail slot="start">
             <img alt="Silhouette of mountains" src="{{product.imagen}}" />
