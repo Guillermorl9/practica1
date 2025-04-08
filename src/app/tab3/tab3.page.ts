@@ -22,7 +22,6 @@ import {
   LoadingController,
   IonSkeletonText
 } from '@ionic/angular/standalone';
-import { CustomHeaderComponent } from "../components/custom-header/custom-header/custom-header.component";
 import {TranslocoModule, TranslocoService} from "@ngneat/transloco";
 import { ApiService } from "../services/api/api.service";
 import { Product } from "../models/Product";
@@ -35,7 +34,7 @@ import { HomeSwiperComponent } from "../components/home-swiper/home-swiper.compo
   templateUrl: 'tab3.page.html',
   styleUrls: ['tab3.page.scss'],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  imports: [IonHeader, IonSkeletonText, TitleCasePipe, HomeSwiperComponent, IonCard, IonCardHeader, RouterLink, IonAvatar, IonImg, IonLabel, IonCardTitle, IonCardSubtitle, IonList, IonItem, IonText, CommonModule, IonButtons, TranslocoModule, CustomHeaderComponent, IonToolbar, IonTitle, IonContent],
+  imports: [IonHeader, IonSkeletonText, TitleCasePipe, HomeSwiperComponent, IonCard, IonCardHeader, RouterLink, IonAvatar, IonImg, IonLabel, IonCardTitle, IonCardSubtitle, IonList, IonItem, IonText, CommonModule, IonButtons, TranslocoModule, IonToolbar, IonTitle, IonContent],
 })
 export class Tab3Page implements OnInit {
   private translocoService: TranslocoService = inject(TranslocoService);

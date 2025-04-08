@@ -1,6 +1,5 @@
 import {Component, inject, OnInit} from '@angular/core';
 import {AuthService} from "../../services/auth/auth.service";
-import {CustomHeaderComponent} from "../custom-header/custom-header/custom-header.component";
 import {
   IonBackButton,
   IonButton, IonButtons,
@@ -20,7 +19,7 @@ import {TranslocoModule, TranslocoService} from "@ngneat/transloco";
   selector: 'app-my-orders',
   templateUrl: './my-orders.component.html',
   styleUrls: ['./my-orders.component.scss'],
-  imports: [CustomHeaderComponent, TranslocoModule, RouterLink, IonList, IonItem, IonHeader, IonToolbar, IonButtons, IonBackButton, IonTitle, IonButton, RouterLink, CurrencyPipe, DatePipe, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonContent, CommonModule]
+  imports: [TranslocoModule, RouterLink, IonList, IonItem, IonHeader, IonToolbar, IonButtons, IonBackButton, IonTitle, IonButton, RouterLink, CurrencyPipe, DatePipe, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonContent, CommonModule]
 })
 export class MyOrdersComponent  implements OnInit {
   private authService: AuthService = inject(AuthService);
