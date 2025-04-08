@@ -1,30 +1,25 @@
 import {Component, inject, OnInit} from '@angular/core';
 import {AuthService} from "../../services/auth/auth.service";
-import {
-  IonBackButton,
-  IonButton, IonButtons,
-  IonCard,
-  IonCardContent,
-  IonCardHeader,
-  IonCardSubtitle,
-  IonCardTitle,
-  IonContent, IonHeader, IonItem, IonList, IonTitle, IonToolbar, LoadingController
-} from "@ionic/angular/standalone";
+import { LoadingController } from "@ionic/angular/standalone";
 import {Order} from "../../models/Order";
 import {CommonModule, CurrencyPipe, DatePipe} from "@angular/common";
 import {RouterLink} from "@angular/router";
 import {TranslocoModule, TranslocoService} from "@ngneat/transloco";
+import {IonicModule} from "@ionic/angular";
 
 @Component({
   selector: 'app-my-orders',
   templateUrl: './my-orders.component.html',
   styleUrls: ['./my-orders.component.scss'],
-  imports: [TranslocoModule, RouterLink, IonList, IonItem, IonHeader, IonToolbar, IonButtons, IonBackButton, IonTitle, IonButton, RouterLink, CurrencyPipe, DatePipe, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonContent, CommonModule]
+  imports: [TranslocoModule, RouterLink, RouterLink, CurrencyPipe, DatePipe, CommonModule, IonicModule]
 })
 export class MyOrdersComponent  implements OnInit {
+  // Services
   private authService: AuthService = inject(AuthService);
   private transLocoService: TranslocoService = inject(TranslocoService);
   private loadingController: LoadingController = inject(LoadingController);
+
+  // Variables
   ordersList: Array<Order>= [];
 
   constructor() { }
@@ -37,6 +32,7 @@ export class MyOrdersComponent  implements OnInit {
     });
   }
 
+  // Loading spinner
   private async presentLoading(){
     const loading = await this.loadingController.create({
       message: this.transLocoService.translate( "Loading..."),

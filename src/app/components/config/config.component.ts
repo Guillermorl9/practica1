@@ -20,8 +20,11 @@ import {IonicModule} from "@ionic/angular";
   imports: [ReactiveFormsModule, CommonModule, TranslocoModule, FormsModule, RouterLink, IonicModule],
 })
 export class ConfigComponent implements OnInit {
+  //Decorators
   @ViewChild('personalDataModal') personalDataModal!: IonModal;
   @ViewChild('contactModal') contactModal!: IonModal;
+
+  //Services
   private authService: AuthService = inject(AuthService);
   private firestoreService: FirebaseService = inject(FirebaseService);
   private translocoService: TranslocoService = inject(TranslocoService);
@@ -29,9 +32,11 @@ export class ConfigComponent implements OnInit {
   private localStorageService: LocalStorageService = inject(LocalStorageService);
   private paletteService: PaletteService = inject(PaletteService);
 
+  // Constants
   private readonly LANGUAGE_KEY: string = 'selectedLanguage';
   private readonly PHONE_PATTERN: RegExp = /^[0-9]{9}$/;
 
+  //Variables
   languages: Array<string> = Array.from(this.translocoHttpLoader.getLanguagesValues());
   languageMap: Map<string, string> = this.translocoHttpLoader.getLanguages();
   invertedLanguageMap: Map<string, string> = new Map();

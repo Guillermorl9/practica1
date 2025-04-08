@@ -14,7 +14,10 @@ import {IonicModule} from "@ionic/angular";
   imports: [TranslocoModule, CommonModule, ReactiveFormsModule, IonicModule]
 })
 export class LoginComponent implements OnInit {
+  // Services
   private authService: AuthService = inject(AuthService);
+
+  // Variables
   formulario: FormGroup;
   showErrorAlert: boolean = false;
   alertMessage: string = '';
