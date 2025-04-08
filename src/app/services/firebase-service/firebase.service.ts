@@ -8,11 +8,14 @@ import {Product} from "../../models/Product";
   providedIn: 'root'
 })
 export class FirebaseService {
+  // Services
   private firestore: Firestore = inject(Firestore)
+  // Constants
   private readonly USERS_COLLECTION: string = "usuarios";
 
   constructor() { }
 
+  // Save user data in Firestore
   async saveUserData(uid: string, userData: Partial<User>): Promise<void> {
     try {
       const userRef = doc(this.firestore, `${this.USERS_COLLECTION}/${uid}`);
@@ -23,6 +26,7 @@ export class FirebaseService {
     }
   }
 
+  // Get user data from Firestore
   async getUserData(uid: string): Promise<User | null> {
     try {
       const userRef = doc(this.firestore, `${this.USERS_COLLECTION}/${uid}`);
@@ -40,6 +44,7 @@ export class FirebaseService {
     }
   }
 
+  // Update user name in Firestore
   async updateUserName(uid: string, nuevoNombre: string): Promise<void> {
     try {
       const userRef = doc(this.firestore, `${this.USERS_COLLECTION}/${uid}`);
@@ -50,6 +55,7 @@ export class FirebaseService {
     }
   }
 
+  // Update user email in Firestore
   async updateOrdersList(uid: string, orderList: Array<Order>){
     try{
       const userRef = doc(this.firestore, `${this.USERS_COLLECTION}/${uid}`);
@@ -60,6 +66,7 @@ export class FirebaseService {
     }
   }
 
+  // Update user cart list in Firestore
   async updateCartList(uid: string, cartList: Array<Product>){
     try{
       const userRef = doc(this.firestore, `${this.USERS_COLLECTION}/${uid}`);
@@ -69,6 +76,7 @@ export class FirebaseService {
     }
   }
 
+  // Empty user cart list in Firestore
   async emptyCartList(uid: string){
     try{
       const userRef = doc(this.firestore, `${this.USERS_COLLECTION}/${uid}`);
@@ -78,6 +86,7 @@ export class FirebaseService {
     }
   }
 
+  // Update user favorites list in Firestore
   async updateFavoritesList(uid: string, favoritesList: Array<Product>){
     try{
       const userRef = doc(this.firestore, `${this.USERS_COLLECTION}/${uid}`);

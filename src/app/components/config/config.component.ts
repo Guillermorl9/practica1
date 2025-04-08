@@ -96,7 +96,7 @@ export class ConfigComponent implements OnInit {
 
   // Menu option: Dark theme (Enable / disabled)
   toggleChange(){
-    this.paletteService.toogleDarkPalette(this.isDark);
+    this.paletteService.toggleDarkPalette(this.isDark);
   }
 
   // Menu option: Language
@@ -133,7 +133,7 @@ export class ConfigComponent implements OnInit {
     this.localStorageService.clear();
     const langCode: string = navigator.language.split('-')[0];
     this.translocoService.setActiveLang(langCode);
-    this.paletteService.toogleDarkPalette(false);
+    this.paletteService.toggleDarkPalette(false);
     this.authService.logout().then((): void => {this.router.navigate(['/login'])});
   }
 }

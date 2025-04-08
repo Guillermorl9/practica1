@@ -36,7 +36,7 @@ export class AppComponent implements OnInit{
     const savedPaletteString: string = this.localStorageService.getItem(this.PALETTE_KEY) || 'false';
     const savedPalette: boolean = (savedPaletteString == "true");
     if(savedPalette){
-      this.paletteService.toogleDarkPalette(savedPalette);
+      this.paletteService.toggleDarkPalette(savedPalette);
       console.log(``);
     }
   }

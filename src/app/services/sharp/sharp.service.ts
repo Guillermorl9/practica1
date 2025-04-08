@@ -8,10 +8,13 @@ import {FirebaseService} from "../firebase-service/firebase.service";
   providedIn: 'root'
 })
 export class SharpService{
-  private sharpList = new BehaviorSubject<Array<Product>>([]);
-  public currentSharp = this.sharpList.asObservable();
+  // Services
   private authService: AuthService = inject(AuthService);
   private firestoreService: FirebaseService = inject(FirebaseService);
+  // Variables
+  private sharpList = new BehaviorSubject<Array<Product>>([]);
+  public currentSharp = this.sharpList.asObservable();
+
   constructor() {
     this.authService.userData.subscribe((userData) => {
       if(userData?.cartList){
@@ -20,6 +23,7 @@ export class SharpService{
     })
   }
 
+  // Add a product to the cart
   addProduct(product: Product, cantidad: number): void{
     const uid = this.authService.getUid();
     for(let i= 1; i < cantidad; i++){
@@ -31,6 +35,7 @@ export class SharpService{
 
   }
 
+  // Remove a product from the cart
   removeProduct(product: Product): void{
     const uid = this.authService.getUid();
     const currentSharp = this.sharpList.getValue();
@@ -42,6 +47,7 @@ export class SharpService{
     }
   }
 
+  // Get the total price of the cart
   getPrecioTotal(): number{
     let precioTotal = 0;
     this.sharpList.value.forEach((product) => {
@@ -50,6 +56,7 @@ export class SharpService{
     return precioTotal;
   }
 
+  // Empty the cart
   emptyCart(){
     this.sharpList.next([]);
   }

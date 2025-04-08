@@ -23,10 +23,6 @@ export class AuthService {
   userData = this.appUser.asObservable();
 
   constructor() {
-    this.initAuthListener();
-  }
-
-  private async initAuthListener() {
     onAuthStateChanged(this.auth, async (user) => {
       this.authState.next(user);
       if (user) {
@@ -38,6 +34,7 @@ export class AuthService {
     });
   }
 
+  // Get user first name
   getFirstName(): string{
     if(!this.appUser.value?.firstName){
       return '';
@@ -45,13 +42,7 @@ export class AuthService {
     return this.appUser.value?.firstName;
   }
 
-  getLastName(): string{
-    if(!this.appUser.value?.lastName){
-      return '';
-    }
-    return this.appUser.value?.lastName;
-  }
-
+  // Get user uid from Firebase
   getUid(): string {
     if(!this.authState.value?.uid){
       return '';
@@ -59,18 +50,22 @@ export class AuthService {
     return this.authState.value?.uid;
   }
 
+  // Sign up user
   signup(email: string, password: string) {
     return createUserWithEmailAndPassword(this.auth, email, password);
   }
 
+  // Log in user
   login(email: string, password: string) {
     return signInWithEmailAndPassword(this.auth, email, password);
   }
 
+  // Log out user
   logout() {
     return signOut(this.auth);
   }
 
+  // Check if user is logged in
   isLoggedIn() {
     return this.authState.asObservable();
   }

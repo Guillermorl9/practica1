@@ -20,6 +20,7 @@ export class FavoritesService{
     })
   }
 
+  // Add a product to the favorites list
   addProduct(product: Product): void{
     const uid: string = this.authService.getUid();
     this.favoriteList.value.push(product);
@@ -28,6 +29,7 @@ export class FavoritesService{
     this.firestoreService.updateFavoritesList(uid, this.favoriteList.value);
   }
 
+  // Remove a product from the favorites list
   removeProduct(product: Product): void {
     const uid: string = this.authService.getUid();
     const currentFavorites: Array<Product> = this.favoriteList.getValue();
@@ -40,6 +42,7 @@ export class FavoritesService{
     }
   }
 
+  // Check if a product is in the favorites list
   exists(product: Product): boolean{
     if(!this.favoriteList.value.find((p => p.id === product.id))){
       return false;
@@ -48,6 +51,7 @@ export class FavoritesService{
     }
   }
 
+  // Get the total number of products in the favorites list
   getSize(): number {
     return this.favoriteList.value.length;
   }

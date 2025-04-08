@@ -71,6 +71,7 @@ export class ProductDetailsComponent implements OnInit{
     }
     this.producto.favorito = true;
     this.favoritesService.addProduct(product);
+    this.router.navigate(['/tabs/tab1/']);
   }
 
   public removeFavoriteProduct(product: Product): void{
@@ -79,17 +80,6 @@ export class ProductDetailsComponent implements OnInit{
     }
     this.producto.favorito = false;
     this.favoritesService.removeProduct(product);
-  }
-
-  private async presentLoading(){
-    const loading = await this.loadingController.create({
-      message: "Loading...",
-      spinner: 'crescent',
-      translucent: true,
-      backdropDismiss: false,
-    })
-    await loading.present();
-    return loading;
   }
 
   public addProductToCart(){

@@ -9,24 +9,24 @@ import {productMapper} from "../../models/productMapper/ProductMapper";
   providedIn: 'root',
 })
 export class ApiService {
-  private baseURL = 'https://fakestoreapi.com/products';
+  private readonly BASE_URL: string = 'https://fakestoreapi.com/products';
   private httpClient: HttpClient = inject(HttpClient);
   constructor() { }
 
   public getAllProducts(): Observable<Array<Product>> {
-    return this.httpClient.get<Array<ProductResponse>>(`${this.baseURL}`).pipe(
+    return this.httpClient.get<Array<ProductResponse>>(`${this.BASE_URL}`).pipe(
       map(response => response.map(item => productMapper(item)))
     );
   }
 
   public getProduct(id: number): Observable<Product> {
-    return this.httpClient.get<ProductResponse>(`${this.baseURL}/${id}`).pipe(
+    return this.httpClient.get<ProductResponse>(`${this.BASE_URL}/${id}`).pipe(
       map(response => productMapper(response))
     );
   }
 
   public getProductsByCategory(category: string): Observable<Array<Product>>{
-    return this.httpClient.get<Array<ProductResponse>>(`${this.baseURL}/category/${category}`).pipe(
+    return this.httpClient.get<Array<ProductResponse>>(`${this.BASE_URL}/category/${category}`).pipe(
       map(response => response.map(item => productMapper(item)))
     );
   }
