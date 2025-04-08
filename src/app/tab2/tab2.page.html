@@ -1,3 +1,4 @@
+<!-- Header -->
 <ion-header [translucent]="true" *transloco="let t">
   <ion-toolbar>
     <ion-title>
@@ -6,14 +7,63 @@
   </ion-toolbar>
 </ion-header>
 <ion-content [fullscreen]="true" *transloco="let t">
+  <!-- Condense header -->
   <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">{{t('Products')}}</ion-title>
     </ion-toolbar>
   </ion-header>
+
+  <!-- SearchBar -->
   <ion-toolbar>
     <ion-searchbar [placeholder]="t('Search')" [debounce]="1000" (ionInput)="handleInput($event)"></ion-searchbar>
   </ion-toolbar>
-  <app-product-card *ngIf="results.length < 1" [products]="productList"> </app-product-card>
-  <app-product-card *ngIf="results.length > 0" [products]="results"> </app-product-card>
+
+  <!-- Search Results -->
+  <ng-container *ngIf="results.length > 0">
+    <ion-grid [fixed]="true">
+      <ion-row>
+        <!-- Product -->
+        <ion-col *ngFor="let product of results" size="12" size-md="6" size-lg="4">
+          <ion-card [routerLink]="['/tabs/tab2', product.id]">
+            <ion-card-header>
+              <ion-item>
+                <ion-avatar slot="start">
+                  <ion-img [src]="product.imagen"></ion-img>
+                </ion-avatar>
+                <ion-label>
+                  <ion-card-title>{{product.nombre}}</ion-card-title>
+                  <ion-card-subtitle>{{product.precio | currency: "EUR"}}</ion-card-subtitle>
+                </ion-label>
+              </ion-item>
+            </ion-card-header>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ng-container>
+
+  <!-- All products -->
+  <ng-container *ngIf="results.length < 1">
+    <ion-grid [fixed]="true">
+      <ion-row>
+        <!-- Product -->
+        <ion-col [routerLink]="['/tabs/tab2', product.id]" *ngFor="let product of productList" size="12" size-md="6" size-lg="4">
+          <ion-card>
+            <ion-card-header>
+                <ion-avatar slot="start">
+                  <ion-img [src]="product.imagen"></ion-img>
+                </ion-avatar>
+                <ion-label>
+                  <ion-card-title>{{product.nombre}}</ion-card-title>
+                  <ion-card-subtitle>{{product.precio | currency: "EUR"}}</ion-card-subtitle>
+                </ion-label>
+            </ion-card-header>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ng-container>
+
+
 </ion-content>

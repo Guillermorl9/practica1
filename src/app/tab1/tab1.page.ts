@@ -30,7 +30,6 @@ import {addIcons} from "ionicons";
 import {SharpService} from "../services/sharp/sharp.service";
 import {Product} from "../models/Product";
 import {CommonModule, CurrencyPipe} from "@angular/common";
-import {ProductCardComponent} from "../components/product-card/product-card.component";
 import {RouterLink} from "@angular/router";
 import {Order} from "../models/Order";
 import {AuthService} from "../services/auth/auth.service";
@@ -45,7 +44,7 @@ import {ApiService} from "../services/api/api.service";
   templateUrl: 'tab1.page.html',
   styleUrls: ['tab1.page.scss'],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  imports: [IonHeader, CommonModule, TranslocoModule, IonBadge, IonIcon, IonList, IonItemSliding, IonItemOptions, IonItemOption, IonItemDivider, IonItem, CommonModule, IonMenu, IonButtons, IonMenuButton, TranslocoModule, IonAlert, CurrencyPipe, IonItemSliding, RouterLink, IonButton, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonToolbar, IonTitle, IonContent, IonText, CommonModule, ProductCardComponent],
+  imports: [IonHeader, CommonModule, TranslocoModule, IonBadge, IonIcon, IonList, IonItemSliding, IonItemOptions, IonItemOption, IonItemDivider, IonItem, CommonModule, IonMenu, IonButtons, IonMenuButton, TranslocoModule, IonAlert, CurrencyPipe, IonItemSliding, RouterLink, IonButton, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonToolbar, IonTitle, IonContent, IonText, CommonModule],
 })
 export class Tab1Page implements OnInit{
   sharpList: Array<Product> = [];
