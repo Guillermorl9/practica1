@@ -5,7 +5,8 @@ import {
   signInWithEmailAndPassword,
   signOut,
   User,
-  onAuthStateChanged
+  onAuthStateChanged,
+  sendPasswordResetEmail
 } from '@angular/fire/auth';
 import {BehaviorSubject} from 'rxjs';
 import { FirebaseService } from '../firebase-service/firebase.service';
@@ -68,5 +69,10 @@ export class AuthService {
   // Check if user is logged in
   isLoggedIn() {
     return this.authState.asObservable();
+  }
+
+  // Send password reset email
+  sendPasswordReset(email: string) {
+    return sendPasswordResetEmail(this.auth, email);
   }
 }

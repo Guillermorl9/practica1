@@ -90,16 +90,6 @@ export class ConfigComponent implements OnInit {
     });
   }
 
-  private base64ToCharArray(base64: string): number[] {
-    const binaryString = atob(base64);
-    const charArray: Array<number> = [];
-    for (let i = 0; i < binaryString.length; i++) {
-      charArray.push(binaryString.charCodeAt(i));
-    }
-    return charArray;
-  }
-
-
   // Check forms errors
   hasErrors(controlName: string, errorName: string): boolean | undefined {
     return this.formulario.get(controlName)?.hasError(errorName) && this.formulario.get(controlName)?.touched
