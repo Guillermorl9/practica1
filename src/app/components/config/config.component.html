@@ -17,8 +17,9 @@
 
   <!-- User data -->
   <ion-card>
-    <ion-avatar>
-      <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+    <ion-avatar class="avatarContainer">
+      <img alt="Silhouette of a person's head" src='{{profileImage}}'/>
+      <ion-icon name="camera-outline" class="cameraIcon" (click)="changeImage()"></ion-icon>
     </ion-avatar>
     <ion-card-header>
       <ion-card-title>{{user?.firstName}} {{user?.lastName}}</ion-card-title>

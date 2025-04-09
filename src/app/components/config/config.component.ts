@@ -1,6 +1,6 @@
 import {Component, inject, OnInit, ViewChild} from '@angular/core';
 import {addIcons} from "ionicons";
-import {personOutline, call, person, people, mail, trendingUpOutline, logOutOutline, moonOutline, languageOutline, personAddOutline} from "ionicons/icons";
+import {personOutline, cameraOutline, call, person, people, mail, trendingUpOutline, logOutOutline, moonOutline, languageOutline, personAddOutline} from "ionicons/icons";
 import {User} from "../../models/User";
 import {Router, RouterLink} from "@angular/router";
 import {AuthService} from "../../services/auth/auth.service";
@@ -13,6 +13,7 @@ import {CommonModule} from "@angular/common";
 import {LocalStorageService} from "../../services/local-storage/local-storage.service";
 import {PaletteService} from "../../services/palette/palette.service";
 import {IonicModule} from "@ionic/angular";
+import {PhotoService} from "../../services/photo/photo.service";
 @Component({
   selector: 'app-config',
   templateUrl: './config.component.html',
@@ -31,12 +32,14 @@ export class ConfigComponent implements OnInit {
   private translocoHttpLoader: TranslocoHttpLoader = inject(TranslocoHttpLoader);
   private localStorageService: LocalStorageService = inject(LocalStorageService);
   private paletteService: PaletteService = inject(PaletteService);
+  private photoService: PhotoService = inject(PhotoService);
 
   // Constants
   private readonly LANGUAGE_KEY: string = 'selectedLanguage';
   private readonly PHONE_PATTERN: RegExp = /^[0-9]{9}$/;
 
   //Variables
+  profileImage: string = "https://ionicframework.com/docs/img/demos/avatar.svg";
   languages: Array<string> = Array.from(this.translocoHttpLoader.getLanguagesValues());
   languageMap: Map<string, string> = this.translocoHttpLoader.getLanguages();
   invertedLanguageMap: Map<string, string> = new Map();
@@ -54,7 +57,7 @@ export class ConfigComponent implements OnInit {
       telefono: ['', [Validators.required, Validators.pattern(this.PHONE_PATTERN)]],
       email: ['', [Validators.required, Validators.email]],
     })
-    addIcons({personOutline, call, person, people, mail, trendingUpOutline, logOutOutline, moonOutline, languageOutline, personAddOutline});
+    addIcons({personOutline, cameraOutline, call, person, people, mail, trendingUpOutline, logOutOutline, moonOutline, languageOutline, personAddOutline});
   }
 
   ngOnInit() {
@@ -68,6 +71,16 @@ export class ConfigComponent implements OnInit {
       this.invertedLanguageMap.set(value, key);
     })
     this.currentLanguage = this.languageMap.get(this.localStorageService.getItem('selectedLanguage') || 'es') || 'es';
+  }
+
+  // Change user profile image
+  async changeImage(): Promise<void> {
+    await this.photoService.importPhoto().then((newImage) => {
+      console.log('Image imported successfully: ' + newImage);
+      this.profileImage = newImage;
+    }).catch((error) => {
+      console.error('Error importing image:', error);
+    });
   }
 
   // Check forms errors
