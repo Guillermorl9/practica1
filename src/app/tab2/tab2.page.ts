@@ -1,14 +1,14 @@
-import {Component, inject, OnInit} from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { LoadingController } from '@ionic/angular/standalone';
-import {ProductDetailsComponent} from "../components/product-details/product-details.component";
-import {CommonModule, CurrencyPipe} from "@angular/common";
-import {RouterLink} from "@angular/router";
-import {Product} from "../models/Product";
-import {ApiService} from "../services/api/api.service";
-import {addIcons} from "ionicons";
-import {cartSharp} from "ionicons/icons";
-import {TranslocoModule, TranslocoService} from "@ngneat/transloco";
-import {IonicModule} from "@ionic/angular";
+import { ProductDetailsComponent } from "../components/product-details/product-details.component";
+import { CommonModule, CurrencyPipe } from "@angular/common";
+import { RouterLink } from "@angular/router";
+import { Product } from "../models/Product";
+import { ApiService } from "../services/api/api.service";
+import { addIcons } from "ionicons";
+import { cartSharp } from "ionicons/icons";
+import { TranslocoModule, TranslocoService } from "@ngneat/transloco";
+import { InfiniteScrollCustomEvent, IonicModule } from "@ionic/angular";
 
 @Component({
   selector: 'app-tab2',
@@ -16,7 +16,7 @@ import {IonicModule} from "@ionic/angular";
   styleUrls: ['tab2.page.scss'],
   imports: [TranslocoModule, ProductDetailsComponent, CommonModule, RouterLink, CurrencyPipe, IonicModule]
 })
-export class Tab2Page implements OnInit{
+export class Tab2Page implements OnInit {
   // Services
   private apiService: ApiService = inject(ApiService);
   private translocoService: TranslocoService = inject(TranslocoService);
@@ -24,10 +24,12 @@ export class Tab2Page implements OnInit{
   // Variables
   component = ProductDetailsComponent;
   productList: Array<Product> = [];
+  infiniteList: Array<Product> = [];
   results: Array<Product> = [];
+  isLoading: boolean = false;
 
   constructor(private loadingController: LoadingController) {
-    addIcons({cartSharp});
+    addIcons({ cartSharp });
   }
 
   async ngOnInit() {
@@ -35,8 +37,9 @@ export class Tab2Page implements OnInit{
     this.apiService.getAllProducts().subscribe((data: Array<Product>) => {
       this.productList = data;
       this.results = [...data];
+      this.infiniteList = [...data];
       loading.dismiss();
-    })
+    });
   }
 
   // Function to handle the search input
@@ -46,16 +49,33 @@ export class Tab2Page implements OnInit{
     this.results = this.productList.filter((d) => d.nombre.toLocaleLowerCase().includes(query));
   }
 
-  // Function to handle the clear input
-  private async presentLoading(){
+  // Function to handle the first loading of the page
+  private async presentLoading() {
     const loading = await this.loadingController.create({
       message: this.translocoService.translate("Loading..."),
       spinner: 'crescent',
       translucent: true,
       backdropDismiss: false,
-    })
+    });
     await loading.present();
     return loading;
   }
 
+  // Function to handle the infinite scroll
+  private generateItems() {
+    this.isLoading = true;
+    setTimeout(() => {
+      this.infiniteList = [...this.infiniteList, ...this.productList];
+      console.log(`Longitud de la lista: ${this.infiniteList.length}`);
+      this.isLoading = false;
+    }, 500);
+  }
+
+  // Function to handle the infinite scroll event
+  onIonInfinite(event: InfiniteScrollCustomEvent) {
+    this.generateItems();
+    setTimeout(() => {
+      event.target.complete();
+    }, 500);
+  }
 }
