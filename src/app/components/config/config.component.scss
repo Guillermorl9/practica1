@@ -1,19 +1,26 @@
+$size-avatar-image: 200px;
+$padding-avatar-image: 10px;
+
 .avatarContainer{
   margin: 0 auto;
-  height: 100px;
-  width: 100px;
+  height: $size-avatar-image;
+  width: $size-avatar-image;
   position: relative;
+  margin-top: $padding-avatar-image;
+  margin-bottom: $padding-avatar-image;
 }
 
 .avatarContainer img{
-  height: 100px;
-  width: 100px;
+  height: $size-avatar-image;
+  width: $size-avatar-image;
   object-fit: cover;
+  border: black 2px solid;
 }
 
 ion-card-header{
   text-align: center;
   height: 50%;
+  //background-color: red;
 }
 
 ion-card-subtitle{
@@ -27,6 +34,10 @@ ion-icon{
 
 ion-item {
   cursor: pointer;
+}
+
+ion-card {
+  //background-color: green;
 }
 
 .cameraIcon {

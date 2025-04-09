@@ -3,6 +3,7 @@ import {Firestore, doc, setDoc, getDoc,} from '@angular/fire/firestore';
 import { User } from "../../models/User";
 import {Order} from "../../models/Order";
 import {Product} from "../../models/Product";
+import {getStorage, ref, uploadBytes} from "@angular/fire/storage";
 
 @Injectable({
   providedIn: 'root'
@@ -93,6 +94,17 @@ export class FirebaseService {
       await setDoc(userRef, {favoritesList: favoritesList}, {merge: true});
     } catch (error) {
       console.error('Error updating favorites list', error);
+    }
+  }
+
+  // Update user profile image in Firestore
+  async updateProfileImage(uid: string, image: string): Promise<void> {
+    try {
+      const userRef = doc(this.firestore, `${this.USERS_COLLECTION}/${uid}`);
+      await setDoc(userRef, { profileImage: image }, { merge: true });
+    } catch (error) {
+      console.error('Error updating user profile image:', error);
+      throw error;
     }
   }
 

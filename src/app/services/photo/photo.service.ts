@@ -22,10 +22,11 @@ export class PhotoService {
     const image: Photo = await Camera.getPhoto({
       quality: 90,
       allowEditing: false,
-      resultType: CameraResultType.Uri,
+      resultType: CameraResultType.Base64,
       source: CameraSource.Photos
     })
-    return image.webPath || '';
+    return image.base64String || 'https://ionicframework.com/docs/img/demos/avatar.svg';
+    //return JSON.stringify(image);
   }
 
 }

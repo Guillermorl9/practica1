@@ -55,12 +55,13 @@ export class RegisterComponent{
       const orderList: Array<Order> = [];
       const cartList: Array<Product> = [];
       const favoritesList: Array<Product> = [];
+      const profileImage: string = 'https://ionicframework.com/docs/img/demos/avatar.svg';
 
       const userCredential = await this.authService.signup(email, password);
       const uid = userCredential.user?.uid;
 
       if (uid) {
-        await this.firebaseService.saveUserData(uid, { firstName, lastName, email, orderList, cartList, favoritesList });
+        await this.firebaseService.saveUserData(uid, { firstName, lastName, email, orderList, cartList, favoritesList, profileImage });
         console.log("Usuario registrado con éxito");
         this.alertMessage = 'Return to the login screen to log in with the new account.';
         this.showSuccessAlert = true;

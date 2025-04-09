@@ -10,4 +10,5 @@ export interface User {
   orderList: Array<Order>;
   cartList: Array<Product>;
   favoritesList: Array<Product>;
+  profileImage: string;
 }

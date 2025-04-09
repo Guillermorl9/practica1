@@ -37,6 +37,7 @@ export class ConfigComponent implements OnInit {
   // Constants
   private readonly LANGUAGE_KEY: string = 'selectedLanguage';
   private readonly PHONE_PATTERN: RegExp = /^[0-9]{9}$/;
+  private readonly MAX_IMAGE_SIZE: number = 1048487;
 
   //Variables
   profileImage: string = "https://ionicframework.com/docs/img/demos/avatar.svg";
@@ -49,6 +50,7 @@ export class ConfigComponent implements OnInit {
   isDark: boolean = false;
   formulario: FormGroup;
   showAlert: boolean = false;
+  maxSize: boolean = false;
 
   constructor(private router: Router, private form: FormBuilder) {
     this.formulario = this.form.group({
@@ -63,6 +65,7 @@ export class ConfigComponent implements OnInit {
   ngOnInit() {
     this.authService.userData.subscribe(userData => {
       this.user = userData;
+      this.profileImage = userData?.profileImage || this.profileImage;
     });
     this.paletteService.paletteToggle.subscribe((isDark) => {
       this.isDark = isDark;
@@ -76,12 +79,26 @@ export class ConfigComponent implements OnInit {
   // Change user profile image
   async changeImage(): Promise<void> {
     await this.photoService.importPhoto().then((newImage) => {
-      console.log('Image imported successfully: ' + newImage);
-      this.profileImage = newImage;
+      if(newImage.length < this.MAX_IMAGE_SIZE){
+        this.profileImage = 'data:image/png;base64,' + newImage;
+        this.firestoreService.updateProfileImage(this.authService.getUid(), this.profileImage);
+      } else {
+        this.maxSize = true;
+      }
     }).catch((error) => {
       console.error('Error importing image:', error);
     });
   }
+
+  private base64ToCharArray(base64: string): number[] {
+    const binaryString = atob(base64);
+    const charArray: Array<number> = [];
+    for (let i = 0; i < binaryString.length; i++) {
+      charArray.push(binaryString.charCodeAt(i));
+    }
+    return charArray;
+  }
+
 
   // Check forms errors
   hasErrors(controlName: string, errorName: string): boolean | undefined {

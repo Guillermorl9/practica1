@@ -18,7 +18,7 @@
   <!-- User data -->
   <ion-card>
     <ion-avatar class="avatarContainer">
-      <img alt="Silhouette of a person's head" src='{{profileImage}}'/>
+      <img alt="Silhouette of a person's head" [src]='profileImage'/>
       <ion-icon name="camera-outline" class="cameraIcon" (click)="changeImage()"></ion-icon>
     </ion-avatar>
     <ion-card-header>
@@ -27,13 +27,23 @@
     </ion-card-header>
   </ion-card>
 
+  <!-- Alert: Image size exceeded -->
+  <ion-alert
+    [isOpen]="maxSize"
+    header="Error"
+    subHeader="Tamaño de imagen excedido"
+    message="La imagen que intentas subir excede el tamaño máximo permitido de 1MB."
+    [buttons]="[t('Accept')]"
+    (didDismiss)="maxSize = false"
+  ></ion-alert>
+
+  <!-- Menu options -->
   <ion-card>
     <ion-card-content>
       <ion-card-header>
         <ion-card-title>{{ t('Settings') }}</ion-card-title>
       </ion-card-header>
 
-      <!-- Menu options -->
       <ion-list>
         <!-- Menu option: Change personal data -->
         <ion-item class="ion-activatable" id="open-modal">
@@ -180,3 +190,4 @@
     </ion-card-content>
   </ion-card>
 </ion-content>
+
