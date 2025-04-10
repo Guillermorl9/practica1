@@ -10,9 +10,9 @@
       <!-- Cart products-->
       <ng-container *ngFor="let product of sharpList">
         <!-- Product -->
-          <ion-card class="productCardCart">
+          <ion-card class="productCardCart" [routerLink]="['/tabs/tab1', product.id]">
             <img alt="Silhouette of mountains" src="{{product.imagen}}" class="image" />
-            <ion-card-header>
+            <ion-card-header class="productCartHeader">
               <ion-card-title class="cartProductTitle">{{product.nombre}}</ion-card-title>
               <ion-card-subtitle>{{product.precio | currency: 'EUR' }}</ion-card-subtitle>
             </ion-card-header>
@@ -45,6 +45,7 @@
     </ion-alert>
   </ion-content>
 
+  <!-- Footer -->
   <ion-footer collapse="fade" *ngIf="precioTotal > 0">
     <ion-toolbar>
       <ion-title>{{precioTotal | currency: 'EUR'}}</ion-title>

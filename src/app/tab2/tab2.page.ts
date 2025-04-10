@@ -36,7 +36,7 @@ export class Tab2Page implements OnInit {
     const loading = await this.presentLoading();
     this.apiService.getAllProducts().subscribe((data: Array<Product>) => {
       this.productList = data;
-      this.results = [...data];
+      //this.results = [...data];
       this.infiniteList = [...data];
       loading.dismiss();
     });
