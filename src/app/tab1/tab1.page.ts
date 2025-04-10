@@ -1,4 +1,4 @@
-import {Component, CUSTOM_ELEMENTS_SCHEMA, inject, OnInit} from '@angular/core';
+import {Component, CUSTOM_ELEMENTS_SCHEMA, inject, LOCALE_ID, OnInit} from '@angular/core';
 import {
   IonAlert,
   IonBadge,

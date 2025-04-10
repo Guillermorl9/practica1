@@ -9,13 +9,16 @@ import {provideIonicAngular} from "@ionic/angular/standalone";
 import {provideHttpClient} from "@angular/common/http";
 import {routes} from "./app/app.routes";
 import { provideAuth, getAuth } from '@angular/fire/auth';
-import {CUSTOM_ELEMENTS_SCHEMA, importProvidersFrom, isDevMode} from "@angular/core";
+import {importProvidersFrom, isDevMode, LOCALE_ID} from "@angular/core";
 import { TranslocoHttpLoader } from './transloco-loader';
 import { provideTransloco } from '@ngneat/transloco';
-
+import {registerLocaleData} from "@angular/common";
+import localeEs from '@angular/common/locales/es';
+registerLocaleData(localeEs);
 bootstrapApplication(AppComponent, {
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    { provide: LOCALE_ID, useValue: 'es-ES' },
     provideIonicAngular(),
     provideRouter(routes, withPreloading(PreloadAllModules)),
     provideHttpClient(),

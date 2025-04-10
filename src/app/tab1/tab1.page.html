@@ -14,7 +14,7 @@
             <img alt="Silhouette of mountains" src="{{product.imagen}}" class="image" />
             <ion-card-header>
               <ion-card-title class="cartProductTitle">{{product.nombre}}</ion-card-title>
-              <ion-card-subtitle>{{product.precio | currency: 'EUR'}}</ion-card-subtitle>
+              <ion-card-subtitle>{{product.precio | currency: 'EUR' }}</ion-card-subtitle>
             </ion-card-header>
             <ion-icon class="deleteIcon" name="trash" color="danger" (click)="removeProduct(product)"></ion-icon>
           </ion-card>
