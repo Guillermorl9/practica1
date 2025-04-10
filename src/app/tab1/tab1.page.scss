@@ -34,10 +34,6 @@ ion-item {
   -webkit-box-orient: vertical;
 }
 
-.placeOrderButton {
-  margin: 6px;
-}
-
 .deleteIcon{
   position: absolute;
   top: 10px;
@@ -132,6 +128,19 @@ ion-col{
   right: 10px;
   font-size: 40px;
   cursor: pointer;
+}
+
+ion-footer {
+  padding: 8px;
+  height: 20%;
+}
+
+.placeOrderButton {
+  margin: 6px;
+}
+
+ion-col {
+  background-color: green;
 }
 
 
