@@ -18,34 +18,61 @@
     <ion-searchbar [placeholder]="t('Search')" [debounce]="1000" (ionInput)="handleInput($event)"></ion-searchbar>
   </ion-toolbar>
 
-  <!-- Infinite Scroll Content -->
-  <ion-grid [fixed]="true">
-    <ion-row>
-      <!-- Product -->
-      <ion-col *ngFor="let product of infiniteList" size="12" size-md="6" size-lg="4">
-        <ion-card [routerLink]="['/tabs/tab2', product.id]">
-          <ion-card-header>
-            <ion-item>
-              <ion-avatar slot="start">
-                <ion-img [src]="product.imagen"></ion-img>
-              </ion-avatar>
-              <ion-label>
-                <ion-card-title>{{product.nombre}}</ion-card-title>
-                <ion-card-subtitle>{{product.precio | currency: "EUR"}}</ion-card-subtitle>
-              </ion-label>
-            </ion-item>
-          </ion-card-header>
-        </ion-card>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+  <!-- Search results -->
+  <ng-container *ngIf="results.length > 0">
+    <ion-grid [fixed]="true">
+      <ion-row>
+        <!-- Product -->
+        <ion-col *ngFor="let product of results" size="12" size-md="6" size-lg="4">
+          <ion-card [routerLink]="['/tabs/tab2', product.id]">
+            <ion-card-header>
+              <ion-item>
+                <ion-avatar slot="start">
+                  <ion-img [src]="product.imagen"></ion-img>
+                </ion-avatar>
+                <ion-label>
+                  <ion-card-title>{{product.nombre}}</ion-card-title>
+                  <ion-card-subtitle>{{product.precio | currency: "EUR"}}</ion-card-subtitle>
+                </ion-label>
+              </ion-item>
+            </ion-card-header>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ng-container>
 
-  <!-- Infinite scroll -->
-  <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
-    <ion-infinite-scroll-content
-      loadingSpinner="bubbles"
-      loadingText="Loading more products...">
-    </ion-infinite-scroll-content>
-  </ion-infinite-scroll>
+  <div class="separator"></div>
+
+  <!-- Infinite Scroll Content -->
+    <ion-grid [fixed]="true">
+      <ion-row>
+        <!-- Product -->
+        <ion-col *ngFor="let product of infiniteList" size="12" size-md="6" size-lg="4">
+          <ion-card [routerLink]="['/tabs/tab2', product.id]">
+            <ion-card-header>
+              <ion-item>
+                <ion-avatar slot="start">
+                  <ion-img [src]="product.imagen"></ion-img>
+                </ion-avatar>
+                <ion-label>
+                  <ion-card-title>{{product.nombre}}</ion-card-title>
+                  <ion-card-subtitle>{{product.precio | currency: "EUR"}}</ion-card-subtitle>
+                </ion-label>
+              </ion-item>
+            </ion-card-header>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <!-- Infinite scroll -->
+    <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
+      <ion-infinite-scroll-content
+        loadingSpinner="bubbles"
+        loadingText="Loading more products...">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+
 
 </ion-content>
