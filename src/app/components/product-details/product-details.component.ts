@@ -5,7 +5,7 @@ import {
   IonButton,
   IonButtons,
   IonContent,
-  IonHeader, IonIcon, IonInput, IonItem, IonSkeletonText, IonText,
+  IonHeader, IonIcon, IonImg, IonInput, IonItem, IonSkeletonText, IonText,
   IonTitle,
   IonToolbar,
 } from "@ionic/angular/standalone";
@@ -26,7 +26,7 @@ import {FavoritesService} from "../../services/favorites/favorites.service";
   selector: 'app-product-details',
   templateUrl: './product-details.component.html',
   styleUrls: ['./product-details.component.scss'],
-  imports: [IonHeader, IonSkeletonText, IonAlert, CommonModule, IonToolbar, IonInput, IonButtons, IonItem, IonIcon, IonBackButton, IonTitle, IonContent, IonButton, IonText, CurrencyPipe, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle]
+  imports: [IonHeader, IonSkeletonText, IonAlert, CommonModule, IonToolbar, IonInput, IonButtons, IonItem, IonIcon, IonBackButton, IonTitle, IonContent, IonButton, IonText, CurrencyPipe, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonImg]
 })
 export class ProductDetailsComponent implements OnInit{
   // Services
@@ -41,6 +41,7 @@ export class ProductDetailsComponent implements OnInit{
   cantidad: number = 1;
   buttonAddDisabled: boolean = this.cantidad == 10;
   buttonRemoveDisabled: boolean = this.cantidad == 1;
+  showCartAlert: boolean = false;
   constructor(private route: ActivatedRoute, private router: Router, private loadingController: LoadingController) {
     addIcons({ starOutline, starHalf, star, add, remove, heart, heartOutline});
   }
@@ -67,7 +68,6 @@ export class ProductDetailsComponent implements OnInit{
     }
     this.producto.favorito = true;
     this.favoritesService.addProduct(product);
-    this.router.navigate(['/tabs/tab1/']);
   }
 
   // Remove the product from the favorites list
@@ -131,9 +131,13 @@ export class ProductDetailsComponent implements OnInit{
   public addProductToCart(){
     if(this.producto) {
       this.sharpService.addProduct(this.producto, this.cantidad);
-      this.cantidad = 1;
-      this.router.navigate(['/tabs/tab1/']);
+      this.showCartAlert = true;
     }
+  }
+
+  handleDismiss(event: any) {
+    this.showCartAlert = false;
+    this.cantidad = 1;
   }
 
 }

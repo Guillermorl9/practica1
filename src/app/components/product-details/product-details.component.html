@@ -39,7 +39,7 @@
     <!-- Product details -->
     <ion-card class="ion-justify-content-center">
       <!-- Product image-->
-      <img src="{{producto?.imagen}}" class="fixed-size-img" />
+      <ion-img src="{{producto?.imagen}}" class="fixed-size-img"></ion-img>
       <ion-card-header>
         <!-- Product name -->
         <ion-card-title>{{producto?.nombre}}</ion-card-title>
@@ -80,5 +80,15 @@
     <ion-button (click)="addProductToCart()">
       Añadir al carrito
     </ion-button>
+
+    <ion-alert
+      [isOpen]="showCartAlert"
+      header="Success"
+      subHeader="Product added to cart"
+      message="You have added {{cantidad}} {{producto?.nombre}} to your cart"
+      [buttons]="['Close']"
+      (didDismiss)="handleDismiss($event)">
+    </ion-alert>
+
   </ng-container>
 </ion-content>

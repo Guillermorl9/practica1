@@ -2,7 +2,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {NgModule} from "@angular/core";
 import {LoginComponent} from "./components/login/login.component";
 import {RegisterComponent} from "./components/register/register.component";
-import {authGuardGuard} from "./guards/auth-guard/auth-guard.guard";
+import {AuthGuard} from "./guards/auth-guard/auth.guard";
 import {RecoverPasswordComponent} from "./components/recover-password/recover-password.component";
 export const routes: Routes = [
   {
@@ -11,7 +11,7 @@ export const routes: Routes = [
   },
   {
     path: 'tabs',
-    canActivate: [authGuardGuard],
+    canActivate: [AuthGuard],
     loadChildren: () => import('./tabs/tabs.routes').then((m) => m.routes),
   },
   {
