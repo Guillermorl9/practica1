@@ -25,7 +25,7 @@ import {
   IonToolbar,
   LoadingController
 } from '@ionic/angular/standalone';
-import {cartOutline, trash} from "ionicons/icons";
+import {cartOutline, trash, heart} from "ionicons/icons";
 import {addIcons} from "ionicons";
 import {SharpService} from "../services/sharp/sharp.service";
 import {Product} from "../models/Product";
@@ -85,7 +85,7 @@ export class Tab1Page implements OnInit{
   category: string = this.categories[Math.floor(Math.random() * this.categories.length)];
 
   constructor(private loadingController: LoadingController) {
-    addIcons({trash, cartOutline})
+    addIcons({trash, cartOutline, heart})
   }
   async ngOnInit() {
     const loading = await this.presentLoading();
@@ -133,6 +133,11 @@ export class Tab1Page implements OnInit{
         this.precioTotal = 0;
       });
       this.showOrderAlert = true;
+  }
+
+  // Remove product from favorites
+  removeFavoriteProduct(product: Product): void {
+    this.favoritesService.removeProduct(product);
   }
 
   // Loading spinner

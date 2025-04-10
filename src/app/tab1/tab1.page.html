@@ -95,8 +95,10 @@
       </ion-text>
       <swiper-container [breakpoints]="breakpoints" pagination="true" navigation="true" gap="40">
         <ng-container *ngFor="let product of favoritesList">
+          <!-- Product -->
           <swiper-slide>
             <ion-card [routerLink]="['/tabs/tab1', product.id]">
+              <ion-icon class="favoriteIcon" name="heart" color="danger" (click)="removeFavoriteProduct(product)"></ion-icon>
               <img class="card-image" alt="Silhouette of mountains" src="{{product.imagen}}" />
               <ion-card-header>
                 <ion-card-title>{{product.nombre}}</ion-card-title>
