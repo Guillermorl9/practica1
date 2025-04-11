@@ -1,11 +1,10 @@
 import {Component, inject, OnInit} from '@angular/core';
 import {
-  IonAlert,
   IonBackButton,
   IonButton,
   IonButtons,
   IonContent,
-  IonHeader, IonIcon, IonImg, IonInput, IonItem, IonSkeletonText, IonText,
+  IonHeader, IonIcon, IonImg, IonItem, IonSkeletonText, IonText,
   IonTitle,
   IonToolbar,
 } from "@ionic/angular/standalone";
@@ -18,21 +17,29 @@ import {starOutline, starHalf, star, add, remove, heart, heartOutline} from 'ion
 import {addIcons} from "ionicons";
 import {CommonModule} from "@angular/common";
 import {SharpService} from "../../services/sharp/sharp.service";
-import {Router} from "@angular/router";
-import {LoadingController} from "@ionic/angular/standalone";
 import {FavoritesService} from "../../services/favorites/favorites.service";
+import { AnimationItem } from 'lottie-web';
+import { LottieComponent, AnimationOptions } from 'ngx-lottie';
 
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.component.html',
   styleUrls: ['./product-details.component.scss'],
-  imports: [IonHeader, IonSkeletonText, IonAlert, CommonModule, IonToolbar, IonInput, IonButtons, IonItem, IonIcon, IonBackButton, IonTitle, IonContent, IonButton, IonText, CurrencyPipe, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonImg]
+  imports: [IonHeader, IonSkeletonText, CommonModule, IonToolbar, IonButtons, IonItem, IonIcon, IonBackButton, IonTitle, IonContent, IonButton, IonText, CurrencyPipe, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonImg, LottieComponent]
 })
 export class ProductDetailsComponent implements OnInit{
   // Services
   private apiService: ApiService = inject(ApiService);
   private sharpService: SharpService = inject(SharpService);
   private favoritesService: FavoritesService = inject(FavoritesService);
+
+  // Constants
+  readonly LOTTIE_OPTIONS: AnimationOptions = {
+    path: 'assets/button-animation3.json',
+    autoplay: true,
+    loop: false
+  };
+
   // Variables
   loaded: boolean = false;
   productoId?: string | null;
@@ -41,8 +48,10 @@ export class ProductDetailsComponent implements OnInit{
   cantidad: number = 1;
   buttonAddDisabled: boolean = this.cantidad == 10;
   buttonRemoveDisabled: boolean = this.cantidad == 1;
-  showCartAlert: boolean = false;
-  constructor(private route: ActivatedRoute, private router: Router, private loadingController: LoadingController) {
+  showLottie: boolean = false;
+  private animationItem: AnimationItem | null = null;
+
+  constructor(private route: ActivatedRoute) {
     addIcons({ starOutline, starHalf, star, add, remove, heart, heartOutline});
   }
 
@@ -131,13 +140,22 @@ export class ProductDetailsComponent implements OnInit{
   public addProductToCart(){
     if(this.producto) {
       this.sharpService.addProduct(this.producto, this.cantidad);
-      this.showCartAlert = true;
+      this.showLottie = true;
+      this.playAnimation();
+      setTimeout(() => {
+        this.showLottie = false;
+      }, 3000);
     }
   }
 
-  handleDismiss(event: any) {
-    this.showCartAlert = false;
-    this.cantidad = 1;
+  // Lottie animation methods
+  handleAnimation(anim: any) {
+    this.animationItem = anim;
+  }
+  playAnimation() {
+    if(this.animationItem) {
+      this.animationItem?.goToAndPlay(0, true);
+    }
   }
 
 }

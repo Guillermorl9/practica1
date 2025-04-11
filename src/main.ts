@@ -14,12 +14,23 @@ import { TranslocoHttpLoader } from './transloco-loader';
 import { provideTransloco } from '@ngneat/transloco';
 import {registerLocaleData} from "@angular/common";
 import localeEs from '@angular/common/locales/es';
+import {provideLottieOptions} from "ngx-lottie";
+import {provideAnimations} from "@angular/platform-browser/animations";
+import player from "lottie-web";
 registerLocaleData(localeEs);
+
+export function playerFactory() {
+  return player;
+}
 bootstrapApplication(AppComponent, {
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     { provide: LOCALE_ID, useValue: 'es-ES' },
     provideIonicAngular(),
+    provideAnimations(),
+    provideLottieOptions({
+      player: playerFactory
+    }),
     provideRouter(routes, withPreloading(PreloadAllModules)),
     provideHttpClient(),
     provideFirebaseApp(() => initializeApp(environment.firebase)),

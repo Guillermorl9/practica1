@@ -56,3 +56,23 @@ ion-input {
   font-size: 40px;
   cursor: pointer;
 }
+
+// Lottie animation css
+.lottie-diagonal-animation {
+  position: fixed;
+  z-index: 9999;
+  animation: moveDiagonal 3s ease-in-out;
+}
+
+@keyframes moveDiagonal {
+  0% {
+    bottom: 0;
+    left: 0;
+    transform: translate(0, 0);
+  }
+  100% {
+    bottom: 120%;
+    left: 100%;
+    transform: translate(-50%, 50%);
+  }
+}

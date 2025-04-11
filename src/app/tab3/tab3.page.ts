@@ -32,7 +32,7 @@ import { RouterLink } from "@angular/router";
   templateUrl: 'tab3.page.html',
   styleUrls: ['tab3.page.scss'],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  imports: [IonHeader, IonSkeletonText, TitleCasePipe, IonCard, IonCardHeader, RouterLink, IonAvatar, IonImg, IonLabel, IonCardTitle, IonCardSubtitle, IonList, IonItem, IonText, CommonModule, IonButtons, TranslocoModule, IonToolbar, IonTitle, IonContent],
+  imports: [IonHeader, IonSkeletonText, TitleCasePipe, IonCard, IonCardHeader, IonCardSubtitle, IonText, CommonModule, TranslocoModule, IonToolbar, IonTitle, IonContent, RouterLink, IonCardTitle],
 })
 export class Tab3Page implements OnInit {
   // Services

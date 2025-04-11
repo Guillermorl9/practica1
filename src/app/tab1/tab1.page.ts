@@ -44,7 +44,7 @@ import {ApiService} from "../services/api/api.service";
   templateUrl: 'tab1.page.html',
   styleUrls: ['tab1.page.scss'],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  imports: [IonHeader, CommonModule, TranslocoModule, IonBadge, IonIcon, IonList, IonItemSliding, IonItemOptions, IonItemOption, IonItemDivider, IonItem, CommonModule, IonMenu, IonButtons, IonMenuButton, TranslocoModule, IonAlert, CurrencyPipe, IonItemSliding, RouterLink, IonButton, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonToolbar, IonTitle, IonContent, IonText, CommonModule],
+  imports: [IonHeader, CommonModule, TranslocoModule, IonBadge, IonIcon, CommonModule, IonMenu, IonButtons, IonMenuButton, TranslocoModule, IonAlert, CurrencyPipe, RouterLink, IonButton, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonToolbar, IonTitle, IonContent, IonText, CommonModule],
 })
 export class Tab1Page implements OnInit{
   // Services
@@ -125,14 +125,14 @@ export class Tab1Page implements OnInit{
       fecha: new Date().toLocaleString('es-Es')
     }
     const uid: string = this.authService.getUid();
-      userOrdersList.push(order);
-      await this.firestoreService.updateOrdersList(uid, userOrdersList).then(() => {
-        this.user!.orderList = userOrdersList;
-        this.sharpService.emptyCart();
-        this.firestoreService.emptyCartList(uid);
-        this.precioTotal = 0;
-      });
-      this.showOrderAlert = true;
+    userOrdersList.push(order);
+    await this.firestoreService.updateOrdersList(uid, userOrdersList).then(() => {
+      this.user!.orderList = userOrdersList;
+      this.sharpService.emptyCart();
+      this.firestoreService.emptyCartList(uid);
+      this.precioTotal = 0;
+    });
+    this.showOrderAlert = true;
   }
 
   // Remove product from favorites

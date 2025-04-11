@@ -7,18 +7,18 @@
     </ion-toolbar>
   </ion-header>
   <ion-content class="ion-padding">
-      <!-- Cart products-->
-      <ng-container *ngFor="let product of sharpList">
-        <!-- Product -->
-          <ion-card class="productCardCart" [routerLink]="['/tabs/tab1', product.id]">
-            <img alt="Silhouette of mountains" src="{{product.imagen}}" class="image" />
-            <ion-card-header class="productCartHeader">
-              <ion-card-title class="cartProductTitle">{{product.nombre}}</ion-card-title>
-              <ion-card-subtitle>{{product.precio | currency: 'EUR' }}</ion-card-subtitle>
-            </ion-card-header>
-            <ion-icon class="deleteIcon" name="trash" color="danger" (click)="removeProduct(product)"></ion-icon>
-          </ion-card>
-      </ng-container>
+    <!-- Cart products-->
+    <ng-container *ngFor="let product of sharpList">
+      <!-- Product -->
+      <ion-card class="productCardCart" [routerLink]="['/tabs/tab1', product.id]">
+        <img alt="Silhouette of mountains" src="{{product.imagen}}" class="image" />
+        <ion-card-header class="productCartHeader">
+          <ion-card-title class="cartProductTitle">{{product.nombre}}</ion-card-title>
+          <ion-card-subtitle>{{product.precio | currency: 'EUR' }}</ion-card-subtitle>
+        </ion-card-header>
+        <ion-icon class="deleteIcon" name="trash" color="danger" (click)="removeProduct(product)"></ion-icon>
+      </ion-card>
+    </ng-container>
     <ng-container  *ngIf="sharpList.length < 1">
       <!-- Empty cart message -->
       <ion-card>

@@ -11,7 +11,7 @@ import {TranslocoModule} from "@ngneat/transloco";
   selector: 'app-tabs',
   templateUrl: 'tabs.page.html',
   styleUrls: ['tabs.page.scss'],
-  imports: [IonTabs, TranslocoModule, IonBadge, IonTabBar, IonTabButton, IonIcon, IonLabel, CommonModule, ConfigComponent],
+  imports: [IonTabs, TranslocoModule, IonBadge, IonTabBar, IonTabButton, IonIcon, IonLabel, CommonModule],
 })
 export class TabsPage implements OnInit {
   private sharpService: SharpService = inject(SharpService);

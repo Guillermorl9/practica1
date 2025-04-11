@@ -14,7 +14,7 @@ import { InfiniteScrollCustomEvent, IonicModule } from "@ionic/angular";
   selector: 'app-tab2',
   templateUrl: 'tab2.page.html',
   styleUrls: ['tab2.page.scss'],
-  imports: [TranslocoModule, ProductDetailsComponent, CommonModule, RouterLink, CurrencyPipe, IonicModule]
+  imports: [TranslocoModule, CommonModule, RouterLink, CurrencyPipe, IonicModule]
 })
 export class Tab2Page implements OnInit {
   // Services

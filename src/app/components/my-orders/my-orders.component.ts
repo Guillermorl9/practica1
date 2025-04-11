@@ -19,7 +19,7 @@ import {
   selector: 'app-my-orders',
   templateUrl: './my-orders.component.html',
   styleUrls: ['./my-orders.component.scss'],
-  imports: [TranslocoModule, RouterLink, IonList, IonItem, IonHeader, IonToolbar, IonButtons, IonBackButton, IonTitle, IonButton, RouterLink, CurrencyPipe, DatePipe, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonContent, CommonModule]
+  imports: [TranslocoModule, RouterLink, IonList, IonItem, IonHeader, IonToolbar, IonButtons, IonBackButton, IonTitle, IonButton, RouterLink, CurrencyPipe, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonContent, CommonModule]
 })
 export class MyOrdersComponent  implements OnInit {
   // Services

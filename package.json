@@ -35,6 +35,8 @@
     "@ngneat/transloco": "^6.0.4",
     "firebase": "^11.4.0",
     "ionicons": "^7.0.0",
+    "lottie-web": "^5.12.2",
+    "ngx-lottie": "^13.0.1",
     "rxfire": "^6.1.0",
     "rxjs": "~7.8.0",
     "swiper": "^11.2.6",
