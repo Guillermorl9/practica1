@@ -34,8 +34,13 @@ export class ProductDetailsComponent implements OnInit{
   private favoritesService: FavoritesService = inject(FavoritesService);
 
   // Constants
-  readonly LOTTIE_OPTIONS: AnimationOptions = {
+  readonly LOTTIE_OPTIONS_CART: AnimationOptions = {
     path: 'assets/button-animation3.json',
+    autoplay: true,
+    loop: false
+  };
+  readonly LOTTIE_OPTIONS_FAVORITE: AnimationOptions = {
+    path: 'assets/favorite-animation.json',
     autoplay: true,
     loop: false
   };
@@ -49,7 +54,9 @@ export class ProductDetailsComponent implements OnInit{
   buttonAddDisabled: boolean = this.cantidad == 10;
   buttonRemoveDisabled: boolean = this.cantidad == 1;
   showLottie: boolean = false;
-  private animationItem: AnimationItem | null = null;
+  showFavoriteLottie: boolean = false;
+  private animationItemCart: AnimationItem | null = null;
+  private animationItemFavorite: AnimationItem | null = null;
 
   constructor(private route: ActivatedRoute) {
     addIcons({ starOutline, starHalf, star, add, remove, heart, heartOutline});
@@ -76,7 +83,13 @@ export class ProductDetailsComponent implements OnInit{
       return;
     }
     this.producto.favorito = true;
+    this.showFavoriteLottie = true;
+    this.playAnimationFavorite();
     this.favoritesService.addProduct(product);
+    setTimeout(() => {
+      this.showFavoriteLottie = false
+    }, 3000);
+
   }
 
   // Remove the product from the favorites list
@@ -148,14 +161,23 @@ export class ProductDetailsComponent implements OnInit{
     }
   }
 
-  // Lottie animation methods
+  // Lottie cart animation methods
   handleAnimation(anim: any) {
-    this.animationItem = anim;
+    this.animationItemCart = anim;
   }
   playAnimation() {
-    if(this.animationItem) {
-      this.animationItem?.goToAndPlay(0, true);
+    if(this.animationItemCart) {
+      this.animationItemCart?.goToAndPlay(0, true);
     }
   }
 
+  // Lottie favorite animation methods
+  handleAnimationFavorite(anim: any) {
+    this.animationItemFavorite = anim;
+  }
+  playAnimationFavorite() {
+    if(this.animationItemFavorite) {
+      this.animationItemFavorite?.goToAndPlay(0, true);
+    }
+  }
 }

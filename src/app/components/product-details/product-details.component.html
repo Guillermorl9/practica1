@@ -61,6 +61,16 @@
       <!-- Favorite icon -->
       <ion-icon *ngIf="!producto?.favorito" class="favoriteIcon" name="heart-outline" color="danger" (click)="addFavoriteProduct(producto!)"></ion-icon>
       <ion-icon *ngIf="producto?.favorito" class="favoriteIcon" name="heart" color="danger" (click)="removeFavoriteProduct(producto!)"></ion-icon>
+
+      <!-- Add favorite list lottie animation -->
+      <ng-lottie
+        *ngIf="showFavoriteLottie"
+        [options]="LOTTIE_OPTIONS_FAVORITE"
+        (animationCreated)="handleAnimationFavorite($event)"
+        width="160px"
+        height="160px"
+        class="lottie-diagonal-animation">
+      </ng-lottie>
     </ion-card>
 
     <!-- Product quantity -->
@@ -84,7 +94,7 @@
     <!-- Add product cart animation -->
     <ng-lottie
       *ngIf="showLottie"
-      [options]="LOTTIE_OPTIONS"
+      [options]="LOTTIE_OPTIONS_CART"
       (animationCreated)="handleAnimation($event)"
       width="160px"
       height="160px"
