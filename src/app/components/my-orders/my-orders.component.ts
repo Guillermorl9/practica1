@@ -14,6 +14,8 @@ import {
   IonCardTitle,
   IonContent, IonHeader, IonItem, IonList, IonTitle, IonToolbar, LoadingController
 } from "@ionic/angular/standalone";
+import {addIcons} from "ionicons";
+import {arrowBack} from "ionicons/icons";
 
 @Component({
   selector: 'app-my-orders',
@@ -30,7 +32,9 @@ export class MyOrdersComponent  implements OnInit {
   // Variables
   ordersList: Array<Order>= [];
 
-  constructor() { }
+  constructor() {
+    addIcons({arrowBack})
+  }
 
   async ngOnInit() {
     const loading = await this.presentLoading();

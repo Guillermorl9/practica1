@@ -11,6 +11,10 @@ $quantity-font-size: 25px;
   margin-top: 20px;
 }
 
+ion-back-button {
+  margin-left: 12px;
+}
+
 ion-card.ion-justify-content-center {
   display: flex;
   justify-content: center;
@@ -46,7 +50,6 @@ ion-input {
   margin: 8px;
   background-color: red;
   width: 50px;
-
 }
 
 .favoriteIcon{

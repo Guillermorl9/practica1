@@ -13,7 +13,7 @@ import {Product} from "../../models/Product";
 import {ApiService} from "../../services/api/api.service";
 import {CurrencyPipe} from "@angular/common";
 import {IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle} from "@ionic/angular/standalone";
-import {starOutline, starHalf, star, add, remove, heart, heartOutline} from 'ionicons/icons';
+import {starOutline, starHalf, arrowBack, star, add, remove, heart, heartOutline} from 'ionicons/icons';
 import {addIcons} from "ionicons";
 import {CommonModule} from "@angular/common";
 import {SharpService} from "../../services/sharp/sharp.service";
@@ -59,7 +59,7 @@ export class ProductDetailsComponent implements OnInit{
   private animationItemFavorite: AnimationItem | null = null;
 
   constructor(private route: ActivatedRoute) {
-    addIcons({ starOutline, starHalf, star, add, remove, heart, heartOutline});
+    addIcons({ starOutline, arrowBack, starHalf, star, add, remove, heart, heartOutline});
   }
 
   async ngOnInit() {

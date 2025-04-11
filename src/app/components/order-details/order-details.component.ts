@@ -13,6 +13,8 @@ import {AuthService} from "../../services/auth/auth.service";
 import {Order} from "../../models/Order";
 import {CommonModule, CurrencyPipe} from "@angular/common";
 import {TranslocoModule, TranslocoService} from "@ngneat/transloco";
+import {addIcons} from "ionicons";
+import {arrowBack} from "ionicons/icons";
 
 @Component({
   selector: 'app-order-details',
@@ -28,7 +30,9 @@ export class OrderDetailsComponent  implements OnInit {
   // Variables
   index: number = 0;
   order?: Order;
-  constructor(private route: ActivatedRoute, private loadingController: LoadingController) { }
+  constructor(private route: ActivatedRoute, private loadingController: LoadingController) {
+    addIcons({arrowBack})
+  }
 
   async ngOnInit() {
     const loading = await this.presentLoading();
