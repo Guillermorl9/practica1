@@ -16,15 +16,15 @@
   </ion-header>
 
   <!-- User data -->
-  <ion-card>
-    <ion-avatar class="avatarContainer">
-      <img alt="Silhouette of a person's head" [src]='profileImage'/>
-      <ion-icon name="camera-outline" class="cameraIcon" (click)="changeImage()"></ion-icon>
-    </ion-avatar>
-    <ion-card-header>
-      <ion-card-title>{{user?.firstName}} {{user?.lastName}}</ion-card-title>
+  <ion-card class="user-card">
+    <ion-card-content class="ion-text-center">
+      <ion-avatar class="avatarContainer">
+        <img alt="Silhouette of a person's head" [src]='profileImage'/>
+ <ion-icon name="camera-outline" class="cameraIcon" (click)="changeImage()"></ion-icon>
+ </ion-avatar>
+ <ion-card-title>{{user?.firstName}} {{user?.lastName}}</ion-card-title>
       <ion-card-subtitle>{{ user?.email }}</ion-card-subtitle>
-    </ion-card-header>
+ </ion-card-content>
   </ion-card>
 
   <!-- Alert: Image size exceeded -->
@@ -37,28 +37,60 @@
     (didDismiss)="maxSize = false"
   ></ion-alert>
 
-  <!-- Menu options -->
+  <!-- General Settings Card -->
   <ion-card>
     <ion-card-content>
-      <ion-card-header>
-        <ion-card-title>{{ t('Settings') }}</ion-card-title>
-      </ion-card-header>
+      <ion-list lines="none">
+        <ion-list-header>
+ <ion-label>{{ t('General') }}</ion-label>
+        </ion-list-header>
 
-      <ion-list>
+        <!-- New dummy option: Notifications -->
+        <ion-item class="ion-activatable">
+ <ion-icon name="notifications-outline"></ion-icon>
+ <ion-label>{{ t('Notifications') }}</ion-label>
+ </ion-item>
+
         <!-- Menu option: Change personal data -->
-        <ion-item class="ion-activatable" id="open-modal">
-          <ion-icon name="person-outline"></ion-icon>
-          <ion-label>{{t('Change personal data')}}</ion-label>
-        </ion-item>
+ <ion-item class="ion-activatable" id="open-modal">
+ <ion-icon name="person-outline"></ion-icon>
+ <ion-label>{{t('Change personal data')}}</ion-label>
+ </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
 
-        <!-- Menu option: Dark theme-->
+  <!-- Account Settings Card -->
+ <ion-card>
+ <ion-card-content>
+ <ion-list lines="none">
+ <ion-list-header>
+ <ion-label>{{ t('Account') }}</ion-label>
+ </ion-list-header>
+
+        <!-- Menu option: Dark theme -->
         <ion-item class="ion-activatable">
           <ion-icon name="moon-outline"></ion-icon>
           <ion-toggle [(ngModel)]="isDark" (ionChange)="toggleChange()" justify="space-between" [checked]="isDark">
             {{t('Dark theme')}}
           </ion-toggle>
         </ion-item>
+        <!-- New dummy option: Privacy -->
+        <ion-item class="ion-activatable">
+ <ion-icon name="lock-closed-outline"></ion-icon>
+ <ion-label>{{ t('Privacy') }}</ion-label>
+ </ion-item>
+      </ion-list>
+ </ion-card-content>
+ </ion-card>
 
+  <!-- Appearance Settings Card -->
+ <ion-card>
+ <ion-card-content>
+ <ion-list lines="none">
+ <ion-list-header>
+ <ion-label>{{ t('Appearance') }}</ion-label>
+ </ion-list-header>
         <!-- Menu option: Theme -->
         <ion-item class="ion-activatable">
  <ion-icon name="color-palette-outline"></ion-icon>
@@ -67,7 +99,22 @@
             <ion-select-option *ngFor="let theme of themes">{{theme}}</ion-select-option>
           </ion-select>
         </ion-item>
+        <!-- New dummy option: Payment Methods -->
+        <ion-item class="ion-activatable">
+ <ion-icon name="card-outline"></ion-icon>
+ <ion-label>{{ t('Payment Methods') }}</ion-label>
+ </ion-item>
+      </ion-list>
+ </ion-card-content>
+ </ion-card>
+  <!-- Other Settings Card -->
+  <ion-card>
+    <ion-card-content>
+        <ion-list-header>
+          <ion-label>{{ t('Appearance') }}</ion-label>
+        </ion-list-header>
 
+        <!-- Menu option: Language -->
 
         <!-- Menu option: Language -->
         <ion-item class="ion-activatable">
@@ -78,10 +125,21 @@
           </ion-select>
         </ion-item>
 
+      <ion-list lines="none">
+        <ion-list-header>
+          <ion-label>{{ t('Other') }}</ion-label>
+        </ion-list-header>
+
+        <!-- Other Settings -->
+        <ion-list-header>
+          <ion-label>{{ t('Other') }}</ion-label>
+        </ion-list-header>
+
         <!-- Menu option: My orders -->
         <ion-item class="ion-activatable" [routerLink]="['/tabs/tab4/my-orders']">
           <ion-icon name="trending-up-outline"></ion-icon>
           <ion-label>{{t('My orders')}}</ion-label>
+
         </ion-item>
 
         <!-- Menu option: Contact form -->

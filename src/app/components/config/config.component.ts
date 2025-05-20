@@ -2,7 +2,7 @@ import {Component, inject, OnInit, ViewChild} from '@angular/core';
 import {addIcons} from "ionicons";
 import {personOutline, cameraOutline, call, person, people, mail, trendingUpOutline, logOutOutline, moonOutline, languageOutline, personAddOutline} from "ionicons/icons";
 import {User} from "../../models/User";
-import {Router, RouterLink,} from "@angular/router";
+import {Router, RouterLink} from "@angular/router";
 import {AuthService} from "../../services/auth/auth.service";
 import {IonModal} from "@ionic/angular/standalone";
 import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
@@ -13,7 +13,7 @@ import {CommonModule} from "@angular/common";
 import {LocalStorageService} from "../../services/local-storage/local-storage.service";
 import {PaletteService} from "../../services/palette/palette.service";
 import {IonicModule} from "@ionic/angular";
-import {PhotoService} from "../../services/photo/photo.service";import { colorPaletteOutline } from 'ionicons/icons';
+import {PhotoService} from "../../services/photo/photo.service"; import { colorPaletteOutline, notificationsOutline, lockClosedOutline, cardOutline, informationCircleOutline } from 'ionicons/icons';
 @Component({
   selector: 'app-config',
   templateUrl: './config.component.html',
@@ -61,7 +61,7 @@ export class ConfigComponent implements OnInit {
       telefono: ['', [Validators.required, Validators.pattern(this.PHONE_PATTERN)]],
       email: ['', [Validators.required, Validators.email]],
     })
-    addIcons({personOutline, cameraOutline, call, person, people, mail, trendingUpOutline, logOutOutline, moonOutline, languageOutline, personAddOutline, colorPaletteOutline});
+    addIcons({personOutline, cameraOutline, call, person, people, mail, trendingUpOutline, logOutOutline, moonOutline, languageOutline, personAddOutline, colorPaletteOutline, notificationsOutline, lockClosedOutline, cardOutline, informationCircleOutline});
   }
 
   ngOnInit() {
