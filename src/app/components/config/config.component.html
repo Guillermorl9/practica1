@@ -59,6 +59,16 @@
           </ion-toggle>
         </ion-item>
 
+        <!-- Menu option: Theme -->
+        <ion-item class="ion-activatable">
+ <ion-icon name="color-palette-outline"></ion-icon>
+          <ion-select label="{{t('Theme')}}" placeholder="{{t('Select Theme')}}"
+                      (ionChange)="changeTheme($event)" [value]="currentTheme">
+            <ion-select-option *ngFor="let theme of themes">{{theme}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+
         <!-- Menu option: Language -->
         <ion-item class="ion-activatable">
           <ion-icon name="language-outline"></ion-icon>
